@@ -12,6 +12,10 @@ enum ContentType {
         case buy
         case sell
     }
+    enum OrderBy {
+        case asc
+        case desc
+    }
     
     // MARK: 유저정보
     case userInfo(nickname: String)
@@ -20,6 +24,8 @@ enum ContentType {
     case userTradeHistory(id: String, tradeType: TradeType, offset: Int, limit: Int)
     
     // MARK: 매치정보
+    case matchAllRecord(matchType: Int, offset: Int, limit: Int, orderBy: OrderBy)
+    case matchDesc(matchId: String)
     
     private var scheme: String {
         return "https"
@@ -27,13 +33,15 @@ enum ContentType {
     
     private var host: String {
         switch self {
-        case .userInfo(_), .userMaxGrade(_), .userMatches(_, _, _, _), .userTradeHistory(_, _, _, _):
+        case .userInfo(_), .userMaxGrade(_), .userMatches(_, _, _, _), .userTradeHistory(_, _, _, _), .matchAllRecord(_, _, _, _), .matchDesc(_):
             return "api.nexon.co.kr"
         }
     }
     
     private var path: String {
-        let userInfoBasicPath = "/fifaonline4/v1.0/users"
+        let basicPath = "/fifaonline4/v1.0"
+        let userInfoBasicPath = basicPath + "/users"
+        let matchBasicPath = basicPath + "/matches"
         
         switch self {
         case .userInfo(_):
@@ -44,6 +52,10 @@ enum ContentType {
             return userInfoBasicPath + "/\(id)" + "/matches"
         case .userTradeHistory(let id, _, _, _):
             return userInfoBasicPath + "/\(id)" + "/markets"
+        case .matchAllRecord(_, _, _, _):
+            return matchBasicPath
+        case .matchDesc(let matchId):
+            return matchBasicPath + "/\(matchId)"
         }
     }
     
@@ -63,13 +75,22 @@ enum ContentType {
             
             querys = [matchTypeQuery, offsetQuery, limitQuery]
         case .userTradeHistory(_, let tradeType, let offset, let limit):
-            let tradeTypeValue = tradeType == TradeType.buy ? "buy" : "sell"
+            let tradeTypeValue = tradeType == .buy ? "buy" : "sell"
             let limitValue = limit > 100 ? 100 : limit
             let tradeTypeQuery = URLQueryItem(name: "tradetype", value: tradeTypeValue)
             let offsetQuery = URLQueryItem(name: "offset", value: "\(offset)")
             let limitQuery = URLQueryItem(name: "limit", value: "\(limitValue)")
             
             querys = [tradeTypeQuery, offsetQuery, limitQuery]
+        case .matchAllRecord(let matchType, let offset, let limit, let orderBy):
+            let limitValue = limit > 100 ? 100 : limit
+            let orderByValue = orderBy == .asc ? "asc" : "desc"
+            let matchTypeQuery = URLQueryItem(name: "matchtype", value: "\(matchType)")
+            let offsetQuery = URLQueryItem(name: "offset", value: "\(offset)")
+            let limitQuery = URLQueryItem(name: "limit", value: "\(limitValue)")
+            let orderByQuery = URLQueryItem(name: "orderby", value: orderByValue)
+            
+            querys = [matchTypeQuery, offsetQuery, limitQuery, orderByQuery]
         default:
             break
         }
