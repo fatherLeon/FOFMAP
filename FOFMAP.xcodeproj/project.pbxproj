@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2626584D2A4C009A0097AF73 /* NetworkManager.swift */; };
 		262658512A4C020B0097AF73 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658502A4C020B0097AF73 /* NetworkError.swift */; };
+		262658562A4C059C0097AF73 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658552A4C059C0097AF73 /* ContentType.swift */; };
 		26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */; };
 		26D7DBE02A4B01BA00B42317 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDF2A4B01BA00B42317 /* ContentView.swift */; };
 		26D7DBE22A4B01BB00B42317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE12A4B01BB00B42317 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 		2626584A2A4BF8DA0097AF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2626584D2A4C009A0097AF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		262658502A4C020B0097AF73 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		262658552A4C059C0097AF73 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		26D7DBDA2A4B01BA00B42317 /* FOFMAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOFMAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOFMAPApp.swift; sourceTree = "<group>"; };
 		26D7DBDF2A4B01BA00B42317 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,10 +50,19 @@
 		2626584C2A4C004E0097AF73 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				262658542A4C058E0097AF73 /* Entity */,
 				2626584D2A4C009A0097AF73 /* NetworkManager.swift */,
 				262658502A4C020B0097AF73 /* NetworkError.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		262658542A4C058E0097AF73 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				262658552A4C059C0097AF73 /* ContentType.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		26D7DBD12A4B01BA00B42317 = {
@@ -161,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262658562A4C059C0097AF73 /* ContentType.swift in Sources */,
 				2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */,
 				262658512A4C020B0097AF73 /* NetworkError.swift in Sources */,
 				26D7DBE02A4B01BA00B42317 /* ContentView.swift in Sources */,
