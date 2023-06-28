@@ -8,6 +8,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case httpError
     case responseError(statusCode: Int)
     case invalidData
 }
