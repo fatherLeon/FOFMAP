@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct NetworkManager {
+    private let session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    
+    func dataTask(with request: URLRequest) async throws -> Data? {
+        let result = try await session.data(for: request)
+    }
+}
