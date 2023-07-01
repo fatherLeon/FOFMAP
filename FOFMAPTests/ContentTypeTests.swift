@@ -69,4 +69,32 @@ final class ContentTypeTests: XCTestCase {
         XCTAssertEqual(expectation, result)
         XCTAssertEqual(expectation, overLimitSutResult)
     }
+    
+    func test_checkMatchAllRecordURL_and_overLimitValue100() throws {
+        // given
+        let sut = ContentType.matchAllRecord(matchType: 50, offset: 0, limit: 100, orderBy: .asc)
+        let overSut = ContentType.matchAllRecord(matchType: 50, offset: 0, limit: 120, orderBy: .asc)
+        let expectation = "https://api.nexon.co.kr/fifaonline4/v1.0/matches?matchtype=50&offset=0&limit=100&orderby=asc"
+        
+        // when
+        let result = sut.url!.absoluteString
+        let overLimitSutResult = overSut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+        XCTAssertEqual(expectation, overLimitSutResult)
+    }
+    
+    func test_checkMatchDescURL() throws {
+        // given
+        let matchId = "649ff8b093a520f89079a440"
+        let sut = ContentType.matchDesc(matchId: matchId)
+        let expectation = "https://api.nexon.co.kr/fifaonline4/v1.0/matches/649ff8b093a520f89079a440"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
 }
