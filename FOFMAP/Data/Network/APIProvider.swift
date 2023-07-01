@@ -5,7 +5,7 @@
 //  Created by 강민수 on 2023/07/01.
 //
 
-import Foundation
+import UIKit
 
 struct APIProvider {
     private let networkManager: NetworkManager
@@ -28,11 +28,21 @@ struct APIProvider {
     
     func receiveData<T: Decodable>(contentType: ContentType, by type: T.Type) async throws -> T {
         let request = try generateRequest(by: contentType)
-        
         let data = try await networkManager.data(with: request)
         let parsedData = try ParsingModel().toJson(data: data, by: type)
         
         
         return parsedData
+    }
+    
+    func receiveImage(contentType: ContentType) async throws -> UIImage {
+        let request = try generateRequest(by: contentType)
+        let data = try await networkManager.data(with: request)
+        
+        guard let image = UIImage(data: data) else {
+            throw NetworkError.invalidData
+        }
+        
+        return image
     }
 }
