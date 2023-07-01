@@ -34,10 +34,10 @@ enum ContentType {
     case metaPosition
     case metaGrade
     case metaVoltaGrade
-    case metaPlayerActionshotImage(spid: Int)
-    case metaPlayerActionshotImage(pid: Int)
-    case metaPlayerImage(spid: Int)
-    case metaPlayerImage(id: Int)
+    case metaPlayerActionshotImageBySpid(spid: Int)
+    case metaPlayerActionshotImageByPid(pid: Int)
+    case metaPlayerImageBySpid(spid: Int)
+    case metaPlayerImageByPid(pid: Int)
     
     private var scheme: String {
         return "https"
@@ -49,7 +49,7 @@ enum ContentType {
             return "api.nexon.co.kr"
         case .metaMatchType, .metaPlayerId, .metaSeasonId, .metaPosition, .metaGrade, .metaVoltaGrade:
             return "static.api.nexon.co.kr"
-        case .metaPlayerActionshotImage(_), .metaPlayerImage(_):
+        case .metaPlayerActionshotImageBySpid(_), .metaPlayerActionshotImageByPid(_), .metaPlayerImageBySpid(_), .metaPlayerImageByPid(_):
             return "fo4.dn.nexoncdn.co.kr"
         }
     }
@@ -86,9 +86,9 @@ enum ContentType {
             return metaBasicPath + "/division.json"
         case .metaVoltaGrade:
             return metaBasicPath + "/division_volta.json"
-        case .metaPlayerActionshotImage(let id):
+        case .metaPlayerActionshotImageBySpid(let id), .metaPlayerActionshotImageByPid(let id):
             return metaPlayerImageBasicPath + "/playersAction/p\(id).png"
-        case .metaPlayerImage(let id):
+        case .metaPlayerImageBySpid(let id), .metaPlayerImageByPid(let id):
             return metaPlayerImageBasicPath + "/players/p\(id).png"
         }
     }

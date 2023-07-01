@@ -12,6 +12,8 @@ import XCTest
 final class ContentTypeTests: XCTestCase {
     
     private let userId = "27ee6f0418d480e60743174b"
+    private let playerSpid = 100000250
+    private let playerPid = 250
 
     // MARK: 유저정보 테스트
     func test_checkUserInfoURL() throws {
@@ -70,6 +72,7 @@ final class ContentTypeTests: XCTestCase {
         XCTAssertEqual(expectation, overLimitSutResult)
     }
     
+    // MARK: 매치정보 테스트
     func test_checkMatchAllRecordURL_and_overLimitValue100() throws {
         // given
         let sut = ContentType.matchAllRecord(matchType: 50, offset: 0, limit: 100, orderBy: .asc)
@@ -96,5 +99,110 @@ final class ContentTypeTests: XCTestCase {
         
         // then
         XCTAssertEqual(expectation, result)
+    }
+    
+    // MARK: 메타정보 테스트
+    func test_metaMatchTypeURL() throws {
+        // given
+        let sut = ContentType.metaMatchType
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/matchtype.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaPlayerIdURL() throws {
+        // given
+        let sut = ContentType.metaPlayerId
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/spid.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaSeasonIdURL() throws {
+        // given
+        let sut = ContentType.metaSeasonId
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/seasonid.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaPositionURL() throws {
+        // given
+        let sut = ContentType.metaPosition
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/spposition.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaGradeURL() throws {
+        // given
+        let sut = ContentType.metaGrade
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/division.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaVoltaGrade() throws {
+        // given
+        let sut = ContentType.metaVoltaGrade
+        let expectation = "https://static.api.nexon.co.kr/fifaonline4/latest/division_volta.json"
+        
+        // when
+        let result = sut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_metaPlayerActionshotImage() throws {
+        // given
+        let spidSut = ContentType.metaPlayerActionshotImageBySpid(spid: playerSpid)
+        let pidSut = ContentType.metaPlayerActionshotImageByPid(pid: playerPid)
+        let spidExpectation = "https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p100000250.png"
+        let pidExpectation = "https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p250.png"
+        
+        // when
+        let spidResult = spidSut.url!.absoluteString
+        let pidResult = pidSut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(spidExpectation, spidResult)
+        XCTAssertEqual(pidExpectation, pidResult)
+    }
+    
+    func test_metaPlayerImage() throws {
+        // given
+        let spidSut = ContentType.metaPlayerImageBySpid(spid: playerSpid)
+        let pidSut = ContentType.metaPlayerImageByPid(pid: playerPid)
+        let spidExpectation = "https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p100000250.png"
+        let pidExpectation = "https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p250.png"
+        
+        // when
+        let spidResult = spidSut.url!.absoluteString
+        let pidResult = pidSut.url!.absoluteString
+        
+        // then
+        XCTAssertEqual(spidExpectation, spidResult)
+        XCTAssertEqual(pidExpectation, pidResult)
     }
 }
