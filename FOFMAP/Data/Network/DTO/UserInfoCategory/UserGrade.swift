@@ -22,9 +22,9 @@ import Foundation
  ]
  */
 
-typealias UserGrade = [Grade]
+typealias UserGrade = [GradeCategory]
 
-struct Grade: Decodable {
+struct GradeCategory: Decodable {
     let matchType: Int
     let division: Int
     let achievementDate: String

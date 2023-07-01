@@ -26,9 +26,9 @@ import Foundation
 ]
  */
 
-typealias UserTradeHistory = [Trade]
+typealias UserTradeHistory = [TradeHistory]
 
-struct Trade: Decodable {
+struct TradeHistory: Decodable {
     let tradeDate: String
     let saleSn: String
     let spid: Int
