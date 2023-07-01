@@ -27,6 +27,18 @@ enum ContentType {
     case matchAllRecord(matchType: Int, offset: Int, limit: Int, orderBy: OrderBy)
     case matchDesc(matchId: String)
     
+    // MARK: 메타정보
+    case metaMatchType
+    case metaPlayerId
+    case metaSeasonId
+    case metaPosition
+    case metaGrade
+    case metaVoltaGrade
+    case metaPlayerActionshotImage(spid: Int)
+    case metaPlayerActionshotImage(pid: Int)
+    case metaPlayerImage(spid: Int)
+    case metaPlayerImage(id: Int)
+    
     private var scheme: String {
         return "https"
     }
@@ -35,6 +47,10 @@ enum ContentType {
         switch self {
         case .userInfo(_), .userMaxGrade(_), .userMatches(_, _, _, _), .userTradeHistory(_, _, _, _), .matchAllRecord(_, _, _, _), .matchDesc(_):
             return "api.nexon.co.kr"
+        case .metaMatchType, .metaPlayerId, .metaSeasonId, .metaPosition, .metaGrade, .metaVoltaGrade:
+            return "static.api.nexon.co.kr"
+        case .metaPlayerActionshotImage(_), .metaPlayerImage(_):
+            return "fo4.dn.nexoncdn.co.kr"
         }
     }
     
@@ -42,6 +58,8 @@ enum ContentType {
         let basicPath = "/fifaonline4/v1.0"
         let userInfoBasicPath = basicPath + "/users"
         let matchBasicPath = basicPath + "/matches"
+        let metaBasicPath = "/fifaonline4/latest"
+        let metaPlayerImageBasicPath = "/live/externalAssets/common"
         
         switch self {
         case .userInfo(_):
@@ -56,6 +74,22 @@ enum ContentType {
             return matchBasicPath
         case .matchDesc(let matchId):
             return matchBasicPath + "/\(matchId)"
+        case .metaMatchType:
+            return metaBasicPath + "/matchtype.json"
+        case .metaPlayerId:
+            return metaBasicPath + "/spid.json"
+        case .metaSeasonId:
+            return metaBasicPath + "/seasonid.json"
+        case .metaPosition:
+            return metaBasicPath + "/spposition.json"
+        case .metaGrade:
+            return metaBasicPath + "/division.json"
+        case .metaVoltaGrade:
+            return metaBasicPath + "/division_volta.json"
+        case .metaPlayerActionshotImage(let id):
+            return metaPlayerImageBasicPath + "/playersAction/p\(id).png"
+        case .metaPlayerImage(let id):
+            return metaPlayerImageBasicPath + "/players/p\(id).png"
         }
     }
     
