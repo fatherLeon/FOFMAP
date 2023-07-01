@@ -93,14 +93,14 @@ enum ContentType {
         }
     }
     
-    private var querys: [URLQueryItem] {
-        var querys: [URLQueryItem] = []
+    private var querys: [URLQueryItem]? {
+        var querys: [URLQueryItem]? = []
         
         switch self {
         case .userInfo(let nickname):
             let nicknameQuery = URLQueryItem(name: "nickname", value: nickname)
             
-            querys.append(nicknameQuery)
+            querys?.append(nicknameQuery)
         case .userMatches(_, let matchType, let offset, let limit):
             let limitValue = limit > 100 ? 100 : limit
             let matchTypeQuery = URLQueryItem(name: "matchtype", value: "\(matchType)")
@@ -126,7 +126,7 @@ enum ContentType {
             
             querys = [matchTypeQuery, offsetQuery, limitQuery, orderByQuery]
         default:
-            break
+            querys = nil
         }
         
         return querys
