@@ -12,4 +12,5 @@ enum NetworkError: Error {
     case httpError
     case responseError(statusCode: Int)
     case invalidData
+    case incorrectType
 }
