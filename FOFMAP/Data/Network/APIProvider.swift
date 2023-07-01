@@ -28,7 +28,7 @@ struct APIProvider {
     
     func receiveData<T: Decodable>(contentType: ContentType, by type: T.Type) async throws -> T {
         let request = try generateRequest(by: contentType)
-        let data = try await networkManager.data(with: request)
+        let data = try await networkManager.request(with: request)
         let parsedData = try ParsingModel().toJson(data: data, by: type)
         
         
@@ -37,7 +37,7 @@ struct APIProvider {
     
     func receiveImage(contentType: ContentType) async throws -> UIImage {
         let request = try generateRequest(by: contentType)
-        let data = try await networkManager.data(with: request)
+        let data = try await networkManager.request(with: request)
         
         guard let image = UIImage(data: data) else {
             throw NetworkError.invalidData
