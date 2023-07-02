@@ -34,10 +34,7 @@ struct APIProvider {
     func receiveImage(by url: URL) async throws -> UIImage {
         let request = try generateRequest(by: url)
         let data = try await networkManager.request(with: request)
-        
-        guard let image = UIImage(data: data) else {
-            throw NetworkError.invalidData
-        }
+        let image = try ParsingModel().toImage(data: data)
         
         return image
     }
