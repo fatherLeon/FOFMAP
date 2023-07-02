@@ -9,9 +9,11 @@ import UIKit
 
 struct APIProvider {
     private let networkManager: NetworkManager
+    private let cacheManager: CacheManager
     
-    init(session: URLSession = .shared) {
+    init(session: URLSession = .shared, cacheManager: CacheManager = CacheManager()) {
         self.networkManager = NetworkManager(session: session)
+        self.cacheManager = cacheManager
     }
     
     private func generateRequest(by url: URL) throws -> URLRequest {
