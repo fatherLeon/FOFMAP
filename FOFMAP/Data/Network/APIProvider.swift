@@ -14,11 +14,7 @@ struct APIProvider {
         self.networkManager = NetworkManager(session: session)
     }
     
-    private func generateRequest(by contentType: ContentType) throws -> URLRequest {
-        guard let url = contentType.url else {
-            throw NetworkError.urlError
-        }
-        
+    private func generateRequest(by url: URL) throws -> URLRequest {
         var request = URLRequest(url: url)
         
         request.addValue("", forHTTPHeaderField: "Authorization")
@@ -26,8 +22,8 @@ struct APIProvider {
         return request
     }
     
-    func receiveData<T: Decodable>(contentType: ContentType, by type: T.Type) async throws -> T {
-        let request = try generateRequest(by: contentType)
+    func receiveData<T: Decodable>(url: URL, by type: T.Type) async throws -> T {
+        let request = try generateRequest(by: url)
         let data = try await networkManager.request(with: request)
         let parsedData = try ParsingModel().toJson(data: data, by: type)
         
@@ -35,8 +31,8 @@ struct APIProvider {
         return parsedData
     }
     
-    func receiveImage(contentType: ContentType) async throws -> UIImage {
-        let request = try generateRequest(by: contentType)
+    func receiveImage(by url: URL) async throws -> UIImage {
+        let request = try generateRequest(by: url)
         let data = try await networkManager.request(with: request)
         
         guard let image = UIImage(data: data) else {
