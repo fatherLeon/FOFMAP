@@ -11,7 +11,8 @@ import XCTest
 
 final class NetworkManagerTests: XCTestCase {
     
-    var sut: NetworkManager!
+    private var sut: NetworkManager!
+    private let sampleURL = URL(string: "www.naver.com")!
 
     override func setUpWithError() throws {
         let config = URLSessionConfiguration.ephemeral
@@ -28,14 +29,14 @@ final class NetworkManagerTests: XCTestCase {
     func test_isSuccessResponseByStatusCode200_and_StubData_userTradeHistoryData() async throws {
         // given
         MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: URL(string: "www.naver.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            let stubData = StubJsonData.userTradeHistoryData!
+            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            let stubData = StubJsonData.userTradeHistoryData
             
             return (response, stubData)
         }
         
-        let request = URLRequest(url: URL(string: "www.naver.com")!)
-        let expectationData = StubJsonData.userTradeHistoryData!
+        let request = URLRequest(url: sampleURL)
+        let expectationData = StubJsonData.userTradeHistoryData
         let expectationStatusCode = 200
         
         // when
@@ -45,5 +46,27 @@ final class NetworkManagerTests: XCTestCase {
         // then
         XCTAssertEqual(expectationData, resultData)
         XCTAssertEqual(expectationStatusCode, httpResponse.statusCode)
+    }
+    
+    func test_isFailedResponseByStatusCode403_and_ErrorIsResponseError403() async {
+        // given
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 403, httpVersion: nil, headerFields: nil)!
+            let stubData = StubJsonData.userTradeHistoryData
+            
+            return (response, stubData)
+        }
+        
+        let request = URLRequest(url: sampleURL)
+        let expectationError = NetworkError.responseError(statusCode: 403)
+        
+        // when
+        // then
+        do {
+            let _ = try await self.sut.request(with: request)
+            XCTFail("This testcase must throw Response Error")
+        } catch {
+            XCTAssertEqual(expectationError, error as! NetworkError)
+        }
     }
 }

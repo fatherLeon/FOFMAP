@@ -25,5 +25,5 @@ struct StubJsonData {
                                              "value": 2710000000
                                          }
                                     ]
-                                    """.data(using: .utf8)
+                                    """.data(using: .utf8)!
 }
