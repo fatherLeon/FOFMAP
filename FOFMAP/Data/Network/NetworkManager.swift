@@ -14,7 +14,7 @@ struct NetworkManager {
         self.session = session
     }
     
-    func request(with urlRequest: URLRequest) async throws -> Data {
+    func request(with urlRequest: URLRequest) async throws -> (Data, URLResponse) {
         let (data, response) = try await session.data(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -25,6 +25,6 @@ struct NetworkManager {
             throw NetworkError.responseError(statusCode: httpResponse.statusCode)
         }
         
-        return data
+        return (data, response)
     }
 }
