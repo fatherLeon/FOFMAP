@@ -16,4 +16,15 @@ class CacheManager {
         
         urlCache.storeCachedResponse(cachedResponse, for: request)
     }
+    
+    func getCachedResponse(for request: URLRequest) -> (Data, URLResponse)? {
+        guard let cache = urlCache.cachedResponse(for: request) else {
+            return nil
+        }
+        
+        let data = cache.data
+        let response = cache.response
+        
+        return (data, response)
+    }
 }
