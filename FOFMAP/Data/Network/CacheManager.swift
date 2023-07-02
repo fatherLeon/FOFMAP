@@ -8,8 +8,11 @@
 import Foundation
 
 class CacheManager {
-    private let urlCache = URLCache(memoryCapacity: 0,
-                                    diskCapacity: 100 * 1024 * 1024)
+    private let urlCache: URLCache
+    
+    init(urlCache: URLCache = URLCache(memoryCapacity: 0, diskCapacity: 20 * 1024 * 1024)) {
+        self.urlCache = urlCache
+    }
     
     func storeCache(response: URLResponse, data: Data, in request: URLRequest) {
         let cachedResponse = CachedURLResponse(response: response, data: data)
