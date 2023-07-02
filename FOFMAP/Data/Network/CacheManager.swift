@@ -27,4 +27,12 @@ class CacheManager {
         
         return (data, response)
     }
+    
+    func removeCache(for request: URLRequest) {
+        urlCache.removeCachedResponse(for: request)
+    }
+    
+    func removeAllCache() {
+        urlCache.removeAllCachedResponses()
+    }
 }
