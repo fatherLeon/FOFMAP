@@ -28,7 +28,7 @@ struct APIProvider {
         }
         
         let parsedData = try parsingModel.toJson(data: data, by: type)
-            
+        
         return parsedData
     }
     
@@ -59,7 +59,7 @@ struct APIProvider {
     private func generateRequest(by url: URL) throws -> URLRequest {
         var request = URLRequest(url: url)
         
-        request.addValue("", forHTTPHeaderField: "Authorization")
+        request.addValue("API 토큰", forHTTPHeaderField: "Authorization")
         
         return request
     }
