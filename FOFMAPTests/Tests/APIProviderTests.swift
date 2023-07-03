@@ -46,6 +46,7 @@ final class APIProviderTests: XCTestCase {
         // then
         XCTAssertEqual(expectationDataCount, tradeHistory.count)
         self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+        self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
     }
     
     func test_failParsingSampleDataByIncorrectType() async throws {
@@ -68,6 +69,7 @@ final class APIProviderTests: XCTestCase {
         } catch {
             XCTAssertEqual(expectationError, error as! NetworkError)
             self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+            self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
         }
     }
     
@@ -89,6 +91,7 @@ final class APIProviderTests: XCTestCase {
         // then
         XCTAssertEqual(expectationImage.pngData(), resultImage.pngData())
         self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+        self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
     }
     
     func test_failParsingSampleImageByInvalidData() async throws {
@@ -111,6 +114,7 @@ final class APIProviderTests: XCTestCase {
         } catch {
             XCTAssertEqual(expectationError, error as! NetworkError)
             self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+            self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
         }
     }
 }
