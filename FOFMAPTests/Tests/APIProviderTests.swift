@@ -117,4 +117,24 @@ final class APIProviderTests: XCTestCase {
             self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
         }
     }
+    
+    // 시나리오 1 - 똑같은 request 호출 2번 시 storeCache 1번, getCachedResponse 1번
+    func test_scenario1() async throws {
+        // given
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            let data = SampleData.userTradeHistoryData
+            
+            return (response, data)
+        }
+        
+        let expectationCalledMethodCount = 1
+        // when
+        let _ = try await sut.receiveData(url: sampleURL, by: UserTradeHistory.self)
+        
+        // then
+        networkManager.testCheckingCalledRequestNumber(expectationCalledMethodCount)
+        cacheManager.testCheckingStoreCache(expectationCalledMethodCount)
+        cacheManager.testCheckingGetCachedResponse(expectationCalledMethodCount)
+    }
 }
