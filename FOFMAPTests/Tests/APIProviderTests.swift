@@ -81,13 +81,36 @@ final class APIProviderTests: XCTestCase {
         }
 
         let expectationMethodCalledCount = 1
-        let expectationImage = UIImage(named: "SampleImage")
+        let expectationImage = UIImage(named: "SampleImage")!
 
         // when
         let resultImage = try await sut.receiveImage(by: sampleURL)
 
         // then
-        XCTAssertEqual(expectationImage!.pngData(), resultImage.pngData())
+        XCTAssertEqual(expectationImage.pngData(), resultImage.pngData())
         self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+    }
+    
+    func test_failParsingSampleImageByInvalidData() async throws {
+        // given
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            let data = SampleData.userTradeHistoryData
+            
+            return (response, data)
+        }
+        
+        let expectationMethodCalledCount = 1
+        let expectationError = NetworkError.invalidData
+        // when
+        // then
+        
+        do {
+            let _ = try await sut.receiveImage(by: sampleURL)
+            XCTFail("This testcase must throw InvalidData Error")
+        } catch {
+            XCTAssertEqual(expectationError, error as! NetworkError)
+            self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+        }
     }
 }
