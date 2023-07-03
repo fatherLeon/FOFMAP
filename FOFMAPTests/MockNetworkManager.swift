@@ -10,19 +10,27 @@ import FOFMAP
 import XCTest
 import Foundation
 
-struct MockNetworkManager: Connectable {
+final class MockNetworkManager: Connectable {
     
     private let session: URLSession
+    private var calledRequestMethodNum = 0
     
     init() {
-        let session = URLSession(configuration: .ephemeral)
-        
-        session.configuration.protocolClasses = [MockURLProtocol.self]
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [MockURLProtocol.self]
+        let session = URLSession(configuration: config)
         
         self.session = session
     }
     
     func request(with urlRequest: URLRequest) async throws -> (Data, URLResponse) {
-        return try await session.data(for: urlRequest)
+        let (data, response) = try await session.data(for: urlRequest)
+        self.calledRequestMethodNum += 1
+        
+        return (data, response)
+    }
+    
+    func testCheckingCalledRequestNumber(_ expectation: Int) {
+        XCTAssertEqual(expectation, calledRequestMethodNum)
     }
 }
