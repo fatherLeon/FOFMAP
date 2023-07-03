@@ -7,6 +7,7 @@
 
 @testable
 import FOFMAP
+import XCTest
 import Foundation
 
 struct MockNetworkManager: Connectable {
