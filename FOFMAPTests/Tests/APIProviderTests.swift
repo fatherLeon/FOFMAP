@@ -47,4 +47,46 @@ final class APIProviderTests: XCTestCase {
         XCTAssertEqual(expectationDataCount, tradeHistory.count)
         self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
     }
+    
+    func test_failParsingSampleDataByIncorrectType() async throws {
+        // given
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            let data = SampleData.userTradeHistoryData
+            
+            return (response, data)
+        }
+        
+        let expectationMethodCalledCount = 1
+        let expectationError = NetworkError.incorrectType
+        
+        // when
+        // then
+        do {
+            let tradeHistory = try await sut.receiveData(url: sampleURL, by: MatchAllRecord.self)
+            XCTFail("This testcase must throw IncorrectType Error")
+        } catch {
+            XCTAssertEqual(expectationError, error as! NetworkError)
+            self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+        }
+    }
+    
+//    func test_canParsingSampleImage() async throws {
+//        // given
+//        MockURLProtocol.requestHandler = { request in
+//            let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+//
+//            // Image Data
+//        }
+//
+//        let expectationMethodCalledCount = 1
+//        let expectationImage = UIImage()
+//
+//        // when
+//        let resultImage = try await sut.receiveImage(by: sampleURL)
+//
+//        // then
+//        XCTAssertEqual(expectationImage, resultImage)
+//        self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
+//    }
 }
