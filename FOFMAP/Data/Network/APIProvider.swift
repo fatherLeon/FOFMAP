@@ -18,7 +18,7 @@ struct APIProvider {
     }
     
     func receiveData<T: Decodable>(url: URL, by type: T.Type) async throws -> T {
-        let request = try generateRequest(by: url)
+        let request = generateRequest(by: url)
         let parsingModel = ParsingModel()
 
         guard let (data, _) = cacheManager.getCachedResponse(for: request) else {
@@ -34,7 +34,7 @@ struct APIProvider {
     }
     
     func receiveImage(by url: URL) async throws -> UIImage {
-        let request = try generateRequest(by: url)
+        let request = generateRequest(by: url)
         let parsingModel = ParsingModel()
         
         guard let (data, _) = cacheManager.getCachedResponse(for: request) else {
@@ -57,7 +57,7 @@ struct APIProvider {
         return data
     }
     
-    private func generateRequest(by url: URL) throws -> URLRequest {
+    private func generateRequest(by url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         
         request.addValue("API 토큰", forHTTPHeaderField: "Authorization")
