@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StubJsonData {
+struct SampleData {
     static let userTradeHistoryData = """
                                     [
                                          {

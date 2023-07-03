@@ -30,13 +30,13 @@ final class NetworkManagerTests: XCTestCase {
         // given
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            let stubData = StubJsonData.userTradeHistoryData
+            let stubData = SampleData.userTradeHistoryData
             
             return (response, stubData)
         }
         
         let request = URLRequest(url: sampleURL)
-        let expectationData = StubJsonData.userTradeHistoryData
+        let expectationData = SampleData.userTradeHistoryData
         let expectationStatusCode = 200
         
         // when
@@ -52,7 +52,7 @@ final class NetworkManagerTests: XCTestCase {
         // given
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(url: self.sampleURL, statusCode: 403, httpVersion: nil, headerFields: nil)!
-            let stubData = StubJsonData.userTradeHistoryData
+            let stubData = SampleData.userTradeHistoryData
             
             return (response, stubData)
         }
