@@ -5,7 +5,7 @@
 //  Created by 강민수 on 2023/07/02.
 //
 
-import Foundation
+import UIKit
 
 struct SampleData {
     static let userTradeHistoryData = """
@@ -26,4 +26,6 @@ struct SampleData {
                                          }
                                     ]
                                     """.data(using: .utf8)!
+    
+    static let imageData = UIImage(named: "SampleImage")!.pngData()!
 }
