@@ -9,9 +9,9 @@ import UIKit
 
 struct APIProvider {
     private let networkManager: NetworkManager
-    private let cacheManager: CacheManager
+    private let cacheManager: CacheStorable
     
-    init(session: URLSession = .shared, cacheManager: CacheManager = CacheManager()) {
+    init(session: URLSession = .shared, cacheManager: CacheStorable = CacheManager()) {
         self.networkManager = NetworkManager(session: session)
         self.cacheManager = cacheManager
     }
