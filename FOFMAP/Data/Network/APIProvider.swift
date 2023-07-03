@@ -8,12 +8,13 @@
 import UIKit
 
 struct APIProvider {
-    private let networkManager: NetworkManager
+    private let networkManager: Connectable
     private let cacheManager: CacheStorable
     
-    init(session: URLSession = .shared, cacheManager: CacheStorable = CacheManager()) {
-        self.networkManager = NetworkManager(session: session)
-        self.cacheManager = cacheManager
+    init(connectable: Connectable = NetworkManager(session: .shared),
+         cacheStorable: CacheStorable = CacheManager()) {
+        self.networkManager = connectable
+        self.cacheManager = cacheStorable
     }
     
     func receiveData<T: Decodable>(url: URL, by type: T.Type) async throws -> T {

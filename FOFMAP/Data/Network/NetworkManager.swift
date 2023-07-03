@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkManager {
+struct NetworkManager: Connectable {
     private let session: URLSession
     
     init(session: URLSession) {
