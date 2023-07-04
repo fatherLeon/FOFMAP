@@ -5,7 +5,7 @@
 //  Created by 강민수 on 2023/07/04.
 //
 
-import Foundation
+import UIKit
 
 class FetchNetworkUseCase {
     private let provider = APIProvider()
@@ -39,10 +39,31 @@ class FetchNetworkUseCase {
         }
         
         let players = try await provider.receiveData(url: url, by: MetaPlayerIds.self)
+        
         guard let filteredPlayer = players.first(where: { $0.id == spid }) else {
             throw NetworkError.invalidData
         }
         
         return filteredPlayer.name
+    }
+    
+    func getSeasonImage(by spid: Int) async throws -> UIImage {
+        let index = "\(spid)".index("\(spid)".startIndex, offsetBy: 3)
+        let seasonId = String("\(spid)".prefix(upTo: index))
+        
+        guard let url = ContentType.metaSeasonId.url else {
+            throw NetworkError.urlError
+        }
+        
+        let seasonIds = try await provider.receiveData(url: url, by: MetaSeasonIds.self)
+        
+        guard let filteredSeason = seasonIds.first(where: { "\($0.seasonId)" == seasonId }),
+              let url = URL(string: filteredSeason.seasonImgURL) else {
+            throw NetworkError.invalidData
+        }
+        
+        let seasonImage = try await provider.receiveImage(by: url)
+        
+        return seasonImage
     }
 }
