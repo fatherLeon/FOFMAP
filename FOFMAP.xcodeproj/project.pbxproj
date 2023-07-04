@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2621C7B52A539C9800DF33F4 /* MockURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B42A539C9800DF33F4 /* MockURLCache.swift */; };
 		2621C7B82A539E1300DF33F4 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B72A539E1300DF33F4 /* CacheManagerTests.swift */; };
+		2621C7BC2A53AAC800DF33F4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7BB2A53AAC800DF33F4 /* SearchView.swift */; };
 		2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2626584D2A4C009A0097AF73 /* NetworkManager.swift */; };
 		262658512A4C020B0097AF73 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658502A4C020B0097AF73 /* NetworkError.swift */; };
 		262658562A4C059C0097AF73 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658552A4C059C0097AF73 /* ContentType.swift */; };
@@ -36,7 +37,7 @@
 		26731E7E2A50310000601D53 /* ContentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E7D2A50310000601D53 /* ContentTypeTests.swift */; };
 		267C822A2A517A6400F6205D /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C82292A517A6400F6205D /* SampleData.swift */; };
 		26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */; };
-		26D7DBE02A4B01BA00B42317 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDF2A4B01BA00B42317 /* ContentView.swift */; };
+		26D7DBE02A4B01BA00B42317 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDF2A4B01BA00B42317 /* MainView.swift */; };
 		26D7DBE22A4B01BB00B42317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE12A4B01BB00B42317 /* Assets.xcassets */; };
 		26D7DBE52A4B01BB00B42317 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE42A4B01BB00B42317 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		2621C7B42A539C9800DF33F4 /* MockURLCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLCache.swift; sourceTree = "<group>"; };
 		2621C7B72A539E1300DF33F4 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
+		2621C7BB2A53AAC800DF33F4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2626584A2A4BF8DA0097AF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2626584D2A4C009A0097AF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		262658502A4C020B0097AF73 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -84,7 +86,7 @@
 		267C82292A517A6400F6205D /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		26D7DBDA2A4B01BA00B42317 /* FOFMAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOFMAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOFMAPApp.swift; sourceTree = "<group>"; };
-		26D7DBDF2A4B01BA00B42317 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		26D7DBDF2A4B01BA00B42317 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		26D7DBE12A4B01BB00B42317 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26D7DBE42A4B01BB00B42317 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,23 @@
 				2621C7B42A539C9800DF33F4 /* MockURLCache.swift */,
 			);
 			path = TestDoubles;
+			sourceTree = "<group>";
+		};
+		2621C7B92A53AA4200DF33F4 /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				2621C7BA2A53AA4E00DF33F4 /* View */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		2621C7BA2A53AA4E00DF33F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26D7DBDF2A4B01BA00B42317 /* MainView.swift */,
+				2621C7BB2A53AAC800DF33F4 /* SearchView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2626584B2A4BFFB70097AF73 /* Data */ = {
@@ -250,10 +269,10 @@
 		26D7DBDC2A4B01BA00B42317 /* FOFMAP */ = {
 			isa = PBXGroup;
 			children = (
+				26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */,
+				2621C7B92A53AA4200DF33F4 /* MainScene */,
 				2626584B2A4BFFB70097AF73 /* Data */,
 				2626584A2A4BF8DA0097AF73 /* Info.plist */,
-				26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */,
-				26D7DBDF2A4B01BA00B42317 /* ContentView.swift */,
 				26D7DBE12A4B01BB00B42317 /* Assets.xcassets */,
 				26D7DBE32A4B01BB00B42317 /* Preview Content */,
 			);
@@ -385,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26731E702A50285B00601D53 /* MetaPlayerPositions.swift in Sources */,
+				2621C7BC2A53AAC800DF33F4 /* SearchView.swift in Sources */,
 				26731E6C2A50275300601D53 /* MetaPlayerIds.swift in Sources */,
 				26731E762A502B8B00601D53 /* ParsingModel.swift in Sources */,
 				26731E6A2A50269500601D53 /* MetaMatchType.swift in Sources */,
@@ -394,7 +414,7 @@
 				26731E6E2A50279C00601D53 /* MetaSeasonIds.swift in Sources */,
 				26731E652A501D7900601D53 /* MatchAllRecord.swift in Sources */,
 				26731E722A5028A400601D53 /* MetaGrades.swift in Sources */,
-				26D7DBE02A4B01BA00B42317 /* ContentView.swift in Sources */,
+				26D7DBE02A4B01BA00B42317 /* MainView.swift in Sources */,
 				26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */,
 				26731E672A501E0100601D53 /* MatchDesc.swift in Sources */,
 				264DEB2E2A514572003F357C /* CacheManager.swift in Sources */,
