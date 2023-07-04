@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct FOFMAPApp: App {
+    
+    @ObservedObject var networkMonitor = NetworkMonitor()
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if networkMonitor.isConnected {
+                MainView()
+            } else {
+                NetworkingErrorView()
+            }
         }
     }
 }
