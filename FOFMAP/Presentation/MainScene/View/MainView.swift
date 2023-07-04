@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var text: String = "닉네임"
+    
+    @ObservedObject var viewModel = MainViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                SearchView()
+                SearchView(viewModel: viewModel)
                 
                 Spacer()
                 

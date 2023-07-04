@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State var userName: String = ""
+    @ObservedObject var viewModel: MainViewModel
     
     var body: some View {
         HStack(spacing: 20) {
             ZStack(alignment: .trailing) {
-                TextField("유저 닉네임 검색", text: $userName)
+                TextField("유저 닉네임 검색", text: $viewModel.userNicknameText)
                     .border(.background)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                     .textFieldStyle(.roundedBorder)
@@ -23,14 +23,15 @@ struct SearchView: View {
                             .stroke(Color.black)
                     }
                 
-                if userName != "" {
+                if !viewModel.isEnabledInTextView {
                     Image(systemName: "xmark.circle.fill")
                         .imageScale(.medium)
-                        .foregroundColor(Color(.systemGray3))
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
                         .onTapGesture {
-                            self.userName = ""
+                            viewModel.apply(.didTapClearTextButton)
                         }
+                        .disabled(viewModel.isEnabledInTextView)
+                        .tint(Color(.systemGray3))
                 }
             }
             
@@ -42,13 +43,15 @@ struct SearchView: View {
                     Text("검색")
                 }
                 .font(.title3)
-                .foregroundColor(.green)
                 .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                 .overlay {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.green)
                 }
             }
+            .disabled(viewModel.isEnabledInTextView)
+            .bold(viewModel.isEnabledInTextView)
+            .tint(.green)
         }
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
     }
@@ -56,6 +59,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(viewModel: MainViewModel())
     }
 }
