@@ -9,7 +9,12 @@ import SwiftUI
 
 struct NetworkingErrorView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(systemName: "wifi.circle.fill")
+                .resizable()
+                .frame(width: 100, height: 100, alignment: .center)
+            Text("인터넷 연결을 확인해주세요")
+        }
     }
 }
 
