@@ -157,6 +157,7 @@
 		2621C7C22A53C93900DF33F4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				2621C7CA2A53DE5700DF33F4 /* UseCase */,
 				2621C7C32A53C94000DF33F4 /* Entity */,
 			);
 			path = Domain;
@@ -186,6 +187,22 @@
 				2621C7C82A53CC0400DF33F4 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2621C7CA2A53DE5700DF33F4 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		2621C7CB2A53DE8C00DF33F4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				26D7DBE12A4B01BB00B42317 /* Assets.xcassets */,
+				26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		2626584B2A4BFFB70097AF73 /* Data */ = {
@@ -320,12 +337,11 @@
 		26D7DBDC2A4B01BA00B42317 /* FOFMAP */ = {
 			isa = PBXGroup;
 			children = (
+				2621C7CB2A53DE8C00DF33F4 /* Application */,
 				2621C7C22A53C93900DF33F4 /* Domain */,
 				2621C7C12A53C92E00DF33F4 /* Presentation */,
-				26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */,
 				2626584B2A4BFFB70097AF73 /* Data */,
 				2626584A2A4BF8DA0097AF73 /* Info.plist */,
-				26D7DBE12A4B01BB00B42317 /* Assets.xcassets */,
 				26D7DBE32A4B01BB00B42317 /* Preview Content */,
 			);
 			path = FOFMAP;

@@ -12,11 +12,11 @@ struct SearchView: View {
     @ObservedObject var viewModel: MainViewModel
     
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 5) {
             ZStack(alignment: .trailing) {
                 TextField("유저 닉네임 검색", text: $viewModel.userNicknameText)
                     .border(.background)
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 10))
                     .textFieldStyle(.roundedBorder)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
@@ -35,6 +35,9 @@ struct SearchView: View {
                 }
             }
             
+            PickerView(viewModel: viewModel)
+                .tint(.green)
+            
             Button {
                 // 버튼 액션
             } label: {
@@ -43,7 +46,7 @@ struct SearchView: View {
                     Text("검색")
                 }
                 .font(.title3)
-                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 10))
                 .overlay {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.green)

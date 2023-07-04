@@ -34,9 +34,6 @@ struct MainView: View {
             }
             .navigationTitle("FOFMAP")
             .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                PickerView(viewModel: viewModel)
-            }
         }
     }
 }
