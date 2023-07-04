@@ -24,14 +24,16 @@ struct SearchView: View {
                     }
                 
                 if !viewModel.isEnabledInTextView {
-                    Image(systemName: "xmark.circle.fill")
-                        .imageScale(.medium)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                        .onTapGesture {
-                            viewModel.apply(.didTapClearTextButton)
-                        }
-                        .disabled(viewModel.isEnabledInTextView)
-                        .tint(Color(.systemGray3))
+                    Button {
+                        viewModel.apply(.didTapClearTextButton)
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .imageScale(.medium)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                            .disabled(viewModel.isEnabledInTextView)
+                            .tint(Color(.systemGray3))
+                    }
+
                 }
             }
             
