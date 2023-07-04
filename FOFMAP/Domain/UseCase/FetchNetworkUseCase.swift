@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FetchNetworkUseCase {
+struct FetchNetworkUseCase {
     private let provider = APIProvider()
     
     // MARK: 유저정보
@@ -30,6 +30,20 @@ class FetchNetworkUseCase {
         let allMatchIDs = try await provider.receiveData(url: url, by: MatchAllRecord.self)
         
         return allMatchIDs
+    }
+    
+    func getMatchDescAllPlayers(matchId: String) async throws -> [Player] {
+        guard let url = ContentType.matchDesc(matchId: matchId).url else {
+            throw NetworkError.urlError
+        }
+        var players: [Player] = []
+        let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        
+        matchDesc.matchInfo.forEach { matchInfo in
+            players += matchInfo.player
+        }
+        
+        return players
     }
     
     // MARK: 메타정보
