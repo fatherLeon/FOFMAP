@@ -13,14 +13,26 @@ struct SearchView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            TextField("선수 이름 검색", text: $playerName)
-                .border(.background)
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                .textFieldStyle(.roundedBorder)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black)
+            ZStack(alignment: .trailing) {
+                TextField("선수 이름 검색", text: $playerName)
+                    .border(.background)
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                    .textFieldStyle(.roundedBorder)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black)
+                    }
+                
+                if playerName != "" {
+                    Image(systemName: "xmark.circle.fill")
+                        .imageScale(.medium)
+                        .foregroundColor(Color(.systemGray3))
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        .onTapGesture {
+                            self.playerName = ""
+                        }
                 }
+            }
             
             Button {
                 // 버튼 액션

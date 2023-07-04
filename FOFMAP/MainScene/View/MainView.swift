@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @State var text: String = "닉네임"
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -20,6 +22,7 @@ struct MainView: View {
             }
             .padding()
         }
+        .searchable(text: $text)
     }
 }
 
