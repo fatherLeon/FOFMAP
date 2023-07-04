@@ -35,8 +35,10 @@ struct SearchView: View {
                 }
             }
             
-            PickerView(viewModel: viewModel)
-                .tint(.green)
+            if viewModel.isEnabledInTextView {
+                PickerView(viewModel: viewModel)
+                    .tint(.green)
+            }
             
             Button {
                 // 버튼 액션
