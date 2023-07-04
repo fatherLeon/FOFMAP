@@ -66,4 +66,14 @@ class FetchNetworkUseCase {
         
         return seasonImage
     }
+    
+    func getPlayerActionImage(by spid: Int) async throws -> UIImage {
+        guard let url = ContentType.metaPlayerActionshotImageBySpid(spid: spid).url else {
+            throw NetworkError.urlError
+        }
+        
+        let actionImage = try await provider.receiveImage(by: url)
+        
+        return actionImage
+    }
 }
