@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State var playerName: String = ""
+    @State var userName: String = ""
     
     var body: some View {
         HStack(spacing: 20) {
             ZStack(alignment: .trailing) {
-                TextField("선수 이름 검색", text: $playerName)
+                TextField("유저 닉네임 검색", text: $userName)
                     .border(.background)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                     .textFieldStyle(.roundedBorder)
@@ -23,13 +23,13 @@ struct SearchView: View {
                             .stroke(Color.black)
                     }
                 
-                if playerName != "" {
+                if userName != "" {
                     Image(systemName: "xmark.circle.fill")
                         .imageScale(.medium)
                         .foregroundColor(Color(.systemGray3))
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
                         .onTapGesture {
-                            self.playerName = ""
+                            self.userName = ""
                         }
                 }
             }

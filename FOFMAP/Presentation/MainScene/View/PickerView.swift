@@ -7,15 +7,8 @@
 
 import SwiftUI
 
-enum MatchCategory: String, CaseIterable, Identifiable {
-    var id: Self { self }
-    
-    case volta = "볼타"
-    case officailRank = "공식경기"
-}
-
 struct PickerView: View {
-    @State private var selectedMatchCategory: MatchCategory = .officailRank
+    @State private var selectedMatchCategory: MatchCategory = .officialMatch
     
     var body: some View {
         HStack {
