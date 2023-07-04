@@ -73,4 +73,20 @@ final class MostUsedPlayerUseCase {
         
         return playerImage
     }
+    
+    private func getPlayerSeasonImage(by spid: Int) async throws -> UIImage {
+        guard let url = ContentType.metaSeasonId.url else {
+            throw NetworkError.urlError
+        }
+        
+        let seasonId = spid.distance(to: 3)
+        let seasonInfo = try await provider.receiveData(url: url, by: MetaSeasonIds.self)
+        
+        guard let seasonImgURL = seasonInfo.first(where: { return seasonId == $0.seasonId })?.seasonImgURL,
+              let imgURL = URL(string: seasonImgURL) else { throw NetworkError.invalidData }
+        
+        let seasonImg = try await provider.receiveImage(by: imgURL)
+        
+        return seasonImg
+    }
 }
