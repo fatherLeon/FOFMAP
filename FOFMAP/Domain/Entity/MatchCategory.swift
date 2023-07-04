@@ -18,4 +18,25 @@ enum MatchCategory: String, CaseIterable, Identifiable {
     case voltaAIMatch = "볼타 AI대전"
     case voltaCustomMatch = "볼타 커스텀"
     case managerMatch = "감독모드"
+    
+    var matchType: Int {
+        switch self {
+        case .officialMatch:
+            return 50
+        case .frendilyMatch:
+            return 30
+        case .classicMatch:
+            return 40
+        case .voltaFrendilyMatch:
+            return 204
+        case .voltaOfficialMatch:
+            return 214
+        case .voltaAIMatch:
+            return 224
+        case .voltaCustomMatch:
+            return 234
+        case .managerMatch:
+            return 52
+        }
+    }
 }

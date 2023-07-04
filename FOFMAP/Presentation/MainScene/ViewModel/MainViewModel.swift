@@ -17,6 +17,7 @@ final class MainViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var userNicknameText = ""
     @Published var isEnabledInTextView = false
+    @Published var matchCategory: MatchCategory = .officialMatch
     
     init() {
         binding()
