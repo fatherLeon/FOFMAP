@@ -23,7 +23,7 @@ struct MainView: View {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 20) {
                                 ForEach(0..<10) { _ in
-                                    PlayerItemCell()
+                                    PlayerItemCell(playerInfo: PlayerInfo(name: "선수이름", seasonImg: UIImage(named: "SamplePlayerImage")!, img: UIImage(systemName: "star.fill")!))
                                 }
                             }
                         }
