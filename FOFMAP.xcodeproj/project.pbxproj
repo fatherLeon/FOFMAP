@@ -17,6 +17,7 @@
 		2621C7CF2A53F95900DF33F4 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7CE2A53F95900DF33F4 /* PlayerInfo.swift */; };
 		2621C7D12A5401C700DF33F4 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7D02A5401C700DF33F4 /* NetworkMonitor.swift */; };
 		2621C7D32A54033500DF33F4 /* NetworkingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7D22A54033500DF33F4 /* NetworkingErrorView.swift */; };
+		2621C7D52A54093600DF33F4 /* FetchNetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7D42A54093600DF33F4 /* FetchNetworkUseCase.swift */; };
 		2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2626584D2A4C009A0097AF73 /* NetworkManager.swift */; };
 		262658512A4C020B0097AF73 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658502A4C020B0097AF73 /* NetworkError.swift */; };
 		262658562A4C059C0097AF73 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658552A4C059C0097AF73 /* ContentType.swift */; };
@@ -70,6 +71,7 @@
 		2621C7CE2A53F95900DF33F4 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		2621C7D02A5401C700DF33F4 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		2621C7D22A54033500DF33F4 /* NetworkingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingErrorView.swift; sourceTree = "<group>"; };
+		2621C7D42A54093600DF33F4 /* FetchNetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNetworkUseCase.swift; sourceTree = "<group>"; };
 		2626584A2A4BF8DA0097AF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2626584D2A4C009A0097AF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		262658502A4C020B0097AF73 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				2621C7D02A5401C700DF33F4 /* NetworkMonitor.swift */,
+				2621C7D42A54093600DF33F4 /* FetchNetworkUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				26731E612A501C1800601D53 /* UserTradeHistory.swift in Sources */,
 				264B6E7F2A5247B0000F66C9 /* CacheStorable.swift in Sources */,
 				26731E582A500A3900601D53 /* APIProvider.swift in Sources */,
+				2621C7D52A54093600DF33F4 /* FetchNetworkUseCase.swift in Sources */,
 				2621C7C02A53C42E00DF33F4 /* PlayerItemCell.swift in Sources */,
 				2621C7C52A53C95700DF33F4 /* MatchCategory.swift in Sources */,
 			);
