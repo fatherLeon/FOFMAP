@@ -26,35 +26,7 @@ struct MainView: View {
                                 }
                             }
                         }
-                    }
-                    Section("미드필더") {
-                        ScrollView(.horizontal, showsIndicators: true) {
-                            HStack(spacing: 20) {
-                                ForEach(0..<10) { _ in
-                                    PlayerItemCell()
-                                }
-                            }
-                        }
-                    }
-                    
-                    Section("수비수") {
-                        ScrollView(.horizontal, showsIndicators: true) {
-                            HStack(spacing: 20) {
-                                ForEach(0..<10) { _ in
-                                    PlayerItemCell()
-                                }
-                            }
-                        }
-                    }
-                    
-                    Section("골키퍼") {
-                        ScrollView(.horizontal, showsIndicators: true) {
-                            HStack(spacing: 20) {
-                                ForEach(0..<10) { _ in
-                                    PlayerItemCell()
-                                }
-                            }
-                        }
+                        .scrollIndicators(.hidden)
                     }
                 }
                 .listStyle(.inset)
