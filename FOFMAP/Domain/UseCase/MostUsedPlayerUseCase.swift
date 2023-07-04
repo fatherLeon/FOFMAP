@@ -13,8 +13,8 @@ final class MostUsedPlayerUseCase {
     
     var mostUsedPlayers: [PlayerInfo] = []
     
-    func execute() -> [PlayerInfo] {
-        Task {
+    func execute() {
+        Task.detached { [self] in
             let matcheIds = try await networkingUseCase.getAllMatches(50, offset: 0, limit: 100, orderBy: .desc)
             
             for id in matcheIds {
@@ -42,7 +42,5 @@ final class MostUsedPlayerUseCase {
                 mostUsedPlayers.append(PlayerInfo(name: name, seasonImg: seasonImage, img: actionImage))
             }
         }
-        
-        return mostUsedPlayers
     }
 }

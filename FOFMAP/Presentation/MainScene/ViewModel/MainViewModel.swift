@@ -15,12 +15,16 @@ final class MainViewModel: ObservableObject {
     }
     
     private var cancellables = Set<AnyCancellable>()
+    private var mostUsedPlayerUseCase = MostUsedPlayerUseCase()
     @Published var userNicknameText = ""
     @Published var isEnabledInTextView = false
     @Published var matchCategory: MatchCategory = .officialMatch
+    @Published var mostUsedPlayers: [PlayerInfo] = []
     
     init() {
         binding()
+        
+        mostUsedPlayerUseCase.execute()
     }
     
     func apply(_ input: Input) {
@@ -38,7 +42,6 @@ final class MainViewModel: ObservableObject {
                 self?.isEnabledInTextView = isEnabledValue
             }
             .store(in: &cancellables)
-            
     }
 }
 

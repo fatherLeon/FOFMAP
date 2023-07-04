@@ -11,11 +11,13 @@ import Foundation
 class NetworkMonitor: ObservableObject {
     @Published var isConnected: Bool = true
     private let networkMonitor: NWPathMonitor = NWPathMonitor()
-    private let queue = DispatchQueue.global(qos: .unspecified)
+    private let queue = DispatchQueue.global(qos: .background)
     
     init() {
         networkMonitor.pathUpdateHandler = { path in
-            self.isConnected = path.status == .satisfied
+            DispatchQueue.main.async {
+                self.isConnected = path.status == .satisfied
+            }
         }
         
         networkMonitor.start(queue: queue)

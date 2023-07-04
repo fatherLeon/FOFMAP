@@ -22,8 +22,8 @@ struct MainView: View {
                     Section("공격수") {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 20) {
-                                ForEach(0..<10) { _ in
-                                    PlayerItemCell(playerInfo: PlayerInfo(name: "선수이름", seasonImg: UIImage(named: "SamplePlayerImage")!, img: UIImage(systemName: "star.fill")!))
+                                ForEach(0..<viewModel.mostUsedPlayers.count) { index in
+                                    PlayerItemCell(playerInfo: viewModel.mostUsedPlayers[index])
                                 }
                             }
                         }

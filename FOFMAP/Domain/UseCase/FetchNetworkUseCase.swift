@@ -57,7 +57,7 @@ struct FetchNetworkUseCase {
         guard let filteredPlayer = players.first(where: { $0.id == spid }) else {
             throw NetworkError.invalidData
         }
-        
+                
         return filteredPlayer.name
     }
     
