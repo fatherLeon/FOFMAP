@@ -9,15 +9,17 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-            
-            SearchView()
+        NavigationView {
+            VStack {
+                SearchView()
+                    .navigationTitle("FOFMAP")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        PickerView()
+                    }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 

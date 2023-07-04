@@ -29,6 +29,7 @@ struct SearchView: View {
                     Image(systemName: "magnifyingglass")
                     Text("검색")
                 }
+                .font(.title3)
                 .foregroundColor(.green)
                 .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                 .overlay {
