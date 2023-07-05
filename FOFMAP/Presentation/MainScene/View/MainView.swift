@@ -34,6 +34,9 @@ struct MainView: View {
             }
             .navigationTitle("FOFMAP")
             .navigationBarTitleDisplayMode(.large)
+            .alert(isPresented: $viewModel.isShowingErrorAlert, error: viewModel.error) {
+                Button("OK", role: .cancel) { }
+            }
         }
         .task {
             await viewModel.receiveMostUsedPlayers()

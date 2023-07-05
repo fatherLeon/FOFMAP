@@ -33,7 +33,6 @@ struct SearchView: View {
                             .disabled(viewModel.isEnabledInTextView)
                             .tint(Color(.systemGray3))
                     }
-
                 }
             }
             

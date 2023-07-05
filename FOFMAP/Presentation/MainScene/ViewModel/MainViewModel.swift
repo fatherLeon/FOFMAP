@@ -16,8 +16,12 @@ final class MainViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private var mostUsedPlayerUseCase = MostUsedPlayerUseCase()
+    
+    var error: NetworkError? = nil
+    
     @Published var userNicknameText = ""
     @Published var isEnabledInTextView = false
+    @Published var isShowingErrorAlert = false
     @Published var matchCategory: MatchCategory = .officialMatch
     @Published var mostUsedPlayers: [PlayerInfo] = []
     
@@ -36,8 +40,7 @@ final class MainViewModel: ObservableObject {
         do {
             self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
         } catch {
-            print(error)
-            
+            self.error = error as? NetworkError
         }
     }
     
@@ -49,10 +52,6 @@ final class MainViewModel: ObservableObject {
                 self?.isEnabledInTextView = isEnabledValue
             }
             .store(in: &cancellables)
-        
-//        $mostUsedPlayers
-//            .receive(on: RunLoop.main)
-//            .store(in: &cancellables)
     }
 }
 
