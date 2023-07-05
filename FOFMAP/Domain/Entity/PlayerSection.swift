@@ -12,10 +12,10 @@ enum PlayerSection: String, Hashable, CaseIterable, Identifiable {
         return self
     }
     
-    case goalkeeper = "골키퍼"
-    case defender = "수비수"
+    case striker = "공격수"
     case midfielder = "미드필더"
-    case striker = "스트라이커"
+    case defender = "수비수"
+    case goalkeeper = "골키퍼"
     
     static func getPosition(by positionId: Int) -> Self? {
         switch positionId {

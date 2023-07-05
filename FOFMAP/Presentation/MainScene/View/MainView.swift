@@ -16,25 +16,30 @@ struct MainView: View {
             VStack {
                 SearchView(viewModel: viewModel)
                 
-                Spacer()
-                
-                List {
-                    ForEach(PlayerSection.allCases) { position in
-                        Section(position.rawValue) {
-                            ScrollView(.horizontal) {
-                                HStack {
-                                    ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
-                                        if player.position == position {
-                                            PlayerItemCell(playerInfo: player)
+                if viewModel.isFetchingPlayers {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                } else {
+                    Spacer()
+                    List {
+                        ForEach(PlayerSection.allCases) { position in
+                            Section(position.rawValue) {
+                                ScrollView(.horizontal) {
+                                    HStack {
+                                        ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
+                                            if player.position == position {
+                                                PlayerItemCell(playerInfo: player)
+                                            }
                                         }
                                     }
                                 }
+                                .scrollIndicators(.hidden)
                             }
-                            .scrollIndicators(.hidden)
                         }
                     }
+                    .listStyle(.inset)
                 }
-                .listStyle(.inset)
             }
             .navigationTitle("FOFMAP")
             .navigationBarTitleDisplayMode(.large)

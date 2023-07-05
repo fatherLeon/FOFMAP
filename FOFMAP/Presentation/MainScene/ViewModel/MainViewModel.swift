@@ -24,6 +24,7 @@ final class MainViewModel: ObservableObject {
     @Published var isShowingErrorAlert = false
     @Published var matchCategory: MatchCategory = .officialMatch
     @Published var mostUsedPlayers: [PlayerInfo] = []
+    @Published var isFetchingPlayers = true
     
     init() {
         binding()
@@ -39,6 +40,7 @@ final class MainViewModel: ObservableObject {
     func receiveMostUsedPlayers() async {
         do {
             self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
+            self.isFetchingPlayers = false
         } catch {
             self.error = error as? NetworkError
             self.isShowingErrorAlert = true
