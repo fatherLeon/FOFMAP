@@ -41,6 +41,7 @@ final class MainViewModel: ObservableObject {
             self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
         } catch {
             self.error = error as? NetworkError
+            self.isShowingErrorAlert = true
         }
     }
     
@@ -50,6 +51,13 @@ final class MainViewModel: ObservableObject {
                 let isEnabledValue = output.count == 0 ? true: false
                 
                 self?.isEnabledInTextView = isEnabledValue
+            }
+            .store(in: &cancellables)
+        
+        $mostUsedPlayers
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.isShowingErrorAlert = false
             }
             .store(in: &cancellables)
     }
