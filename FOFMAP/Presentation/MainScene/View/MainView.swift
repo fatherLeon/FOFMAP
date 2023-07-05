@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var viewModel = MainViewModel()
+    @StateObject var viewModel: MainViewModel
     
     var body: some View {
         NavigationView {
@@ -49,6 +49,7 @@ struct MainView: View {
         }
         .task {
             await viewModel.receiveMostUsedPlayers()
+            
         }
         .onTapGesture {
             self.hideKeyboard()
@@ -58,6 +59,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewModel())
     }
 }

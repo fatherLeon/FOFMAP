@@ -15,7 +15,7 @@ struct FOFMAPApp: App {
     var body: some Scene {
         WindowGroup {
             if networkMonitor.isConnected {
-                MainView()
+                MainView(viewModel: MainViewModel())
             } else {
                 NetworkingErrorView()
             }

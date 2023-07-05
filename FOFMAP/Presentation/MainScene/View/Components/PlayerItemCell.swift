@@ -17,6 +17,7 @@ struct PlayerItemCell: View {
             
             HStack {
                 Image(uiImage: playerInfo.seasonImg)
+                    .imageScale(.small)
                 Text(playerInfo.name)
             }
         }

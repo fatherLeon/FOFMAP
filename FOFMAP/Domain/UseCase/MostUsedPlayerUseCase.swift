@@ -9,6 +9,7 @@ import Combine
 import Foundation
 
 final class MostUsedPlayerUseCase {
+    private let usedPlayersNum = 100
     private let networkingUseCase = FetchNetworkUseCase()
     private var usedPlayers: [Int: (count: Int, position: Int)] = [:]
     
@@ -30,7 +31,7 @@ final class MostUsedPlayerUseCase {
         }
         
         for (id, value) in usedPlayers {
-            if mostUsedPlayers.count > 10 {
+            if mostUsedPlayers.count > usedPlayersNum {
                 break
             }
             

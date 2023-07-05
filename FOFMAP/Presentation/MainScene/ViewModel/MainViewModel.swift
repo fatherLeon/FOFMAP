@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import Foundation
 
+@MainActor
 final class MainViewModel: ObservableObject {
     enum Input {
         case didTapClearTextButton
@@ -49,6 +50,7 @@ final class MainViewModel: ObservableObject {
     
     private func binding() {
         $userNicknameText
+            .receive(on: RunLoop.main)
             .sink { [weak self] output in
                 let isEnabledValue = output.count == 0 ? true: false
                 
