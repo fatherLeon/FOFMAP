@@ -12,4 +12,5 @@ struct PlayerInfo {
     let name: String
     let seasonImg: UIImage
     let img: UIImage
+    let position: PlayerSection
 }

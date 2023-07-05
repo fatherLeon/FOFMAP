@@ -10,7 +10,7 @@ import Foundation
 
 final class MostUsedPlayerUseCase {
     private let networkingUseCase = FetchNetworkUseCase()
-    private var usedPlayers: [Int: Int] = [:]
+    private var usedPlayers: [Int: (count: Int, position: Int)] = [:]
     
     func execute() async throws -> [PlayerInfo] {
         var mostUsedPlayers: [PlayerInfo] = []
@@ -21,26 +21,27 @@ final class MostUsedPlayerUseCase {
             
             players.forEach { player in
                 if usedPlayers[player.spID] != nil {
-                    usedPlayers[player.spID]? += 1
+                    usedPlayers[player.spID]?.count += 1
                     return
                 }
                 
-                usedPlayers[player.spID] = 1
+                usedPlayers[player.spID] = (1, player.spPosition)
             }
         }
         
-        for (id, _) in usedPlayers {
+        for (id, value) in usedPlayers {
             if mostUsedPlayers.count > 10 {
                 break
             }
             
             guard let name = try? await networkingUseCase.getPlayerName(by: id),
                   let actionImage = try? await networkingUseCase.getPlayerActionImage(by: id),
-                  let seasonImage = try? await networkingUseCase.getSeasonImage(by: id) else {
+                  let seasonImage = try? await networkingUseCase.getSeasonImage(by: id),
+                  let position = PlayerSection.getPosition(by: value.position) else {
                 continue
             }
             
-            mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage))
+            mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, position: position))
         }
         
         return mostUsedPlayers
