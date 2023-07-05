@@ -12,12 +12,12 @@ struct PlayerItemCell: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: playerInfo.seasonImg)
+            Image(uiImage: playerInfo.img)
                 .frame(width: 150, height: 150, alignment: .center)
             
             HStack {
-                Image(uiImage: playerInfo.img)
-                Text("선수 이름")
+                Image(uiImage: playerInfo.seasonImg)
+                Text(playerInfo.name)
             }
         }
     }
@@ -25,6 +25,6 @@ struct PlayerItemCell: View {
 
 struct PlayerItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerItemCell(playerInfo: PlayerInfo(name: "선수이름", seasonImg: UIImage(named: "SamplePlayerImage")!, img: UIImage(systemName: "star.fill")!))
+        PlayerItemCell(playerInfo: PlayerInfo(name: "선수이름", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!))
     }
 }

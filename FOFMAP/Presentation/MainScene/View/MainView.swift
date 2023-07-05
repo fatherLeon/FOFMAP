@@ -21,9 +21,9 @@ struct MainView: View {
                 List {
                     Section("공격수") {
                         ScrollView(.horizontal, showsIndicators: true) {
-                            HStack(spacing: 20) {
-                                ForEach(0..<viewModel.mostUsedPlayers.count) { index in
-                                    PlayerItemCell(playerInfo: viewModel.mostUsedPlayers[index])
+                            HStack {
+                                ForEach(viewModel.mostUsedPlayers, id: \.name) { player in
+                                    PlayerItemCell(playerInfo: player)
                                 }
                             }
                         }
@@ -34,6 +34,9 @@ struct MainView: View {
             }
             .navigationTitle("FOFMAP")
             .navigationBarTitleDisplayMode(.large)
+        }
+        .task {
+            await viewModel.receiveMostUsedPlayers()
         }
     }
 }

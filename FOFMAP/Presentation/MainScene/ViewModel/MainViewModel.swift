@@ -23,14 +23,21 @@ final class MainViewModel: ObservableObject {
     
     init() {
         binding()
-        
-        mostUsedPlayerUseCase.execute()
     }
     
     func apply(_ input: Input) {
         switch input {
         case .didTapClearTextButton:
             self.userNicknameText = ""
+        }
+    }
+    
+    func receiveMostUsedPlayers() async {
+        do {
+            self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
+        } catch {
+            print(error)
+            
         }
     }
     
@@ -42,6 +49,10 @@ final class MainViewModel: ObservableObject {
                 self?.isEnabledInTextView = isEnabledValue
             }
             .store(in: &cancellables)
+        
+//        $mostUsedPlayers
+//            .receive(on: RunLoop.main)
+//            .store(in: &cancellables)
     }
 }
 

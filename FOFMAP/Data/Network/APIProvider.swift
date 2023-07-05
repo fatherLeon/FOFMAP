@@ -60,7 +60,7 @@ struct APIProvider {
     private func generateRequest(by url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         
-        request.addValue("API 토큰", forHTTPHeaderField: "Authorization")
+        request.addValue("API키 값", forHTTPHeaderField: "Authorization")
         
         return request
     }
