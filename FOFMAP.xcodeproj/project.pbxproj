@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21EF2A55360A00A213EE /* PlayerSection.swift */; };
+		260A21F42A554FF900A213EE /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21F32A554FF900A213EE /* View+Extension.swift */; };
 		2621C7B52A539C9800DF33F4 /* MockURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B42A539C9800DF33F4 /* MockURLCache.swift */; };
 		2621C7B82A539E1300DF33F4 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B72A539E1300DF33F4 /* CacheManagerTests.swift */; };
 		2621C7BC2A53AAC800DF33F4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7BB2A53AAC800DF33F4 /* SearchView.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		260A21EF2A55360A00A213EE /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
+		260A21F32A554FF900A213EE /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		2621C7B42A539C9800DF33F4 /* MockURLCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLCache.swift; sourceTree = "<group>"; };
 		2621C7B72A539E1300DF33F4 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		2621C7BB2A53AAC800DF33F4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260A21F12A554FE000A213EE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				260A21F22A554FE500A213EE /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		260A21F22A554FE500A213EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				260A21F32A554FF900A213EE /* View+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		2621C7B62A539DFB00DF33F4 /* TestDoubles */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +373,7 @@
 		26D7DBDC2A4B01BA00B42317 /* FOFMAP */ = {
 			isa = PBXGroup;
 			children = (
+				260A21F12A554FE000A213EE /* Common */,
 				2621C7CB2A53DE8C00DF33F4 /* Application */,
 				2621C7C22A53C93900DF33F4 /* Domain */,
 				2621C7C12A53C92E00DF33F4 /* Presentation */,
@@ -496,6 +515,7 @@
 				26731E6A2A50269500601D53 /* MetaMatchType.swift in Sources */,
 				2621C7C92A53CC0400DF33F4 /* MainViewModel.swift in Sources */,
 				262658562A4C059C0097AF73 /* ContentType.swift in Sources */,
+				260A21F42A554FF900A213EE /* View+Extension.swift in Sources */,
 				2621C7D32A54033500DF33F4 /* NetworkingErrorView.swift in Sources */,
 				2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */,
 				262658512A4C020B0097AF73 /* NetworkError.swift in Sources */,

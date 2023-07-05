@@ -50,6 +50,9 @@ struct MainView: View {
         .task {
             await viewModel.receiveMostUsedPlayers()
         }
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }
 }
 
