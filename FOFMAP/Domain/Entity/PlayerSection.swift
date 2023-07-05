@@ -7,11 +7,15 @@
 
 import Foundation
 
-enum PlayerSection: Hashable {
-    case goalkeeper
-    case defender
-    case midfielder
-    case striker
+enum PlayerSection: String, Hashable, CaseIterable, Identifiable {
+    var id: Self {
+        return self
+    }
+    
+    case goalkeeper = "골키퍼"
+    case defender = "수비수"
+    case midfielder = "미드필더"
+    case striker = "스트라이커"
     
     static func getPosition(by positionId: Int) -> Self? {
         switch positionId {

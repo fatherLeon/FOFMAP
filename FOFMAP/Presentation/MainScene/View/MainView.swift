@@ -19,15 +19,19 @@ struct MainView: View {
                 Spacer()
                 
                 List {
-                    Section("공격수") {
-                        ScrollView(.horizontal, showsIndicators: true) {
-                            HStack {
-                                ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
-                                    PlayerItemCell(playerInfo: player)
+                    ForEach(PlayerSection.allCases) { position in
+                        Section(position.rawValue) {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
+                                        if player.position == position {
+                                            PlayerItemCell(playerInfo: player)
+                                        }
+                                    }
                                 }
                             }
+                            .scrollIndicators(.hidden)
                         }
-                        .scrollIndicators(.hidden)
                     }
                 }
                 .listStyle(.inset)
