@@ -22,7 +22,7 @@ struct MainView: View {
                     Section("공격수") {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack {
-                                ForEach(viewModel.mostUsedPlayers, id: \.name) { player in
+                                ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
                                     PlayerItemCell(playerInfo: player)
                                 }
                             }

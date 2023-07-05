@@ -40,7 +40,7 @@ final class MostUsedPlayerUseCase {
                 continue
             }
             
-            mostUsedPlayers.append(PlayerInfo(name: name, seasonImg: seasonImage, img: actionImage))
+            mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage))
         }
         
         return mostUsedPlayers

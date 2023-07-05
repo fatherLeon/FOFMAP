@@ -25,6 +25,6 @@ struct PlayerItemCell: View {
 
 struct PlayerItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerItemCell(playerInfo: PlayerInfo(name: "선수이름", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!))
+        PlayerItemCell(playerInfo: PlayerInfo(id: 1234, name: "선수이름", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!))
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 struct PlayerInfo {
+    let id: Int
     let name: String
     let seasonImg: UIImage
     let img: UIImage
