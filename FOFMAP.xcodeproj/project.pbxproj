@@ -47,6 +47,7 @@
 		26731E762A502B8B00601D53 /* ParsingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E752A502B8B00601D53 /* ParsingModel.swift */; };
 		26731E7E2A50310000601D53 /* ContentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E7D2A50310000601D53 /* ContentTypeTests.swift */; };
 		267C822A2A517A6400F6205D /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C82292A517A6400F6205D /* SampleData.swift */; };
+		26CCACE42A564EDA000740B6 /* NetworkUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCACE32A564EDA000740B6 /* NetworkUseCaseProtocol.swift */; };
 		26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */; };
 		26D7DBE02A4B01BA00B42317 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDF2A4B01BA00B42317 /* MainView.swift */; };
 		26D7DBE22A4B01BB00B42317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE12A4B01BB00B42317 /* Assets.xcassets */; };
@@ -106,6 +107,7 @@
 		26731E7B2A50310000601D53 /* FOFMAPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOFMAPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26731E7D2A50310000601D53 /* ContentTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeTests.swift; sourceTree = "<group>"; };
 		267C82292A517A6400F6205D /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		26CCACE32A564EDA000740B6 /* NetworkUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCaseProtocol.swift; sourceTree = "<group>"; };
 		26D7DBDA2A4B01BA00B42317 /* FOFMAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOFMAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOFMAPApp.swift; sourceTree = "<group>"; };
 		26D7DBDF2A4B01BA00B42317 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -225,7 +227,7 @@
 		2621C7CA2A53DE5700DF33F4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				2621C7D02A5401C700DF33F4 /* NetworkMonitor.swift */,
+				26CCACE22A564EC5000740B6 /* Repository */,
 				2621C7D42A54093600DF33F4 /* FetchNetworkUseCase.swift */,
 				2621C7D62A5414D900DF33F4 /* MostUsedPlayerUseCase.swift */,
 			);
@@ -244,6 +246,7 @@
 		2626584B2A4BFFB70097AF73 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2621C7D02A5401C700DF33F4 /* NetworkMonitor.swift */,
 				2626584C2A4C004E0097AF73 /* Network */,
 			);
 			path = Data;
@@ -350,6 +353,14 @@
 				264DEB312A515797003F357C /* Tests */,
 			);
 			path = FOFMAPTests;
+			sourceTree = "<group>";
+		};
+		26CCACE22A564EC5000740B6 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				26CCACE32A564EDA000740B6 /* NetworkUseCaseProtocol.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		26D7DBD12A4B01BA00B42317 = {
@@ -538,6 +549,7 @@
 				26731E612A501C1800601D53 /* UserTradeHistory.swift in Sources */,
 				264B6E7F2A5247B0000F66C9 /* CacheStorable.swift in Sources */,
 				26731E582A500A3900601D53 /* APIProvider.swift in Sources */,
+				26CCACE42A564EDA000740B6 /* NetworkUseCaseProtocol.swift in Sources */,
 				2621C7D52A54093600DF33F4 /* FetchNetworkUseCase.swift in Sources */,
 				2621C7C02A53C42E00DF33F4 /* PlayerItemCell.swift in Sources */,
 				2621C7C52A53C95700DF33F4 /* MatchCategory.swift in Sources */,

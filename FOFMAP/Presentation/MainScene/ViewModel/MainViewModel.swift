@@ -16,7 +16,7 @@ final class MainViewModel: ObservableObject {
     }
     
     private var cancellables = Set<AnyCancellable>()
-    private var mostUsedPlayerUseCase = MostUsedPlayerUseCase()
+    private var mostUsedPlayerUseCase: any NetworkUseCaseProtocol = MostUsedPlayerUseCase()
     
     var error: NetworkError? = nil
     
