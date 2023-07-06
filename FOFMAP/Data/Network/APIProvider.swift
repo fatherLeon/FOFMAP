@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct APIProvider {
+struct APIProvider: Providable {
     private let networkManager: Connectable
     private let cacheManager: CacheStorable
     
