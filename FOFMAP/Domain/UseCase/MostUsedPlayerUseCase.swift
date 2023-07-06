@@ -12,7 +12,11 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     typealias T = [PlayerInfo]
     
     private let usedPlayersNum = 30
-    private let networkingUseCase = FetchUseCase()
+    private let offerableUseCase: Offerable
+    
+    init(offerableUseCase: Offerable = FetchUseCase()) {
+        self.offerableUseCase = offerableUseCase
+    }
     
     func execute() async throws -> T {
         var mostUsedPlayers: [PlayerInfo] = []
@@ -22,9 +26,9 @@ final class MostUsedPlayerUseCase: DetailFetchable {
         for (id, value) in usedPlayers {
             if mostUsedPlayers.count > usedPlayersNum { break }
             
-            async let name = try? networkingUseCase.getPlayerName(by: id)
-            async let actionImage = try? networkingUseCase.getPlayerActionImage(by: id)
-            async let seasonImage = try? networkingUseCase.getSeasonImage(by: id)
+            async let name = try? offerableUseCase.getPlayerName(by: id)
+            async let actionImage = try? offerableUseCase.getPlayerActionImage(by: id)
+            async let seasonImage = try? offerableUseCase.getSeasonImage(by: id)
             
             guard let name = await name,
                   let actionImage = await actionImage,
@@ -39,10 +43,10 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {
         var usedPlayers: [Int: (count: Int, position: Int)] = [:]
-        let matcheIds = try await networkingUseCase.getAllMatches(50, offset: 0, limit: 50, orderBy: .desc)
+        let matcheIds = try await offerableUseCase.getAllMatches(50, offset: 0, limit: 50, orderBy: .desc)
         
         for id in matcheIds {
-            let players = try await networkingUseCase.getMatchDescAllPlayers(matchId: id)
+            let players = try await offerableUseCase.getMatchDescAllPlayers(matchId: id)
             
             players.forEach { player in
                 if usedPlayers[player.spID] != nil {
