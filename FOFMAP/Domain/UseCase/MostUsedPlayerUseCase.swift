@@ -8,11 +8,11 @@
 import Combine
 import Foundation
 
-final class MostUsedPlayerUseCase: NetworkUseCaseProtocol {
+final class MostUsedPlayerUseCase: DetailFetchable {
     typealias T = [PlayerInfo]
     
     private let usedPlayersNum = 30
-    private let networkingUseCase = FetchNetworkUseCase()
+    private let networkingUseCase = FetchUseCase()
     
     func execute() async throws -> T {
         var mostUsedPlayers: [PlayerInfo] = []
@@ -20,9 +20,7 @@ final class MostUsedPlayerUseCase: NetworkUseCaseProtocol {
         let usedPlayers = try await getAllUsedPlayer()
         
         for (id, value) in usedPlayers {
-            if mostUsedPlayers.count > usedPlayersNum {
-                break
-            }
+            if mostUsedPlayers.count > usedPlayersNum { break }
             
             async let name = try? networkingUseCase.getPlayerName(by: id)
             async let actionImage = try? networkingUseCase.getPlayerActionImage(by: id)

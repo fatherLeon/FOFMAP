@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct FetchNetworkUseCase {
+struct FetchUseCase {
     private let provider: Providable
     
     init(provider: Providable = APIProvider()) {

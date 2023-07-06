@@ -5,7 +5,7 @@
 //  Created by 강민수 on 2023/07/06.
 //
 
-protocol NetworkUseCaseProtocol {
+protocol DetailFetchable {
     associatedtype T
     
     func execute() async throws -> T

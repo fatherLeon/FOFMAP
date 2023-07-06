@@ -11,12 +11,12 @@ import XCTest
 
 final class FetchNetworkUseCaseTests: XCTestCase {
     
-    private var sut: FetchNetworkUseCase!
+    private var sut: FetchUseCase!
     private var mockProvider: MockAPIProvider!
 
     override func setUpWithError() throws {
         mockProvider = MockAPIProvider()
-        sut = FetchNetworkUseCase(provider: mockProvider)
+        sut = FetchUseCase(provider: mockProvider)
     }
 
     override func tearDownWithError() throws {
