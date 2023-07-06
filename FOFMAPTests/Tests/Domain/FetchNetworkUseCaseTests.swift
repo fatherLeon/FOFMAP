@@ -84,5 +84,21 @@ final class FetchNetworkUseCaseTests: XCTestCase {
         mockProvider.testingCalledReceiveImageMethod(expectation: calledImageMethodExpectation)
     }
     
-    
+    func test_getMatchDescAllPlayers_SuccessCase() async {
+        // given
+        MockAPIProvider.testingSampleData = (SampleData.matchDescData, nil)
+        
+        let calledDataMethodExpectation = 1
+        let calledImageMethodExpectation = 0
+        let expectationResultCount = 36
+        
+        // when
+        let result = try! await sut.getMatchDescAllPlayers(matchId: "test")
+        
+        // then
+        XCTAssertEqual(expectationResultCount, result.count)
+        
+        mockProvider.testingCalledReceiveDataMethod(expectation: calledDataMethodExpectation)
+        mockProvider.testingCalledReceiveImageMethod(expectation: calledImageMethodExpectation)
+    }
 }
