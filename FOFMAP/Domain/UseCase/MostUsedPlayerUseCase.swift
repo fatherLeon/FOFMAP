@@ -41,7 +41,7 @@ final class MostUsedPlayerUseCase: NetworkUseCaseProtocol {
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {
         var usedPlayers: [Int: (count: Int, position: Int)] = [:]
-        let matcheIds = try await networkingUseCase.getAllMatches(50, offset: 0, limit: 100, orderBy: .desc)
+        let matcheIds = try await networkingUseCase.getAllMatches(50, offset: 0, limit: 50, orderBy: .desc)
         
         for id in matcheIds {
             let players = try await networkingUseCase.getMatchDescAllPlayers(matchId: id)

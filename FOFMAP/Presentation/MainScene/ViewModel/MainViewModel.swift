@@ -54,7 +54,6 @@ final class MainViewModel: ObservableObject {
     
     private func binding() {
         $userNicknameText
-            .receive(on: RunLoop.main)
             .sink { [weak self] output in
                 let isEnabledValue = output.count == 0 ? true: false
                 
@@ -63,7 +62,6 @@ final class MainViewModel: ObservableObject {
             .store(in: &cancellables)
         
         $mostUsedPlayers
-            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.isShowingErrorAlert = false
             }
