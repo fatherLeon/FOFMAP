@@ -8,7 +8,11 @@
 import UIKit
 
 struct FetchNetworkUseCase {
-    private let provider = APIProvider()
+    private let provider: Providable
+    
+    init(provider: Providable = APIProvider()) {
+        self.provider = provider
+    }
     
     // MARK: 유저정보
     func getUserInfo(by nickname: String) async throws -> (accessID: String, level: Int) {
