@@ -31,6 +31,10 @@ final class MainViewModel: ObservableObject {
         binding()
     }
     
+    func searchUser() {
+        // 유저 정보 확인
+    }
+    
     func apply(_ input: Input) {
         switch input {
         case .didTapClearTextButton:
