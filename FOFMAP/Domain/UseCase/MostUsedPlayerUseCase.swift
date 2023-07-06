@@ -24,9 +24,13 @@ final class MostUsedPlayerUseCase: NetworkUseCaseProtocol {
                 break
             }
             
-            guard let name = try? await networkingUseCase.getPlayerName(by: id),
-                  let actionImage = try? await networkingUseCase.getPlayerActionImage(by: id),
-                  let seasonImage = try? await networkingUseCase.getSeasonImage(by: id),
+            async let name = try? networkingUseCase.getPlayerName(by: id)
+            async let actionImage = try? networkingUseCase.getPlayerActionImage(by: id)
+            async let seasonImage = try? networkingUseCase.getSeasonImage(by: id)
+            
+            guard let name = await name,
+                  let actionImage = await actionImage,
+                  let seasonImage = await seasonImage,
                   let position = PlayerSection.getPosition(by: value.position) else { continue }
             
             mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, position: position))
