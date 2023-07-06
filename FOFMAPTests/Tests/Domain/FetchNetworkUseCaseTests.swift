@@ -28,7 +28,8 @@ final class FetchNetworkUseCaseTests: XCTestCase {
         // given
         MockAPIProvider.testingSampleData = (SampleData.userInfo, nil)
         
-        let calledExpectation = 1
+        let calledDataMethodExpectation = 1
+        let calledImageMethodExpectation = 0
         let expectationUserId = "68bb3f88b9b7e862a2639a9d"
         let expectationLevel = 60
         
@@ -39,14 +40,16 @@ final class FetchNetworkUseCaseTests: XCTestCase {
         XCTAssertEqual(expectationUserId, resultId)
         XCTAssertEqual(expectationLevel, resultLevel)
         
-        mockProvider.testingCalledReceiveDataMethod(expectation: calledExpectation)
+        mockProvider.testingCalledReceiveDataMethod(expectation: calledDataMethodExpectation)
+        mockProvider.testingCalledReceiveImageMethod(expectation: calledImageMethodExpectation)
     }
     
     func test_getUserInfoMethod_FailureCase() async {
         // given
         MockAPIProvider.testingSampleData = (nil, NetworkError.responseError(statusCode: 403))
         
-        let calledExpectation = 1
+        let calledDataMethodExpectation = 1
+        let calledImageMethodExpectation = 0
         let expectationError = NetworkError.responseError(statusCode: 403)
         
         // when
@@ -56,18 +59,30 @@ final class FetchNetworkUseCaseTests: XCTestCase {
             XCTFail("This case must be failed")
         } catch {
             XCTAssertEqual(expectationError, error as! NetworkError)
-            mockProvider.testingCalledReceiveDataMethod(expectation: calledExpectation)
+            mockProvider.testingCalledReceiveDataMethod(expectation: calledDataMethodExpectation)
+            mockProvider.testingCalledReceiveImageMethod(expectation: calledImageMethodExpectation)
         }
     }
     
     func test_getAllMatchesMethod_SuccessCase() async {
         // given
+        MockAPIProvider.testingSampleData = (SampleData.matchIds, nil)
         
+        let calledDataMethodExpectation = 1
+        let calledImageMethodExpectation = 0
+        let expectationResultCount = 4
+        let expectationFirstId = "5d25fa0fea00678d61010bd7"
         
         // when
-        
+        let result = try! await sut.getAllMatches(50, offset: 0, limit: 100)
         
         // then
+        XCTAssertEqual(expectationResultCount, result.count)
+        XCTAssertEqual(expectationFirstId, result.first!)
         
+        mockProvider.testingCalledReceiveDataMethod(expectation: calledDataMethodExpectation)
+        mockProvider.testingCalledReceiveImageMethod(expectation: calledImageMethodExpectation)
     }
+    
+    
 }
