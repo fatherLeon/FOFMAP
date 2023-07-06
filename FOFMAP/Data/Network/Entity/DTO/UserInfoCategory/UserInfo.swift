@@ -13,7 +13,7 @@ struct UserInfo: Decodable {
     let level: Int
     
     enum CodingKeys: String, CodingKey {
-        case id = "accessid"
+        case id = "accessId"
         case nickname, level
     }
 }

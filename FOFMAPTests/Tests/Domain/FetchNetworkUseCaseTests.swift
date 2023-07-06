@@ -5,31 +5,69 @@
 //  Created by 강민수 on 2023/07/06.
 //
 
+@testable
+import FOFMAP
 import XCTest
 
 final class FetchNetworkUseCaseTests: XCTestCase {
+    
+    private var sut: FetchNetworkUseCase!
+    private var mockProvider: MockAPIProvider!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockProvider = MockAPIProvider()
+        sut = FetchNetworkUseCase(provider: mockProvider)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        mockProvider = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_getUserInfoMethod_SuccessCase() async {
+        // given
+        MockAPIProvider.testingSampleData = (SampleData.userInfo, nil)
+        
+        let calledExpectation = 1
+        let expectationUserId = "68bb3f88b9b7e862a2639a9d"
+        let expectationLevel = 60
+        
+        // when
+        let (resultId, resultLevel) = try! await sut.getUserInfo(by: "민수쨔응")
+        
+        // then
+        XCTAssertEqual(expectationUserId, resultId)
+        XCTAssertEqual(expectationLevel, resultLevel)
+        
+        mockProvider.testingCalledReceiveDataMethod(expectation: calledExpectation)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func test_getUserInfoMethod_FailureCase() async {
+        // given
+        MockAPIProvider.testingSampleData = (nil, NetworkError.responseError(statusCode: 403))
+        
+        let calledExpectation = 1
+        let expectationError = NetworkError.responseError(statusCode: 403)
+        
+        // when
+        // then
+        do {
+            _ = try await sut.getUserInfo(by: "민수쨔응")
+            XCTFail("This case must be failed")
+        } catch {
+            XCTAssertEqual(expectationError, error as! NetworkError)
+            mockProvider.testingCalledReceiveDataMethod(expectation: calledExpectation)
         }
     }
-
+    
+    func test_getAllMatchesMethod_SuccessCase() async {
+        // given
+        
+        
+        // when
+        
+        
+        // then
+        
+    }
 }
