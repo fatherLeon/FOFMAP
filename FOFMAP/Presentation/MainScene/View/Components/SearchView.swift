@@ -42,7 +42,7 @@ struct SearchView: View {
             }
             
             Button {
-                viewModel.searchUser()
+                // 뷰 이동
             } label: {
                 HStack {
                     Image(systemName: "magnifyingglass")

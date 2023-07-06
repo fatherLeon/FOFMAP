@@ -23,16 +23,12 @@ final class MainViewModel: ObservableObject {
     @Published var userNicknameText = ""
     @Published var isEnabledInTextView = false
     @Published var isShowingErrorAlert = false
+    @Published var isFetchingPlayers = true
     @Published var matchCategory: MatchCategory = .officialMatch
     @Published var mostUsedPlayers: [PlayerInfo] = []
-    @Published var isFetchingPlayers = true
     
     init() {
         binding()
-    }
-    
-    func searchUser() {
-        // 유저 정보 확인
     }
     
     func apply(_ input: Input) {
@@ -49,6 +45,7 @@ final class MainViewModel: ObservableObject {
         } catch {
             self.error = error as? NetworkError
             self.isShowingErrorAlert = true
+            self.isFetchingPlayers = false
         }
     }
     
