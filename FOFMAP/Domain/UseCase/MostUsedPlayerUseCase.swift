@@ -11,11 +11,12 @@ import Foundation
 final class MostUsedPlayerUseCase: DetailFetchable {
     typealias T = [PlayerInfo]
     
-    private let usedPlayersNum = 30
+    private let usedPlayersNum: Int
     private let offerableUseCase: Offerable
     
-    init(offerableUseCase: Offerable = FetchUseCase()) {
+    init(boundaryUsedPlayerNum: Int = 30, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase
+        self.usedPlayersNum = boundaryUsedPlayerNum
     }
     
     func execute() async throws -> T {
