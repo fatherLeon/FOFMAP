@@ -9,18 +9,9 @@ import SwiftUI
 
 struct RecordView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Text("abc")
-                Text("abc")
-                Text("abc")
-                Text("abc")
-                Text("abc")
-                Text("abc")
-            }
-            .listStyle(.inset)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("유저이름")
+        // 헤더
+        List {
+            // 전적
         }
     }
 }
