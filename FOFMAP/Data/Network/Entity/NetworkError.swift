@@ -21,7 +21,7 @@ enum NetworkError: LocalizedError, Equatable {
         case .incorrectType:
             return "올바르지 않은 데이터 타입입니다."
         case .invalidData:
-            return "올바리즈 않은 데이터입니다."
+            return "올바르지 않은 데이터입니다."
         case .responseError(let statusCode):
             return "서버 오류입니다.\(statusCode)"
         case .urlError:

@@ -16,7 +16,7 @@ final class MainViewModel: ObservableObject {
     }
     
     private var cancellables = Set<AnyCancellable>()
-    private var mostUsedPlayerUseCase: any DetailFetchable = MostUsedPlayerUseCase()
+    private var mostUsedPlayerUseCase: any DetailFetchable
     
     var error: NetworkError? = nil
     
@@ -27,7 +27,8 @@ final class MainViewModel: ObservableObject {
     @Published var matchCategory: MatchCategory = .officialMatch
     @Published var mostUsedPlayers: [PlayerInfo] = []
     
-    init() {
+    init(mostUsedPlayerUseCase: any DetailFetchable = MostUsedPlayerUseCase()) {
+        self.mostUsedPlayerUseCase = mostUsedPlayerUseCase
         binding()
     }
     

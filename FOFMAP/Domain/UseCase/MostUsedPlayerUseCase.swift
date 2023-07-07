@@ -13,6 +13,14 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     
     private let usedPlayersNum: Int
     private let offerableUseCase: Offerable
+    private var _offset = 0
+    private var offset: Int {
+        get {
+            _offset += 50
+            return _offset
+        }
+    }
+    private let limit = 100
     
     init(boundaryUsedPlayerNum: Int = 30, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase
@@ -46,7 +54,7 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {
         var usedPlayers: [Int: (count: Int, position: Int)] = [:]
-        let matcheIds = try await offerableUseCase.getAllMatches(50, offset: 0, limit: 50, orderBy: .desc)
+        let matcheIds = try await offerableUseCase.getAllMatches(50, offset: offset, limit: limit, orderBy: .desc)
         
         for id in matcheIds {
             let players = try await offerableUseCase.getMatchDescAllPlayers(matchId: id)
