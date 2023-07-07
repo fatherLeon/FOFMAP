@@ -40,6 +40,10 @@ final class MainViewModel: ObservableObject {
     }
     
     func receiveMostUsedPlayers() async {
+        mostUsedPlayers = []
+        self.isFetchingPlayers = true
+        self.isShowingErrorAlert = false
+        
         do {
             self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
             self.isFetchingPlayers = false

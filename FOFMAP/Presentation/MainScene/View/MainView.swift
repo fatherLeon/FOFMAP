@@ -22,23 +22,7 @@ struct MainView: View {
                     Spacer()
                 } else {
                     Spacer()
-                    List {
-                        ForEach(PlayerSection.allCases) { position in
-                            Section(position.rawValue) {
-                                ScrollView(.horizontal) {
-                                    HStack {
-                                        ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
-                                            if player.position == position {
-                                                PlayerItemCell(playerInfo: player)
-                                            }
-                                        }
-                                    }
-                                }
-                                .scrollIndicators(.hidden)
-                            }
-                        }
-                    }
-                    .listStyle(.inset)
+                    PlayerListView(viewModel: viewModel)
                 }
             }
             .navigationTitle("FOFMAP")
@@ -49,7 +33,6 @@ struct MainView: View {
         }
         .task {
             await viewModel.receiveMostUsedPlayers()
-            
         }
         .onTapGesture {
             self.hideKeyboard()
