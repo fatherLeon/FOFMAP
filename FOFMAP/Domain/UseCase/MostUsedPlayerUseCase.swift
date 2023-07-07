@@ -25,7 +25,9 @@ final class MostUsedPlayerUseCase: DetailFetchable {
         let usedPlayers = try await getAllUsedPlayer()
         
         for (id, value) in usedPlayers {
-            if mostUsedPlayers.count >= usedPlayersNum { break }
+            if mostUsedPlayers.count >= usedPlayersNum {
+                return mostUsedPlayers
+            }
             
             async let name = try? offerableUseCase.getPlayerName(by: id)
             async let actionImage = try? offerableUseCase.getPlayerActionImage(by: id)
@@ -39,7 +41,7 @@ final class MostUsedPlayerUseCase: DetailFetchable {
             mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, position: position))
         }
         
-        return mostUsedPlayers
+        throw NetworkError.invalidData
     }
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {
