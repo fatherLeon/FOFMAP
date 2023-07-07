@@ -22,11 +22,14 @@ final class MostUsedPlayerUseCaseTests: XCTestCase {
         sut = nil
     }
 
-    func testExecuteMethod() throws {
+    func test_executeMethod_Success() async {
         // given
+        let expectationCount = 3
         
         // when
+        let result = try! await sut.execute() as! [PlayerInfo]
         
         // then
+        XCTAssertEqual(expectationCount, result.count)
     }
 }

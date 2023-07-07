@@ -49,6 +49,8 @@ struct MockFetchUseCase: Offerable {
         
         MockFetchUseCase.samplePlayers.forEach { playerInfo in
             let player = Player(spID: playerInfo.id, spPosition: 10, spGrade: 10, status: [:])
+            
+            players.append(player)
         }
         
         return players

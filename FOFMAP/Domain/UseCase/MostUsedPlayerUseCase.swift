@@ -25,7 +25,7 @@ final class MostUsedPlayerUseCase: DetailFetchable {
         let usedPlayers = try await getAllUsedPlayer()
         
         for (id, value) in usedPlayers {
-            if mostUsedPlayers.count > usedPlayersNum { break }
+            if mostUsedPlayers.count >= usedPlayersNum { break }
             
             async let name = try? offerableUseCase.getPlayerName(by: id)
             async let actionImage = try? offerableUseCase.getPlayerActionImage(by: id)
