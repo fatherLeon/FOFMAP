@@ -59,7 +59,7 @@ struct APIProvider: Providable {
     private func generateRequest(by url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         
-        request.addValue("API키 값", forHTTPHeaderField: "Authorization")
+        request.addValue(Bundle.nexonAPIKey, forHTTPHeaderField: "Authorization")
         
         return request
     }
