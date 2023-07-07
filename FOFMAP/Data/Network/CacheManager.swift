@@ -10,7 +10,7 @@ import Foundation
 final class CacheManager: CacheStorable {
     private let urlCache: URLCache
     
-    init(urlCache: URLCache = URLCache(memoryCapacity: 0, diskCapacity: 20 * 1024 * 1024)) {
+    init(urlCache: URLCache = URLCache(memoryCapacity: 0, diskCapacity: 100 * 1024 * 1024)) {
         self.urlCache = urlCache
     }
     

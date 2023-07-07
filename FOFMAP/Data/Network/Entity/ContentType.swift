@@ -24,7 +24,7 @@ enum ContentType {
     case userTradeHistory(id: String, tradeType: TradeType, offset: Int, limit: Int)
     
     // MARK: 매치정보
-    case matchAllRecord(matchType: Int, offset: Int, limit: Int, orderBy: OrderBy)
+    case matchAllRecord(matchType: Int, offset: Int, limit: Int, orderBy: OrderBy = .desc)
     case matchDesc(matchId: String)
     
     // MARK: 메타정보

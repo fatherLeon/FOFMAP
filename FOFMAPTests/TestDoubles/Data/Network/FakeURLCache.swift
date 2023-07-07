@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockURLCache: URLCache {
+final class FakeURLCache: URLCache {
     
     private var cacheDirectory: [URLRequest: CachedURLResponse] = [:]
     

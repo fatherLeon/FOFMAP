@@ -15,7 +15,7 @@ final class CacheManagerTests: XCTestCase {
     private let sampleURL = URL(string: "www.naver.com")!
 
     override func setUpWithError() throws {
-        let mockURLCache = MockURLCache()
+        let mockURLCache = FakeURLCache()
         
         sut = CacheManager(urlCache: mockURLCache)
     }
