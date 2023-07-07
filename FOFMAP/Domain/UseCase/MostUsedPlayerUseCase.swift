@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-final class MostUsedPlayerUseCase: DetailFetchable {
+struct MostUsedPlayerUseCase: DetailFetchable {
     typealias T = [PlayerInfo]
     
     private let usedPlayersNum: Int
@@ -22,9 +22,8 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     }
     
     func execute() async throws -> T {
-        var mostUsedPlayers: [PlayerInfo] = []
-        
         let usedPlayers = try await getAllUsedPlayer()
+        var mostUsedPlayers: [PlayerInfo] = []
         
         for (id, value) in usedPlayers {
             if mostUsedPlayers.count >= usedPlayersNum {
@@ -47,8 +46,8 @@ final class MostUsedPlayerUseCase: DetailFetchable {
     }
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {
-        var usedPlayers: [Int: (count: Int, position: Int)] = [:]
         let matcheIds = try await offerableUseCase.getAllMatches(50, offset: offset, limit: limit, orderBy: .desc)
+        var usedPlayers: [Int: (count: Int, position: Int)] = [:]
         
         for id in matcheIds {
             let players = try await offerableUseCase.getMatchDescAllPlayers(matchId: id)

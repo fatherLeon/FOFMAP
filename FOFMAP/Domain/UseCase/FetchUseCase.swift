@@ -49,8 +49,8 @@ struct FetchUseCase: Offerable {
         guard let url = ContentType.matchDesc(matchId: matchId).url else {
             throw NetworkError.urlError
         }
-        var players: [Player] = []
         let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        var players: [Player] = []
         
         matchDesc.matchInfo.forEach { matchInfo in
             players += matchInfo.player
