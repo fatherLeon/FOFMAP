@@ -55,6 +55,7 @@
 		26ABEDCB2A57FF380079787E /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 26ABEDCA2A57FF380079787E /* FirebaseAuthCombine-Community */; };
 		26ABEDCD2A57FF380079787E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 26ABEDCC2A57FF380079787E /* FirebaseStorage */; };
 		26ABEDCF2A57FF380079787E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 26ABEDCE2A57FF380079787E /* FirebaseStorageCombine-Community */; };
+		26ABEDD42A580BA80079787E /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ABEDD32A580BA80079787E /* RecordView.swift */; };
 		26B12CA72A56A607008B7C44 /* MockFetchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B12CA62A56A607008B7C44 /* MockFetchUseCase.swift */; };
 		26B12CA92A56B51B008B7C44 /* MostUsedPlayerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B12CA82A56B51B008B7C44 /* MostUsedPlayerUseCaseTests.swift */; };
 		26CCACE42A564EDA000740B6 /* DetailFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCACE32A564EDA000740B6 /* DetailFetchable.swift */; };
@@ -124,6 +125,7 @@
 		26ABEDBE2A57EA4D0079787E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26ABEDC32A57EAB60079787E /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		26ABEDC52A57ECB70079787E /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		26ABEDD32A580BA80079787E /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		26B12CA62A56A607008B7C44 /* MockFetchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchUseCase.swift; sourceTree = "<group>"; };
 		26B12CA82A56B51B008B7C44 /* MostUsedPlayerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostUsedPlayerUseCaseTests.swift; sourceTree = "<group>"; };
 		26CCACE32A564EDA000740B6 /* DetailFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFetchable.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		2621C7C12A53C92E00DF33F4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				26ABEDD02A580B450079787E /* RecordScene */,
 				2621C7B92A53AA4200DF33F4 /* MainScene */,
 			);
 			path = Presentation;
@@ -378,6 +381,30 @@
 				264DEB312A515797003F357C /* Tests */,
 			);
 			path = FOFMAPTests;
+			sourceTree = "<group>";
+		};
+		26ABEDD02A580B450079787E /* RecordScene */ = {
+			isa = PBXGroup;
+			children = (
+				26ABEDD12A580B4E0079787E /* ViewModel */,
+				26ABEDD22A580B560079787E /* View */,
+			);
+			path = RecordScene;
+			sourceTree = "<group>";
+		};
+		26ABEDD12A580B4E0079787E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		26ABEDD22A580B560079787E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26ABEDD32A580BA80079787E /* RecordView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		26B12CA42A56A5DC008B7C44 /* Domain */ = {
@@ -652,6 +679,7 @@
 				26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */,
 				2621C7CF2A53F95900DF33F4 /* PlayerInfo.swift in Sources */,
 				264B6E812A526E6F000F66C9 /* Connectable.swift in Sources */,
+				26ABEDD42A580BA80079787E /* RecordView.swift in Sources */,
 				26731E5B2A50190F00601D53 /* UserInfo.swift in Sources */,
 				26731E612A501C1800601D53 /* UserTradeHistory.swift in Sources */,
 				264B6E7F2A5247B0000F66C9 /* CacheStorable.swift in Sources */,
