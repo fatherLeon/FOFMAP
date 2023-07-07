@@ -11,6 +11,7 @@ import UIKit
 
 struct MockFetchUseCase: Offerable {
     static var samplePlayers: [PlayerInfo] = [
+        PlayerInfo(id: 0, name: "Z", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!, position: .striker),
         PlayerInfo(id: 1, name: "a", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!, position: .striker),
         PlayerInfo(id: 2, name: "b", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!, position: .striker),
         PlayerInfo(id: 3, name: "c", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(named: "SamplePlayerImage")!, position: .striker),

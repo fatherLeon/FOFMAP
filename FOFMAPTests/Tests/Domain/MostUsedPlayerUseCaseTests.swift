@@ -32,4 +32,20 @@ final class MostUsedPlayerUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(expectationCount, result.count)
     }
+    
+    func test_executeMethod_invalidCountPlayers() async {
+        // given
+        MockFetchUseCase.samplePlayers = []
+        
+        let expectationError = NetworkError.invalidData
+        
+        // when
+        // then
+        do {
+            _ = try await sut.execute() as? [PlayerInfo]
+            XCTFail("This Case must throw invalidData Error in NetworkError")
+        } catch {
+            XCTAssertEqual(expectationError, error as! NetworkError)
+        }
+    }
 }
