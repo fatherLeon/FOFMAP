@@ -22,7 +22,11 @@ final class MostUsedPlayerUseCaseTests: XCTestCase {
         sut = nil
     }
 
-    func testExample() throws {
+    func testExecuteMethod() throws {
+        // given
         
+        // when
+        
+        // then
     }
 }

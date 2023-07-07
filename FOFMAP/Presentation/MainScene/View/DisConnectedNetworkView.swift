@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NetworkingErrorView: View {
+struct DisConnectedNetworkView: View {
     var body: some View {
         VStack {
             Image(systemName: "wifi.circle.fill")
@@ -18,8 +18,8 @@ struct NetworkingErrorView: View {
     }
 }
 
-struct NetworkingErrorView_Previews: PreviewProvider {
+struct DisConnectedNetworkView_Previews: PreviewProvider {
     static var previews: some View {
-        NetworkingErrorView()
+        DisConnectedNetworkView()
     }
 }

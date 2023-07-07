@@ -17,7 +17,7 @@ struct FOFMAPApp: App {
             if networkMonitor.isConnected {
                 MainView(viewModel: MainViewModel())
             } else {
-                NetworkingErrorView()
+                DisConnectedNetworkView()
             }
         }
     }
