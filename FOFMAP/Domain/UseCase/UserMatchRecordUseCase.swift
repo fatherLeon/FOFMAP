@@ -21,5 +21,8 @@ struct UserMatchRecordUseCase: DetailFetchable {
     }
     
     private func getUserMatchIds(userId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches {
+        let matchIds = try await offerableUseCase.getUserMatchIds(accessId: userId, matchType: matchType, offset: offset, limit: limit)
+        
+        return matchIds
     }
 }

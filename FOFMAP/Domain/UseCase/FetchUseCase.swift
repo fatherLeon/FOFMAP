@@ -8,9 +8,15 @@
 import UIKit
 
 protocol Offerable {
+    // 유저
     func getUserInfo(by nickname: String) async throws -> (accessID: String, level: Int)
+    func getUserMatchIds(accessId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches
+    
+    // 매치
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy) async throws -> [String]
     func getMatchDescAllPlayers(matchId: String) async throws -> [Player]
+    
+    // 메타
     func getPlayerName(by spid: Int) async throws -> String
     func getSeasonImage(by spid: Int) async throws -> UIImage
     func getPlayerActionImage(by spid: Int) async throws -> UIImage
