@@ -19,23 +19,22 @@ struct RecordView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List(viewModel.matches, id: \.matchID) { _ in
-                    NavigationLink {
-                        // 상세보기
-                    } label: {
-                        RecordCell()
-                    }
+        VStack {
+            List(viewModel.matches, id: \.matchID) { _ in
+                NavigationLink {
+                    // 상세보기
+                } label: {
+                    RecordCell()
                 }
             }
-            .navigationTitle(viewModel.nickname)
-            .alert(isPresented: $viewModel.isErrorShownAlert, error: viewModel.error) {
-                Button(role: .cancel) {
-                    dismiss()
-                } label: {
-                    Text("OK")
-                }
+        }
+        .navigationTitle(viewModel.nickname)
+        .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: $viewModel.isErrorShownAlert, error: viewModel.error) {
+            Button(role: .cancel) {
+                dismiss()
+            } label: {
+                Text("OK")
             }
         }
     }
