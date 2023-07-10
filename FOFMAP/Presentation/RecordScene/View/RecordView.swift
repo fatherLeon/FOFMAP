@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct RecordView: View {
+    @State var matchCategory: MatchCategory = .classicMatch
+    
     var body: some View {
-        // 헤더
-        List {
-            // 전적
+        NavigationView {
+            VStack {
+                
+                List {
+                    NavigationLink {
+                        Text("Destination")
+                    } label: {
+                        RecordCell()
+                    }
+                }
+            }
+            .navigationTitle("유저 이름")
         }
     }
 }

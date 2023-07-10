@@ -28,13 +28,6 @@ struct RecordCell: View {
             Text("상대 이름")
                 .font(.subheadline)
                 .lineLimit(3)
-            
-            Button {
-                // 더보기 액션
-            } label: {
-                Image(systemName: "chevron.right")
-            }
-            .padding(.leading, 30)
 
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
