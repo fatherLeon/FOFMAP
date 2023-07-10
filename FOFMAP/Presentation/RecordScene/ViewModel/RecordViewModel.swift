@@ -16,7 +16,7 @@ final class RecordViewModel: ObservableObject {
     
     @Published var matches: [MatchDesc] = []
     @Published var nickname: String = ""
-    @Published var isShowingError: UserError? = nil
+    @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
     
     init(recordUseCase: any DetailFetchable) {
@@ -36,7 +36,7 @@ final class RecordViewModel: ObservableObject {
                         
                         self?.matches = matches
                     } catch {
-                        self?.isShowingError = error as? UserError
+                        self?.error = error as? UserError
                         self?.isErrorShownAlert = true
                     }
                 }

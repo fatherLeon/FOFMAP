@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecordView: View {
     
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: RecordViewModel
     
     init(nickname: String, matchCategory: MatchCategory) {
@@ -20,7 +21,7 @@ struct RecordView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
+                List(viewModel.matches, id: \.matchID) { _ in
                     NavigationLink {
                         // 상세보기
                     } label: {
@@ -29,6 +30,13 @@ struct RecordView: View {
                 }
             }
             .navigationTitle(viewModel.nickname)
+            .alert(isPresented: $viewModel.isErrorShownAlert, error: viewModel.error) {
+                Button(role: .cancel) {
+                    dismiss()
+                } label: {
+                    Text("OK")
+                }
+            }
         }
     }
 }
