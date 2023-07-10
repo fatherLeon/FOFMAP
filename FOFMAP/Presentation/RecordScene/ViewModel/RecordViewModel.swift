@@ -25,6 +25,18 @@ final class RecordViewModel: ObservableObject {
         binding()
     }
     
+    func getOpponentUserName(by match: MatchDesc) -> String {
+        var opponentUserName = ""
+        
+        match.matchInfo.forEach { info in
+            if info.nickname != self.nickname {
+                opponentUserName = info.nickname
+            }
+        }
+        
+        return opponentUserName
+    }
+    
     private func binding() {
         $nickname
             .sink(receiveValue: { nickname in

@@ -14,7 +14,9 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchView(viewModel: viewModel)
+                HStack {
+                    SearchView(viewModel: viewModel)
+                }
                 
                 if viewModel.isFetchingPlayers {
                     Spacer()
