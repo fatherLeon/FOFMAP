@@ -42,3 +42,4 @@ struct PlayerListView_Previews: PreviewProvider {
         PlayerListView(viewModel: MainViewModel())
     }
 }
+

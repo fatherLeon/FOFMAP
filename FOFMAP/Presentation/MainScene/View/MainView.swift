@@ -45,3 +45,4 @@ struct MainView_Previews: PreviewProvider {
         MainView(viewModel: MainViewModel())
     }
 }
+

@@ -68,3 +68,4 @@ struct SearchView_Previews: PreviewProvider {
         SearchView(viewModel: MainViewModel())
     }
 }
+

@@ -19,12 +19,14 @@ struct RecordView: View {
     }
     
     var body: some View {
-        VStack {
-            List(viewModel.matches, id: \.matchID) { _ in
-                NavigationLink {
-                    // 상세보기
-                } label: {
-                    RecordCell()
+        NavigationView {
+            VStack {
+                List(viewModel.matches, id: \.matchID) { _ in
+                    NavigationLink {
+                        // 상세보기
+                    } label: {
+                        RecordCell()
+                    }
                 }
             }
         }
@@ -37,11 +39,13 @@ struct RecordView: View {
                 Text("OK")
             }
         }
+        .navigationBarBackButtonHidden(false)
     }
 }
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView(nickname: "abc", matchCategory: .classicMatch)
+        RecordView(nickname: "민수쨔응", matchCategory: .classicMatch)
     }
 }
+

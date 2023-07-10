@@ -23,3 +23,4 @@ struct DisConnectedNetworkView_Previews: PreviewProvider {
         DisConnectedNetworkView()
     }
 }
+
