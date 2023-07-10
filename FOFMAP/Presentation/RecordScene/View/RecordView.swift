@@ -25,7 +25,9 @@ struct RecordView: View {
                     NavigationLink {
                         // 상세보기
                     } label: {
-                        RecordCell(scoreText: viewModel.getScoreText(by: matchDesc),
+                        RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
+                                   hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
+                                   scoreText: viewModel.getScoreText(by: matchDesc),
                                    opponentName: viewModel.getOpponentUserName(by: matchDesc))
                     }
                 }

@@ -25,6 +25,14 @@ final class RecordViewModel: ObservableObject {
         binding()
     }
     
+    func getYearToDayText(by match: MatchDesc) -> String {
+        return Date.toYearMonthDateString(match.matchDate)
+    }
+    
+    func getHourToMinute(by match: MatchDesc) -> String {
+        return Date.toHourMinuteString(match.matchDate)
+    }
+    
     func getOpponentUserName(by match: MatchDesc) -> String {
         var opponentUserName = ""
         

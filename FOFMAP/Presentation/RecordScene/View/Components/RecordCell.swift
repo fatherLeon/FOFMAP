@@ -9,10 +9,14 @@ import SwiftUI
 
 struct RecordCell: View {
     
+    private var yearToDayText: String
+    private var hourToMinuteText: String
     private var scoreText: String
     private var opponentName: String
     
-    init(scoreText: String, opponentName: String) {
+    init(yearToDayText: String, hourToMinuteText: String, scoreText: String, opponentName: String) {
+        self.yearToDayText = yearToDayText
+        self.hourToMinuteText = hourToMinuteText
         self.scoreText = scoreText
         self.opponentName = opponentName
     }
@@ -21,8 +25,8 @@ struct RecordCell: View {
         HStack {
             // 날짜
             VStack {
-                Text("2023.05.30.")
-                Text("16:40")
+                Text(yearToDayText)
+                Text(hourToMinuteText)
             }
             .font(.caption)
             
@@ -45,6 +49,6 @@ struct RecordCell: View {
 
 struct RecordCell_Previews: PreviewProvider {
     static var previews: some View {
-        RecordCell(scoreText: "1:2", opponentName: "적 이름")
+        RecordCell(yearToDayText: "2022.02.12.", hourToMinuteText: "12:03", scoreText: "1:2", opponentName: "적 이름")
     }
 }
