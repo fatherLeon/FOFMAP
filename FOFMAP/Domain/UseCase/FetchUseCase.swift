@@ -14,6 +14,7 @@ protocol Offerable {
     
     // 매치
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy) async throws -> [String]
+    func getMatchDesc(matchId: String) async throws -> MatchDesc
     func getMatchDescAllPlayers(matchId: String) async throws -> [Player]
     
     // 메타
@@ -59,6 +60,16 @@ struct FetchUseCase: Offerable {
         let allMatchIDs = try await provider.receiveData(url: url, by: MatchAllRecord.self)
         
         return allMatchIDs
+    }
+    
+    func getMatchDesc(matchId: String) async throws -> MatchDesc {
+        guard let url = ContentType.matchDesc(matchId: matchId).url else {
+            throw NetworkError.urlError
+        }
+        
+        let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        
+        return matchDesc
     }
     
     func getMatchDescAllPlayers(matchId: String) async throws -> [Player] {
