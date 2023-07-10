@@ -7,6 +7,20 @@
 
 import Foundation
 
+enum UserError: LocalizedError {
+    case noExistUser
+    case noExistMatchRecord
+    
+    var errorDescription: String? {
+        switch self {
+        case .noExistUser:
+            return "존재하지 않는 유저입니다."
+        case .noExistMatchRecord:
+            return "매치기록이 존재하지 않습니다."
+        }
+    }
+}
+
 struct UserMatchRecordUseCase: DetailFetchable {
     typealias T = [MatchDesc]
     
@@ -25,8 +39,16 @@ struct UserMatchRecordUseCase: DetailFetchable {
     }
     
     func execute() async throws -> [MatchDesc] {
-        let userInfo = try await getUserInfo(name: nickname)
+        guard let userInfo = try? await getUserInfo(name: nickname) else {
+            throw UserError.noExistUser
+        }
+        
         let userMatchIds = try await getUserMatchIds(userId: userInfo.id, matchType: matchType, offset: offset, limit: limit)
+        
+        if userMatchIds.isEmpty {
+            throw UserError.noExistMatchRecord
+        }
+        
         var matches: [MatchDesc] = []
         
         for id in userMatchIds {
