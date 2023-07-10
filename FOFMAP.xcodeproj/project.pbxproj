@@ -34,6 +34,7 @@
 		264DEB332A515D5B003F357C /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB322A515D5B003F357C /* MockURLProtocol.swift */; };
 		26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */; };
 		26622BFE2A5BA86A00AB16D2 /* MatchRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */; };
+		26622C002A5BA9AE00AB16D2 /* UserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */; };
 		26731E582A500A3900601D53 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E572A500A3900601D53 /* APIProvider.swift */; };
 		26731E5B2A50190F00601D53 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E5A2A50190F00601D53 /* UserInfo.swift */; };
 		26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E5C2A501AD000601D53 /* UserGrade.swift */; };
@@ -109,6 +110,7 @@
 		264DEB322A515D5B003F357C /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRecordUseCase.swift; sourceTree = "<group>"; };
+		26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUseCase.swift; sourceTree = "<group>"; };
 		26731E572A500A3900601D53 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		26731E5A2A50190F00601D53 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		26731E5C2A501AD000601D53 /* UserGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGrade.swift; sourceTree = "<group>"; };
@@ -260,10 +262,11 @@
 		2621C7CA2A53DE5700DF33F4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				26CCACE22A564EC5000740B6 /* Repository */,
 				2621C7D42A54093600DF33F4 /* FetchUseCase.swift */,
+				26CCACE22A564EC5000740B6 /* Repository */,
 				2621C7D62A5414D900DF33F4 /* MostUsedPlayerUseCase.swift */,
 				26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */,
+				26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				26731E582A500A3900601D53 /* APIProvider.swift in Sources */,
 				26CCACE42A564EDA000740B6 /* DetailFetchable.swift in Sources */,
 				26ABEDBB2A57C6BE0079787E /* PlayerListView.swift in Sources */,
+				26622C002A5BA9AE00AB16D2 /* UserInfoUseCase.swift in Sources */,
 				26CCACEB2A56691F000740B6 /* Providable.swift in Sources */,
 				2621C7D52A54093600DF33F4 /* FetchUseCase.swift in Sources */,
 				2621C7C02A53C42E00DF33F4 /* PlayerItemCell.swift in Sources */,

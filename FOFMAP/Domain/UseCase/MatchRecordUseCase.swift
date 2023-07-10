@@ -10,6 +10,12 @@ import Foundation
 struct MatchRecordUseCase: DetailFetchable {
     typealias T = [MatchDesc]
     
+    private let offerableUseCase: Offerable
+    
+    init(offerableUseCase: Offerable = FetchUseCase()) {
+        self.offerableUseCase = offerableUseCase
+    }
+    
     func execute() async throws -> [MatchDesc] {
         return []
     }
