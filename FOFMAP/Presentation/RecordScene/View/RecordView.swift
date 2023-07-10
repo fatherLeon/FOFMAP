@@ -21,11 +21,12 @@ struct RecordView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.matches, id: \.matchID) { _ in
+                List(viewModel.matches, id: \.matchID) { matchDesc in
                     NavigationLink {
                         // 상세보기
                     } label: {
-                        RecordCell()
+                        RecordCell(scoreText: viewModel.getScoreText(by: matchDesc),
+                                   opponentName: viewModel.getOpponentUserName(by: matchDesc))
                     }
                 }
             }

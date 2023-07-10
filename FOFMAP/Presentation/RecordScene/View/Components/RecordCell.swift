@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct RecordCell: View {
+    
+    private var scoreText: String
+    private var opponentName: String
+    
+    init(scoreText: String, opponentName: String) {
+        self.scoreText = scoreText
+        self.opponentName = opponentName
+    }
+    
     var body: some View {
         HStack {
             // 날짜
@@ -19,13 +28,13 @@ struct RecordCell: View {
             
             Spacer()
             
-            Text("1 : 2")
+            Text(scoreText)
                 .bold()
                 .font(.title3)
             
             Spacer()
             
-            Text("상대 이름")
+            Text(self.opponentName)
                 .font(.subheadline)
                 .lineLimit(3)
 
@@ -36,6 +45,6 @@ struct RecordCell: View {
 
 struct RecordCell_Previews: PreviewProvider {
     static var previews: some View {
-        RecordCell()
+        RecordCell(scoreText: "1:2", opponentName: "적 이름")
     }
 }

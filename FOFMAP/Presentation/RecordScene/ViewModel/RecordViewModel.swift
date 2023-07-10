@@ -37,6 +37,21 @@ final class RecordViewModel: ObservableObject {
         return opponentUserName
     }
     
+    func getScoreText(by match: MatchDesc) -> String {
+        var myGoal = 0
+        var opponentGoal = 0
+        
+        match.matchInfo.forEach { matchInfo in
+            if matchInfo.nickname == nickname {
+                myGoal = matchInfo.shoot["goalTotal"] ?? 0
+            } else {
+                opponentGoal = matchInfo.shoot["goalTotal"] ?? 0
+            }
+        }
+        
+        return "\(myGoal) : \(opponentGoal)"
+    }
+    
     private func binding() {
         $nickname
             .sink(receiveValue: { nickname in
