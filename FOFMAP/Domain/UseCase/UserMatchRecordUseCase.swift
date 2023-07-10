@@ -16,7 +16,7 @@ struct UserMatchRecordUseCase: DetailFetchable {
     private var offset: Int
     private var limit: Int
     
-    init(nickname: String, matchType: MatchType, offset: Int = 0, limit: Int = 100, offerableUseCase: Offerable = FetchUseCase()) {
+    init(nickname: String, matchType: MatchType, offset: Int = 0, limit: Int = 20, offerableUseCase: Offerable = FetchUseCase()) {
         self.nickname = nickname
         self.matchType = matchType
         self.offset = offset
@@ -30,7 +30,11 @@ struct UserMatchRecordUseCase: DetailFetchable {
         
         var matches: [MatchDesc] = []
         
-        
+        for id in userMatchIds {
+            let matchDesc = try await offerableUseCase.getMatchDesc(matchId: id)
+            
+            matches.append(matchDesc)
+        }
         
         return matches
     }
