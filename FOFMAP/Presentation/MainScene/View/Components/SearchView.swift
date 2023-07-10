@@ -41,8 +41,8 @@ struct SearchView: View {
                     .tint(.green)
             }
             
-            Button {
-                // 뷰 이동
+            NavigationLink {
+                RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
             } label: {
                 HStack {
                     Image(systemName: "magnifyingglass")
