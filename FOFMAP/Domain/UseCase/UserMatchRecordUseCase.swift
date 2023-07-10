@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MatchRecordUseCase: DetailFetchable {
+struct UserMatchRecordUseCase: DetailFetchable {
     typealias T = [MatchDesc]
     
     private let offerableUseCase: Offerable

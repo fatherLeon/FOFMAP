@@ -33,7 +33,7 @@
 		264DEB302A51578F003F357C /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB2F2A51578F003F357C /* NetworkManagerTests.swift */; };
 		264DEB332A515D5B003F357C /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB322A515D5B003F357C /* MockURLProtocol.swift */; };
 		26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */; };
-		26622BFE2A5BA86A00AB16D2 /* MatchRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */; };
+		26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFD2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift */; };
 		26622C002A5BA9AE00AB16D2 /* UserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */; };
 		26731E582A500A3900601D53 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E572A500A3900601D53 /* APIProvider.swift */; };
 		26731E5B2A50190F00601D53 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26731E5A2A50190F00601D53 /* UserInfo.swift */; };
@@ -109,7 +109,7 @@
 		264DEB2F2A51578F003F357C /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		264DEB322A515D5B003F357C /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
-		26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRecordUseCase.swift; sourceTree = "<group>"; };
+		26622BFD2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchRecordUseCase.swift; sourceTree = "<group>"; };
 		26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUseCase.swift; sourceTree = "<group>"; };
 		26731E572A500A3900601D53 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		26731E5A2A50190F00601D53 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 				2621C7D42A54093600DF33F4 /* FetchUseCase.swift */,
 				26CCACE22A564EC5000740B6 /* Repository */,
 				2621C7D62A5414D900DF33F4 /* MostUsedPlayerUseCase.swift */,
-				26622BFD2A5BA86A00AB16D2 /* MatchRecordUseCase.swift */,
+				26622BFD2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift */,
 				26622BFF2A5BA9AE00AB16D2 /* UserInfoUseCase.swift */,
 			);
 			path = UseCase;
@@ -669,7 +669,7 @@
 				2621C7C92A53CC0400DF33F4 /* MainViewModel.swift in Sources */,
 				262658562A4C059C0097AF73 /* ContentType.swift in Sources */,
 				260A21F42A554FF900A213EE /* View+Extension.swift in Sources */,
-				26622BFE2A5BA86A00AB16D2 /* MatchRecordUseCase.swift in Sources */,
+				26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */,
 				26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */,
 				26ABEDC62A57ECB70079787E /* Bundle+Extension.swift in Sources */,
 				2621C7D32A54033500DF33F4 /* DisConnectedNetworkView.swift in Sources */,
