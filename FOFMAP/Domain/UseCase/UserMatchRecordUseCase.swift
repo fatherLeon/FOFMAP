@@ -16,7 +16,7 @@ struct UserMatchRecordUseCase: DetailFetchable {
     private var offset: Int
     private var limit: Int
     
-    init(nickname: String = "", matchType: MatchCategory = .officialMatch, offset: Int = 0, limit: Int = 20, offerableUseCase: Offerable = FetchUseCase()) {
+    init(nickname: String, matchType: MatchCategory, offset: Int = 0, limit: Int = 20, offerableUseCase: Offerable = FetchUseCase()) {
         self.nickname = nickname
         self.matchType = matchType
         self.offset = offset
