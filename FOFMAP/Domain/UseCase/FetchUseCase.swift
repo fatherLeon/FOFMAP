@@ -34,6 +34,16 @@ struct FetchUseCase: Offerable {
         return (userInfo.id, userInfo.level)
     }
     
+    func getUserMatchIds(accessId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches {
+        guard let url = ContentType.userMatches(id: accessId, matchType: matchType, offset: offset, limit: limit).url else {
+            throw NetworkError.urlError
+        }
+        
+        let matchIds = try await provider.receiveData(url: url, by: UserMatches.self)
+        
+        return matchIds
+    }
+    
     // MARK: 매치정보
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy = .desc) async throws -> [String] {
         guard let url = ContentType.matchAllRecord(matchType: matchtype, offset: offset, limit: limit, orderBy: orderBy).url else {

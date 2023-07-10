@@ -19,4 +19,7 @@ struct UserMatchRecordUseCase: DetailFetchable {
     func execute() async throws -> [MatchDesc] {
         return []
     }
+    
+    private func getUserMatchIds(userId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches {
+    }
 }
