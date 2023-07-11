@@ -20,10 +20,12 @@ struct HeaderView: View {
     
     var body: some View {
         HStack {
+            Image(systemName: "star.fill")
+            
             VStack {
                 Text(nickname.uppercased())
                     .font(.title)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 3)
                 
                 Text("레벨 : \(level)")
             }
@@ -32,10 +34,11 @@ struct HeaderView: View {
             
             VStack {
                 Text("최고등급 - \(grade)")
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 5)
                 Text("달성일 - 2022.03.03")
             }
         }
+        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
         .background(CustomColor.gradeBackgroundColor)
     }
 }
