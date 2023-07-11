@@ -12,7 +12,7 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 HStack {
                     SearchView(viewModel: viewModel)
@@ -35,9 +35,6 @@ struct MainView: View {
         }
         .task {
             await viewModel.receiveMostUsedPlayers()
-        }
-        .onTapGesture {
-            self.hideKeyboard()
         }
     }
 }
