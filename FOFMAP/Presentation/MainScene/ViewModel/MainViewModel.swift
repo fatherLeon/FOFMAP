@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 import Foundation
 
-@MainActor
 final class MainViewModel: ObservableObject {
     enum Input {
         case didTapClearTextButton
@@ -27,6 +26,7 @@ final class MainViewModel: ObservableObject {
     @Published var matchCategory: MatchCategory = .officialMatch
     @Published var mostUsedPlayers: [PlayerInfo] = []
     
+    @MainActor
     init(mostUsedPlayerUseCase: any DetailFetchable = MostUsedPlayerUseCase()) {
         self.mostUsedPlayerUseCase = mostUsedPlayerUseCase
         binding()
@@ -39,6 +39,7 @@ final class MainViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func receiveMostUsedPlayers() async {
         mostUsedPlayers = []
         self.isFetchingPlayers = true
@@ -54,6 +55,7 @@ final class MainViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     private func binding() {
         $userNicknameText
             .sink { [weak self] output in
