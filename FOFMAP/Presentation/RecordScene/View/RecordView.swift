@@ -20,8 +20,7 @@ struct RecordView: View {
     
     var body: some View {
         VStack {
-            
-            List(viewModel.matches, id: \.matchID) { matchDesc in
+            List(viewModel.matches) { matchDesc in
                 NavigationLink {
                     Text(matchDesc.matchID)
                 } label: {

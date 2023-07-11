@@ -55,7 +55,10 @@ final class RecordViewModel: ObservableObject {
                 return
             }
             
-            self?.matches += newMatches
+            newMatches.forEach { match in
+                self?.matches.append(match)
+            }
+            
             self?.isPossibleFetch = true
         }
     }
