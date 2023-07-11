@@ -8,7 +8,6 @@
 import Combine
 import Foundation
 
-@MainActor
 final class RecordViewModel: ObservableObject {
     
     private let recordUseCase: any DetailFetchable
@@ -19,6 +18,7 @@ final class RecordViewModel: ObservableObject {
     @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
     
+    @MainActor
     init(recordUseCase: any DetailFetchable) {
         self.recordUseCase = recordUseCase
         
@@ -60,6 +60,7 @@ final class RecordViewModel: ObservableObject {
         return "\(myGoal) : \(opponentGoal)"
     }
     
+    @MainActor
     private func binding() {
         $nickname
             .sink(receiveValue: { nickname in

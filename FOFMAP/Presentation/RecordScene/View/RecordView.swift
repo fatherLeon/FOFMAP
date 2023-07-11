@@ -19,15 +19,17 @@ struct RecordView: View {
     }
     
     var body: some View {
-        VStack {
-            List(viewModel.matches, id: \.matchID) { matchDesc in
-                NavigationLink {
-                    Text(matchDesc.matchID)
-                } label: {
-                    RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
-                               hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                               scoreText: viewModel.getScoreText(by: matchDesc),
-                               opponentName: viewModel.getOpponentUserName(by: matchDesc))
+        NavigationView {
+            VStack {
+                List(viewModel.matches, id: \.matchID) { matchDesc in
+                    NavigationLink {
+                        Text(matchDesc.matchID)
+                    } label: {
+                        RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
+                                   hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
+                                   scoreText: viewModel.getScoreText(by: matchDesc),
+                                   opponentName: viewModel.getOpponentUserName(by: matchDesc))
+                    }
                 }
             }
         }
@@ -40,7 +42,6 @@ struct RecordView: View {
                 Text("OK")
             }
         }
-        .navigationBarBackButtonHidden(false)
     }
 }
 
