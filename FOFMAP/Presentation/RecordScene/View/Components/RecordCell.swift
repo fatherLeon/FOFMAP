@@ -41,6 +41,7 @@ struct RecordCell: View {
                 Text(hourToMinuteText)
             }
             .font(.caption)
+            .padding(.leading, 10)
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
     }
