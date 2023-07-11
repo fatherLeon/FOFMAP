@@ -20,6 +20,7 @@ struct RecordView: View {
     
     var body: some View {
         VStack {
+            
             List(viewModel.matches, id: \.matchID) { matchDesc in
                 NavigationLink {
                     Text(matchDesc.matchID)

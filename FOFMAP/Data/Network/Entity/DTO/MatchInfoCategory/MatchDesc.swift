@@ -8,7 +8,11 @@
 import Foundation
 
 // MARK: - Welcome
-struct MatchDesc: Codable {
+struct MatchDesc: Codable, Identifiable {
+    var id: String {
+        return matchID
+    }
+
     let matchID, matchDate: String
     let matchType: Int
     let matchInfo: [MatchInfo]
