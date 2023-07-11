@@ -83,7 +83,7 @@ final class RecordViewModel: ObservableObject {
         return opponentUserName
     }
     
-    func getScoreText(by match: MatchDesc) -> String {
+    func getScoreText(by match: MatchDesc) -> (player: Int, opponent: Int) {
         var myGoal = 0
         var opponentGoal = 0
         
@@ -95,7 +95,7 @@ final class RecordViewModel: ObservableObject {
             }
         }
         
-        return "\(myGoal) : \(opponentGoal)"
+        return (myGoal, opponentGoal)
     }
     
     @MainActor

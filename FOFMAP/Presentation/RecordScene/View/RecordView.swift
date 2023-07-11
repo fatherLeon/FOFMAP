@@ -27,7 +27,7 @@ struct RecordView: View {
                     VStack {
                         RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
                                    hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                                   scoreText: viewModel.getScoreText(by: matchDesc),
+                                   scoreInfo: viewModel.getScoreText(by: matchDesc),
                                    opponentName: viewModel.getOpponentUserName(by: matchDesc))
                         
                         if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
