@@ -50,15 +50,13 @@ final class RecordViewModel: ObservableObject {
         recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchType, offset: offset, limit: limit)
         
         Task { [weak self] in
-            guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc] else {
+            guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc],
+                  newMatches.isEmpty == false else {
                 self?.isPossibleFetch = false
                 return
             }
             
-            newMatches.forEach { match in
-                self?.matches.append(match)
-            }
-            
+            self?.matches += newMatches
             self?.isPossibleFetch = true
         }
     }
@@ -104,15 +102,14 @@ final class RecordViewModel: ObservableObject {
             .sink(receiveValue: { nickname in
                 Task { [weak self] in
                     do {
-                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else {
-                            return
-                        }
+                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else { return }
                         
                         self?.matches = matches
                         self?.isPossibleFetch = true
                     } catch {
                         self?.error = error as? UserError
                         self?.isErrorShownAlert = true
+                        self?.isPossibleFetch = false
                     }
                 }
             })

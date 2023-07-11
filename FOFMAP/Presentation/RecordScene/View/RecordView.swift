@@ -20,21 +20,25 @@ struct RecordView: View {
     
     var body: some View {
         VStack {
-            List(viewModel.matches) { matchDesc in
-                NavigationLink {
-                    Text(matchDesc.matchID)
-                } label: {
-                    VStack {
-                        RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
-                                   hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                                   scoreInfo: viewModel.getScoreText(by: matchDesc),
-                                   opponentName: viewModel.getOpponentUserName(by: matchDesc))
-                        
-                        if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
-                            ProgressView()
-                                .onAppear {
-                                    viewModel.getAdditionalRecordMatches()
-                                }
+            if viewModel.matches.isEmpty {
+                ProgressView()
+            } else {
+                List(viewModel.matches) { matchDesc in
+                    NavigationLink {
+                        Text(matchDesc.matchID)
+                    } label: {
+                        VStack {
+                            RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
+                                       hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
+                                       scoreInfo: viewModel.getScoreText(by: matchDesc),
+                                       opponentName: viewModel.getOpponentUserName(by: matchDesc))
+                            
+                            if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
+                                ProgressView()
+                                    .onAppear {
+                                        viewModel.getAdditionalRecordMatches()
+                                    }
+                            }
                         }
                     }
                 }
