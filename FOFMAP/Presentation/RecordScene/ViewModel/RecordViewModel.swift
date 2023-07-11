@@ -13,14 +13,14 @@ final class RecordViewModel: ObservableObject {
     private var recordUseCase: any DetailFetchable
     private var cancellables = Set<AnyCancellable>()
     private let matchType: MatchCategory
-    private var offset = 0
-    private var limit = 20
+    private var offset = 20
+    private var limit = 5
     
     @Published var matches: [MatchDesc] = []
     @Published var nickname: String = ""
     @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
-    @Published var isLoading = true
+    @Published var isPossibleFetch = false
     
     @MainActor
     init(matchType: MatchCategory, recordUseCase: any DetailFetchable) {
@@ -42,17 +42,21 @@ final class RecordViewModel: ObservableObject {
         return false
     }
     
-    func getRecordMatches() {
-        offset += limit
+    @MainActor
+    func getAdditionalRecordMatches() {
+        guard matches.isEmpty == false else { return }
         
+        offset += limit
         recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchType, offset: offset, limit: limit)
         
         Task { [weak self] in
             guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc] else {
+                self?.isPossibleFetch = false
                 return
             }
             
             self?.matches += newMatches
+            self?.isPossibleFetch = true
         }
     }
     
@@ -102,6 +106,7 @@ final class RecordViewModel: ObservableObject {
                         }
                         
                         self?.matches = matches
+                        self?.isPossibleFetch = true
                     } catch {
                         self?.error = error as? UserError
                         self?.isErrorShownAlert = true
