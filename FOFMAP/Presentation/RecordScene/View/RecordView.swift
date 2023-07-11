@@ -23,6 +23,8 @@ struct RecordView: View {
             if viewModel.matches.isEmpty {
                 ProgressView()
             } else {
+                HeaderView(nickname: viewModel.nickname, level: 400, grade: "챔피언스")
+                
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {
                         // 매치 세부 뷰
@@ -45,7 +47,6 @@ struct RecordView: View {
                 .listStyle(.plain)
             }
         }
-        .navigationTitle(viewModel.nickname)
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $viewModel.isErrorShownAlert, error: viewModel.error) {
             Button(role: .cancel) {

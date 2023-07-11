@@ -21,7 +21,7 @@ struct HeaderView: View {
     var body: some View {
         HStack {
             VStack {
-                Text(nickname)
+                Text(nickname.uppercased())
                     .font(.title)
                     .padding(.bottom, 10)
                 
