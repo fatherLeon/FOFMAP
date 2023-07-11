@@ -14,7 +14,7 @@ struct RecordView: View {
     
     init(nickname: String, matchCategory: MatchCategory) {
         let useCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory)
-        self.viewModel = RecordViewModel(recordUseCase: useCase)
+        self.viewModel = RecordViewModel(matchType: matchCategory, recordUseCase: useCase)
         self.viewModel.nickname = nickname
     }
     

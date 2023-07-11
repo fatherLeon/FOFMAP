@@ -10,19 +10,50 @@ import Foundation
 
 final class RecordViewModel: ObservableObject {
     
-    private let recordUseCase: any DetailFetchable
+    private var recordUseCase: any DetailFetchable
     private var cancellables = Set<AnyCancellable>()
+    private let matchType: MatchCategory
+    private var offset = 0
+    private var limit = 20
     
     @Published var matches: [MatchDesc] = []
     @Published var nickname: String = ""
     @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
+    @Published var isLoading = true
     
     @MainActor
-    init(recordUseCase: any DetailFetchable) {
+    init(matchType: MatchCategory, recordUseCase: any DetailFetchable) {
+        self.matchType = matchType
         self.recordUseCase = recordUseCase
         
         binding()
+    }
+    
+    func isLastItem(_ match: MatchDesc) -> Bool {
+        guard let lastMatch = matches.last else {
+            return false
+        }
+        
+        if lastMatch.matchID == match.matchID {
+            return true
+        }
+        
+        return false
+    }
+    
+    func getRecordMatches() {
+        offset += limit
+        
+        recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchType, offset: offset, limit: limit)
+        
+        Task { [weak self] in
+            guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc] else {
+                return
+            }
+            
+            self?.matches += newMatches
+        }
     }
     
     func getYearToDayText(by match: MatchDesc) -> String {
