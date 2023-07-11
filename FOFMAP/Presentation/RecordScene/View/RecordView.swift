@@ -19,17 +19,15 @@ struct RecordView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List(viewModel.matches, id: \.matchID) { matchDesc in
-                    NavigationLink {
-                        // 상세보기
-                    } label: {
-                        RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
-                                   hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                                   scoreText: viewModel.getScoreText(by: matchDesc),
-                                   opponentName: viewModel.getOpponentUserName(by: matchDesc))
-                    }
+        VStack {
+            List(viewModel.matches, id: \.matchID) { matchDesc in
+                NavigationLink {
+                    Text(matchDesc.matchID)
+                } label: {
+                    RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
+                               hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
+                               scoreText: viewModel.getScoreText(by: matchDesc),
+                               opponentName: viewModel.getOpponentUserName(by: matchDesc))
                 }
             }
         }

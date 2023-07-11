@@ -12,7 +12,7 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack {
                     SearchView(viewModel: viewModel)
