@@ -42,16 +42,16 @@ final class MainViewModel: ObservableObject {
     @MainActor
     func receiveMostUsedPlayers() async {
         mostUsedPlayers = []
-        self.isFetchingPlayers = true
-        self.isShowingErrorAlert = false
+        isFetchingPlayers = true
+        isShowingErrorAlert = false
         
         do {
-            self.mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
-            self.isFetchingPlayers = false
+            mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
+            isFetchingPlayers = false
         } catch {
             self.error = error as? NetworkError
-            self.isShowingErrorAlert = true
-            self.isFetchingPlayers = false
+            isShowingErrorAlert = true
+            isFetchingPlayers = false
         }
     }
     

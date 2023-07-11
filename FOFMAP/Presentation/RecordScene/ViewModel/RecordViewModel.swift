@@ -75,7 +75,7 @@ final class RecordViewModel: ObservableObject {
         var opponentUserName = ""
         
         match.matchInfo.forEach { info in
-            if info.nickname != self.nickname {
+            if info.nickname.uppercased() != self.nickname.uppercased() {
                 opponentUserName = info.nickname
             }
         }
