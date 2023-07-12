@@ -20,31 +20,34 @@ struct RecordCell: View {
         self.hourToMinuteText = hourToMinuteText
         self.scoreText = "\(scoreInfo.player) : \(scoreInfo.opponent)"
         self.opponentName = opponentName
-        self.matchResultState = MatchState.getMatchResult(playerGoal: scoreInfo.player,
-                                                   opponentGoal: scoreInfo.opponent)
+        self.matchResultState = MatchState.getMatchResult(playerGoal: scoreInfo.player, opponentGoal: scoreInfo.opponent)
     }
     
     var body: some View {
-        HStack {
-            Text(self.opponentName)
-                .font(.subheadline)
-                .lineLimit(1)
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(matchResultState.backgroundColor)
             
-            Spacer()
-            
-            Text(scoreText)
-                .bold()
-                .font(.title3)
-            
-            VStack {
-                Text(yearToDayText)
-                Text(hourToMinuteText)
+            HStack {
+                Text(self.opponentName)
+                    .font(.subheadline)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Text(scoreText)
+                    .bold()
+                    .font(.title3)
+                
+                VStack {
+                    Text(yearToDayText)
+                    Text(hourToMinuteText)
+                }
+                .font(.caption)
+                .padding(.leading, 10)
             }
-            .font(.caption)
-            .padding(.leading, 10)
+            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         }
-        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-        .background(matchResultState.backgroundColor)
     }
 }
 
