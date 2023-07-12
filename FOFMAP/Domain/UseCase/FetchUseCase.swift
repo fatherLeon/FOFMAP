@@ -22,6 +22,7 @@ protocol Offerable {
     func getPlayerName(by spid: Int) async throws -> String
     func getSeasonImage(by spid: Int) async throws -> UIImage
     func getPlayerActionImage(by spid: Int) async throws -> UIImage
+    func getMetaDivisionGrade(gradeId: Int) async throws -> String
 }
 
 struct FetchUseCase: Offerable {
@@ -140,5 +141,18 @@ struct FetchUseCase: Offerable {
         let actionImage = try await provider.receiveImage(by: url)
         
         return actionImage
+    }
+    
+    func getMetaDivisionGrade(gradeId: Int) async throws -> String {
+        guard let url = ContentType.metaGrade.url else {
+            throw NetworkError.urlError
+        }
+        
+        let grades = try await provider.receiveData(url: url, by: MetaGrades.self)
+        guard let gradeName = grades.first(where: { $0.divisionId == gradeId })?.divisionName else {
+            return "등급 정보 없음"
+        }
+        
+        return gradeName
     }
 }
