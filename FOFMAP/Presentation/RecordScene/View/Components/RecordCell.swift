@@ -25,8 +25,8 @@ struct RecordCell: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(matchResultState.backgroundColor)
+//            RoundedRectangle(cornerRadius: 12)
+//                .fill(matchResultState.backgroundColor)
             
             HStack {
                 Text(self.opponentName)
@@ -38,6 +38,7 @@ struct RecordCell: View {
                 Text(scoreText)
                     .bold()
                     .font(.title3)
+                    .foregroundColor(matchResultState.backgroundColor)
                 
                 VStack {
                     Text(yearToDayText)
