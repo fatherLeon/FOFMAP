@@ -61,7 +61,7 @@ struct RecordView: View {
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView(nickname: "민수쨔응", matchCategory: .classicMatch)
+        RecordView(nickname: "민수쨔응", matchCategory: .officialMatch)
     }
 }
 
