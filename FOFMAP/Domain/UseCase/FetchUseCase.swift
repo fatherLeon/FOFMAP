@@ -11,6 +11,7 @@ protocol Offerable {
     // 유저
     func getUserInfo(by nickname: String) async throws -> (accessID: String, level: Int)
     func getUserMatchIds(accessId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches
+    func getUserBestGrade(accessId: String) async throws -> UserGrade
     
     // 매치
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy) async throws -> [String]
@@ -49,6 +50,16 @@ struct FetchUseCase: Offerable {
         let matchIds = try await provider.receiveData(url: url, by: UserMatches.self)
         
         return matchIds
+    }
+    
+    func getUserBestGrade(accessId: String) async throws -> UserGrade {
+        guard let url = ContentType.userMaxGrade(id: accessId).url else {
+            throw NetworkError.urlError
+        }
+        
+        let userGrades = try await provider.receiveData(url: url, by: UserGrade.self)
+        
+        return userGrades
     }
     
     // MARK: 매치정보

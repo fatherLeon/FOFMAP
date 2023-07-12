@@ -23,7 +23,6 @@ struct HeaderView: View {
             VStack {
                 Text(nickname.uppercased())
                     .font(.title)
-                    .padding(.bottom, 3)
                 
                 Text("레벨 : \(level)")
             }
