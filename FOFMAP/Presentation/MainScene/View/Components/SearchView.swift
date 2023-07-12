@@ -20,7 +20,7 @@ struct SearchView: View {
                     .textFieldStyle(.roundedBorder)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black)
+                            .stroke(Color(uiColor: UIColor.label))
                     }
                 
                 if !viewModel.isEnabledInTextView {

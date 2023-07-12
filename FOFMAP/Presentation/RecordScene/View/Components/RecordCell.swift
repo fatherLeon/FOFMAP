@@ -24,31 +24,26 @@ struct RecordCell: View {
     }
     
     var body: some View {
-        ZStack {
-//            RoundedRectangle(cornerRadius: 12)
-//                .fill(matchResultState.backgroundColor)
+        HStack {
+            Text(self.opponentName)
+                .font(.subheadline)
+                .lineLimit(1)
             
-            HStack {
-                Text(self.opponentName)
-                    .font(.subheadline)
-                    .lineLimit(1)
-                
-                Spacer()
-                
-                Text(scoreText)
-                    .bold()
-                    .font(.title3)
-                    .foregroundColor(matchResultState.backgroundColor)
-                
-                VStack {
-                    Text(yearToDayText)
-                    Text(hourToMinuteText)
-                }
-                .font(.caption)
-                .padding(.leading, 10)
+            Spacer()
+            
+            Text(scoreText)
+                .font(.title3)
+                .foregroundColor(matchResultState.backgroundColor)
+                .bold()
+            
+            VStack {
+                Text(yearToDayText)
+                Text(hourToMinuteText)
             }
-            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+            .font(.caption)
+            .padding(.leading, 10)
         }
+        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
     }
 }
 
