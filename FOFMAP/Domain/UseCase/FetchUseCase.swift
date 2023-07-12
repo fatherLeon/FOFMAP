@@ -149,6 +149,7 @@ struct FetchUseCase: Offerable {
         }
         
         let grades = try await provider.receiveData(url: url, by: MetaGrades.self)
+        
         guard let gradeName = grades.first(where: { $0.divisionId == gradeId })?.divisionName else {
             return "등급 정보 없음"
         }

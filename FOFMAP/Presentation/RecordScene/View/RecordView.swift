@@ -24,7 +24,7 @@ struct RecordView: View {
             if viewModel.matches.isEmpty {
                 ProgressView()
             } else {
-                HeaderView(nickname: viewModel.nickname, level: 400, grade: "챔피언스")
+                HeaderView(user: viewModel.user)
                 
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {

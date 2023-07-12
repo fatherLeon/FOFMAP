@@ -8,32 +8,29 @@
 import SwiftUI
 
 struct HeaderView: View {
-    private let nickname: String
-    private let level: Int
-    private let grade: String
     
-    init(nickname: String, level: Int, grade: String) {
-        self.nickname = nickname
-        self.level = level
-        self.grade = grade
+    private let user: User
+    
+    init(user: User) {
+        self.user = user
     }
     
     var body: some View {
         HStack {
             VStack {
-                Text(nickname.uppercased())
+                Text(user.nickname.uppercased())
                     .font(.title)
                 
-                Text("레벨 : \(level)")
+                Text("레벨 : \(user.level)")
             }
             .padding(.leading, 20)
             
             Spacer()
             
             VStack {
-                Text("최고등급 - \(grade)")
+                Text("최고등급 - \(user.grade)")
                     .padding(.bottom, 5)
-                Text("달성일 - 2022.03.03")
+                Text("달성일 - \(user.gradeDate)")
             }
             .padding(.trailing, 20)
         }
@@ -44,6 +41,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(nickname: "민수쨔응", level: 200, grade: "챔피언스")
+        HeaderView(user: User(nickname: "123", id: "123", level: 123, grade: "챔피언스", gradeDate: "2022-03-20"))
     }
 }

@@ -17,7 +17,7 @@ final class RecordViewModel: ObservableObject {
     private var offset = 20
     private var limit = 5
     
-    @Published var user: User = User(nickname: "", id: "", level: 0, grade: "", gardeDate: "")
+    @Published var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
     @Published var matches: [MatchDesc] = []
     @Published var nickname: String = ""
     @Published var error: UserError? = nil
