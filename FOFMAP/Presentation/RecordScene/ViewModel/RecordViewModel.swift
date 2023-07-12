@@ -11,11 +11,13 @@ import Foundation
 final class RecordViewModel: ObservableObject {
     
     private var recordUseCase: any DetailFetchable
+    private var userInfoUseCase: any DetailFetchable
     private var cancellables = Set<AnyCancellable>()
     private let matchType: MatchCategory
     private var offset = 20
     private var limit = 5
     
+    @Published var user: User = User(nickname: "", id: "", level: 0, grade: "", gardeDate: "")
     @Published var matches: [MatchDesc] = []
     @Published var nickname: String = ""
     @Published var error: UserError? = nil
@@ -23,9 +25,10 @@ final class RecordViewModel: ObservableObject {
     @Published var isPossibleFetch = false
     
     @MainActor
-    init(matchType: MatchCategory, recordUseCase: any DetailFetchable) {
+    init(matchType: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
         self.matchType = matchType
         self.recordUseCase = recordUseCase
+        self.userInfoUseCase = userInfoUseCase
         
         binding()
     }
@@ -102,8 +105,10 @@ final class RecordViewModel: ObservableObject {
             .sink(receiveValue: { nickname in
                 Task { [weak self] in
                     do {
-                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else { return }
+                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc],
+                              let user = try await self?.userInfoUseCase.execute() as? User else { return }
                         
+                        self?.user = user
                         self?.matches = matches
                         self?.isPossibleFetch = true
                     } catch {

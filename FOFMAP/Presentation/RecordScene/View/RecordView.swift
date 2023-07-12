@@ -13,8 +13,9 @@ struct RecordView: View {
     @ObservedObject var viewModel: RecordViewModel
     
     init(nickname: String, matchCategory: MatchCategory) {
-        let useCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory)
-        self.viewModel = RecordViewModel(matchType: matchCategory, recordUseCase: useCase)
+        let recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory)
+        let userInfoUseCase = UserInfoUseCase(nickname: nickname)
+        self.viewModel = RecordViewModel(matchType: matchCategory, recordUseCase: recordUseCase, userInfoUseCase: userInfoUseCase)
         self.viewModel.nickname = nickname
     }
     
