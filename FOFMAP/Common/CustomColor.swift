@@ -12,4 +12,6 @@ enum CustomColor {
     static let winningColor = Color("WinningBackground")
     static let drawingColor = Color("DrawingBackground")
     static let losingColor = Color("LosingBackground")
+    static let mainColor = Color("MainColor")
+    static let mainLightColor = Color("MainLightColor")
 }
