@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerListView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @State var mostUsedPlayers: [PlayerInfo]
     
     var body: some View {
         List {
@@ -17,7 +17,7 @@ struct PlayerListView: View {
                 Section(position.rawValue) {
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(viewModel.mostUsedPlayers, id: \.id) { player in
+                            ForEach(mostUsedPlayers, id: \.id) { player in
                                 if player.position == position {
                                     PlayerItemCell(playerInfo: player)
                                 }
@@ -29,17 +29,12 @@ struct PlayerListView: View {
             }
         }
         .listStyle(.inset)
-        .refreshable {
-            Task {
-                await viewModel.receiveMostUsedPlayers()
-            }
-        }
     }
 }
 
 struct PlayerListView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerListView(viewModel: MainViewModel())
+        PlayerListView(mostUsedPlayers: MainViewModel().mostUsedPlayers)
     }
 }
 

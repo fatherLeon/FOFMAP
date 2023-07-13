@@ -24,7 +24,7 @@ struct MainView: View {
                     Spacer()
                 } else {
                     Spacer()
-                    PlayerListView(viewModel: viewModel)
+                    PlayerListView(mostUsedPlayers: viewModel.mostUsedPlayers)
                 }
             }
             .navigationTitle("FOFMAP")
