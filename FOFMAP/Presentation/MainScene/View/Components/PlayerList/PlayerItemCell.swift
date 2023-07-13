@@ -29,3 +29,4 @@ struct PlayerItemCell_Previews: PreviewProvider {
         PlayerItemCell(playerInfo: PlayerInfo(id: 1234, name: "선수이름", seasonImg: UIImage(systemName: "star.fill")!, img: UIImage(systemName: "person.fill")!, position: .striker))
     }
 }
+
