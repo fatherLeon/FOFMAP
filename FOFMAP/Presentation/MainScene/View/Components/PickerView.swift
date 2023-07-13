@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PickerView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @State var matchCategory: MatchCategory
     
     var body: some View {
         HStack {
-            Picker(viewModel.matchCategory.rawValue, selection: $viewModel.matchCategory) {
+            Picker(matchCategory.rawValue, selection: $matchCategory) {
                 ForEach(MatchCategory.allCases) { match in
                     Text(match.rawValue)
                 }
@@ -25,6 +25,6 @@ struct PickerView: View {
 
 struct PickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerView(viewModel: MainViewModel())
+        PickerView(matchCategory: MainViewModel().matchCategory)
     }
 }

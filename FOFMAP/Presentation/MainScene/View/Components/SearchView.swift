@@ -37,7 +37,7 @@ struct SearchView: View {
             }
             
             if viewModel.isEnabledInTextView {
-                PickerView(viewModel: viewModel)
+                PickerView(matchCategory: viewModel.matchCategory)
                     .tint(.green)
             }
             
