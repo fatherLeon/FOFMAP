@@ -216,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				2621C7C62A53CAFF00DF33F4 /* Components */,
-				26622C082A5BF47E00AB16D2 /* DisconnectedNetworkView.swift */,
 				26622C0A2A5BF4AB00AB16D2 /* MainView.swift */,
 			);
 			path = View;
@@ -225,6 +224,7 @@
 		2621C7C12A53C92E00DF33F4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2672535B2A5F98A2009EDEBE /* DisconnectNetworkScene */,
 				26ABEDD02A580B450079787E /* RecordScene */,
 				2621C7B92A53AA4200DF33F4 /* MainScene */,
 			);
@@ -356,6 +356,14 @@
 				26622C022A5BD1BD00AB16D2 /* RecordCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		2672535B2A5F98A2009EDEBE /* DisconnectNetworkScene */ = {
+			isa = PBXGroup;
+			children = (
+				26622C082A5BF47E00AB16D2 /* DisconnectedNetworkView.swift */,
+			);
+			path = DisconnectNetworkScene;
 			sourceTree = "<group>";
 		};
 		26731E592A50190200601D53 /* DTO */ = {
