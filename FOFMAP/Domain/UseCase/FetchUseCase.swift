@@ -8,12 +8,21 @@
 import UIKit
 
 protocol Offerable {
+    // 유저
     func getUserInfo(by nickname: String) async throws -> (accessID: String, level: Int)
+    func getUserMatchIds(accessId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches
+    func getUserBestGrade(accessId: String) async throws -> UserGrade
+    
+    // 매치
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy) async throws -> [String]
+    func getMatchDesc(matchId: String) async throws -> MatchDesc
     func getMatchDescAllPlayers(matchId: String) async throws -> [Player]
+    
+    // 메타
     func getPlayerName(by spid: Int) async throws -> String
     func getSeasonImage(by spid: Int) async throws -> UIImage
     func getPlayerActionImage(by spid: Int) async throws -> UIImage
+    func getMetaDivisionGrade(gradeId: Int) async throws -> String
 }
 
 struct FetchUseCase: Offerable {
@@ -34,6 +43,26 @@ struct FetchUseCase: Offerable {
         return (userInfo.id, userInfo.level)
     }
     
+    func getUserMatchIds(accessId: String, matchType: Int, offset: Int, limit: Int) async throws -> UserMatches {
+        guard let url = ContentType.userMatches(id: accessId, matchType: matchType, offset: offset, limit: limit).url else {
+            throw NetworkError.urlError
+        }
+        
+        let matchIds = try await provider.receiveData(url: url, by: UserMatches.self)
+        
+        return matchIds
+    }
+    
+    func getUserBestGrade(accessId: String) async throws -> UserGrade {
+        guard let url = ContentType.userMaxGrade(id: accessId).url else {
+            throw NetworkError.urlError
+        }
+        
+        let userGrades = try await provider.receiveData(url: url, by: UserGrade.self)
+        
+        return userGrades
+    }
+    
     // MARK: 매치정보
     func getAllMatches(_ matchtype: Int, offset: Int, limit: Int, orderBy: ContentType.OrderBy = .desc) async throws -> [String] {
         guard let url = ContentType.matchAllRecord(matchType: matchtype, offset: offset, limit: limit, orderBy: orderBy).url else {
@@ -43,6 +72,16 @@ struct FetchUseCase: Offerable {
         let allMatchIDs = try await provider.receiveData(url: url, by: MatchAllRecord.self)
         
         return allMatchIDs
+    }
+    
+    func getMatchDesc(matchId: String) async throws -> MatchDesc {
+        guard let url = ContentType.matchDesc(matchId: matchId).url else {
+            throw NetworkError.urlError
+        }
+        
+        let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        
+        return matchDesc
     }
     
     func getMatchDescAllPlayers(matchId: String) async throws -> [Player] {
@@ -102,5 +141,19 @@ struct FetchUseCase: Offerable {
         let actionImage = try await provider.receiveImage(by: url)
         
         return actionImage
+    }
+    
+    func getMetaDivisionGrade(gradeId: Int) async throws -> String {
+        guard let url = ContentType.metaGrade.url else {
+            throw NetworkError.urlError
+        }
+        
+        let grades = try await provider.receiveData(url: url, by: MetaGrades.self)
+        
+        guard let gradeName = grades.first(where: { $0.divisionId == gradeId })?.divisionName else {
+            return "등급 정보 없음"
+        }
+        
+        return gradeName
     }
 }

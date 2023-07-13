@@ -21,7 +21,7 @@ struct MostUsedPlayerUseCase: DetailFetchable {
         self.usedPlayersNum = boundaryUsedPlayerNum
     }
     
-    func execute() async throws -> T {
+    func execute() async throws -> [PlayerInfo] {
         let usedPlayers = try await getAllUsedPlayer()
         var mostUsedPlayers: [PlayerInfo] = []
         
