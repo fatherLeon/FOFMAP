@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @StateObject var viewModel: MainViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack(spacing: 5) {
                     ZStack(alignment: .trailing) {
@@ -39,13 +39,18 @@ struct MainView: View {
                     }
                     
                     if viewModel.isEnabledInTextView {
-                        PickerView(matchCategory: viewModel.matchCategory)
-                            .tint(.green)
+                        HStack {
+                            Picker(viewModel.matchCategory.rawValue, selection: $viewModel.matchCategory) {
+                                ForEach(MatchCategory.allCases) { match in
+                                    Text(match.rawValue)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                        }
+                        .tint(.green)
                     }
                     
-                    NavigationLink {
-                        RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
-                    } label: {
+                    NavigationLink(destination: RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)) {
                         HStack {
                             Image(systemName: "magnifyingglass")
                             Text("검색")
