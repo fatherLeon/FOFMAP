@@ -50,7 +50,11 @@ struct MainView: View {
                         .tint(.green)
                     }
                     
-                    NavigationLink(destination: RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)) {
+                    NavigationLink {
+                        DeferView {
+                            RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
+                        }
+                    } label: {
                         HStack {
                             Image(systemName: "magnifyingglass")
                             Text("검색")
