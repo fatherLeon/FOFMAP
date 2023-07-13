@@ -39,26 +39,22 @@ struct UserMatchRecordUseCase: DetailFetchable {
     }
     
     func execute() async throws -> [MatchDesc] {
-        do {
-            let userInfo = try await getUserInfo(name: nickname)
-            let userMatchIds = try await getUserMatchIds(userId: userInfo.id, matchType: matchType, offset: offset, limit: limit)
-            
-            if userMatchIds.isEmpty {
-                throw UserError.noExistMatchRecord
-            }
-            
-            var matches: [MatchDesc] = []
-            
-            for id in userMatchIds {
-                let matchDesc = try await offerableUseCase.getMatchDesc(matchId: id)
-                
-                matches.append(matchDesc)
-            }
-            
-            return matches
-        } catch {
-            throw UserError.noExistUser
+        let userInfo = try await getUserInfo(name: nickname)
+        let userMatchIds = try await getUserMatchIds(userId: userInfo.id, matchType: matchType, offset: offset, limit: limit)
+        
+        if userMatchIds.isEmpty {
+            throw UserError.noExistMatchRecord
         }
+        
+        var matches: [MatchDesc] = []
+        
+        for id in userMatchIds {
+            let matchDesc = try await offerableUseCase.getMatchDesc(matchId: id)
+            
+            matches.append(matchDesc)
+        }
+        
+        return matches
     }
     
     private func getUserInfo(name: String) async throws -> UserInfo {

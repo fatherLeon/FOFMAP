@@ -19,17 +19,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct FOFMAPApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    @ObservedObject var networkMonitor = NetworkMonitor()
+    @ObservedObject var networkMonitor = NetworkMonitor()
     
     var body: some Scene {
         WindowGroup {
-//            if networkMonitor.isConnected {
-//                MainView(viewModel: MainViewModel())
-//            } else {
-//                DisConnectedNetworkView()
-//            }
-            
-            MainView(viewModel: MainViewModel())
+            if networkMonitor.isConnected {
+                MainView(viewModel: MainViewModel())
+            } else {
+                DisConnectedNetworkView()
+            }
         }
     }
 }

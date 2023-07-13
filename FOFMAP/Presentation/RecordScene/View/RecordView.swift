@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RecordView: View {
-
+    
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: RecordViewModel
     
     init(nickname: String, matchCategory: MatchCategory) {
@@ -49,7 +50,9 @@ struct RecordView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $viewModel.isErrorShownAlert, error: viewModel.error) {
-            Button("OK", role: .cancel) { }
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
         }
     }
 }

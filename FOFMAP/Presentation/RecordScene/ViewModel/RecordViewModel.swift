@@ -104,15 +104,23 @@ final class RecordViewModel: ObservableObject {
         $nickname
             .sink(receiveValue: { [weak self] nickname in
                 Task { [weak self] in
-                    do {
-                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc],
-                              let user = try await self?.userInfoUseCase.execute() as? User else { return }
+                    guard let user = try await self?.userInfoUseCase.execute() as? User else {
+                        self?.error = UserError.noExistUser
+                        self?.isErrorShownAlert = true
+                        self?.isPossibleFetch = false
                         
-                        self?.user = user
+                        return
+                    }
+                    
+                    self?.user = user
+                    
+                    do {
+                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else { return }
+                        
                         self?.matches = matches
                         self?.isPossibleFetch = true
                     } catch {
-                        self?.error = error as? UserError
+                        self?.error = UserError.noExistMatchRecord
                         self?.isErrorShownAlert = true
                         self?.isPossibleFetch = false
                     }
