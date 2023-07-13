@@ -102,7 +102,7 @@ final class RecordViewModel: ObservableObject {
     @MainActor
     private func binding() {
         $nickname
-            .sink(receiveValue: { nickname in
+            .sink(receiveValue: { [weak self] nickname in
                 Task { [weak self] in
                     do {
                         guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc],
