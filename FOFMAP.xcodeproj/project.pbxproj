@@ -21,6 +21,7 @@
 		262658512A4C020B0097AF73 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658502A4C020B0097AF73 /* NetworkError.swift */; };
 		262658562A4C059C0097AF73 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658552A4C059C0097AF73 /* ContentType.swift */; };
 		263E8C4D2A60EF0D00ED5895 /* PlayerGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */; };
+		263E8C502A60F2F300ED5895 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E8C4F2A60F2F300ED5895 /* PlayerIconView.swift */; };
 		2643F4C52A5D0A6F0009410F /* MatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C42A5D0A6F0009410F /* MatchState.swift */; };
 		2643F4C72A5D31870009410F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C62A5D31870009410F /* HeaderView.swift */; };
 		2643F4C92A5D36270009410F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C82A5D36270009410F /* CustomColor.swift */; };
@@ -103,6 +104,7 @@
 		262658502A4C020B0097AF73 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		262658552A4C059C0097AF73 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGradeView.swift; sourceTree = "<group>"; };
+		263E8C4F2A60F2F300ED5895 /* PlayerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIconView.swift; sourceTree = "<group>"; };
 		2643F4C42A5D0A6F0009410F /* MatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchState.swift; sourceTree = "<group>"; };
 		2643F4C62A5D31870009410F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2643F4C82A5D36270009410F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -329,10 +331,19 @@
 		263E8C4E2A60EF1200ED5895 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				263E8C512A60F51C00ED5895 /* Icon */,
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
-				263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		263E8C512A60F51C00ED5895 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				263E8C4F2A60F2F300ED5895 /* PlayerIconView.swift */,
+				263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */,
+			);
+			path = Icon;
 			sourceTree = "<group>";
 		};
 		264B6E7D2A5247A0000F66C9 /* Repository */ = {
@@ -719,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263E8C502A60F2F300ED5895 /* PlayerIconView.swift in Sources */,
 				26731E702A50285B00601D53 /* MetaPlayerPositions.swift in Sources */,
 				267253652A5F9B7A009EDEBE /* PlayerItemCell.swift in Sources */,
 				26731E6C2A50275300601D53 /* MetaPlayerIds.swift in Sources */,
