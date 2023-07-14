@@ -20,7 +20,7 @@
 		2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2626584D2A4C009A0097AF73 /* NetworkManager.swift */; };
 		262658512A4C020B0097AF73 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658502A4C020B0097AF73 /* NetworkError.swift */; };
 		262658562A4C059C0097AF73 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262658552A4C059C0097AF73 /* ContentType.swift */; };
-		263E8C4D2A60EF0D00ED5895 /* PlayerGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E8C4C2A60EF0D00ED5895 /* PlayerGrade.swift */; };
+		263E8C4D2A60EF0D00ED5895 /* PlayerGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */; };
 		2643F4C52A5D0A6F0009410F /* MatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C42A5D0A6F0009410F /* MatchState.swift */; };
 		2643F4C72A5D31870009410F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C62A5D31870009410F /* HeaderView.swift */; };
 		2643F4C92A5D36270009410F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643F4C82A5D36270009410F /* CustomColor.swift */; };
@@ -102,7 +102,7 @@
 		2626584D2A4C009A0097AF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		262658502A4C020B0097AF73 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		262658552A4C059C0097AF73 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
-		263E8C4C2A60EF0D00ED5895 /* PlayerGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGrade.swift; sourceTree = "<group>"; };
+		263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGradeView.swift; sourceTree = "<group>"; };
 		2643F4C42A5D0A6F0009410F /* MatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchState.swift; sourceTree = "<group>"; };
 		2643F4C62A5D31870009410F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2643F4C82A5D36270009410F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
-				263E8C4C2A60EF0D00ED5895 /* PlayerGrade.swift */,
+				263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -743,7 +743,7 @@
 				26731E722A5028A400601D53 /* MetaGrades.swift in Sources */,
 				2672536B2A5FF1B6009EDEBE /* GroundView.swift in Sources */,
 				2621C7D12A5401C700DF33F4 /* NetworkMonitor.swift in Sources */,
-				263E8C4D2A60EF0D00ED5895 /* PlayerGrade.swift in Sources */,
+				263E8C4D2A60EF0D00ED5895 /* PlayerGradeView.swift in Sources */,
 				26622C032A5BD1BD00AB16D2 /* RecordCell.swift in Sources */,
 				260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */,
 				26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */,
