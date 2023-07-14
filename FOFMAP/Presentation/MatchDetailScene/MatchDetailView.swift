@@ -30,7 +30,21 @@ struct MatchDetailView: View {
             }
             .pickerStyle(.segmented)
             
-            GroundView()
+            ZStack {
+                GroundView()
+                
+                GeometryReader { geomtery in
+                    let maxWidth = geomtery.size.width
+                    let maxHeight = geomtery.size.height
+                    
+                    PlayerIconView()
+                        .offset(x: maxWidth / 12, y: 0)
+                    PlayerIconView()
+                        .offset(x: maxWidth / 2.7, y: 0)
+                    PlayerIconView()
+                        .offset(x: maxWidth / 1.5, y: 0)
+                }
+            }
         }
     }
 }

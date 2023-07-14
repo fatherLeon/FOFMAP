@@ -28,7 +28,7 @@ struct RecordView: View {
                 
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {
-                        // 매치 세부 뷰
+                        MatchDetailView()
                     } label: {
                         VStack {
                             RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),

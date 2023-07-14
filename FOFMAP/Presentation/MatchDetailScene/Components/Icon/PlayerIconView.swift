@@ -10,20 +10,20 @@ import SwiftUI
 struct PlayerIconView: View {
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                PlayerGradeView(spGrade: 5)
-                    .frame(width: 50, height: 40, alignment: .trailing)
+            ZStack {
+                Image("Sample")
+                    .resizable()
+                    .frame(width: 100, height: 100, alignment: .center)
+                
+                PlayerGradeView(spGrade: 8)
+                    .frame(width: 40, height: 20, alignment: .trailing)
+                    .offset(x: 40, y: -40)
             }
-            Circle()
-                .stroke(Color.white, lineWidth: 3)
-                .overlay {
-                    Image(systemName: "person.fill")
-                }
             
             HStack {
                 Image(systemName: "star.fill")
                 Text("선수 이름")
+                    .font(.caption)
             }
         }
     }
