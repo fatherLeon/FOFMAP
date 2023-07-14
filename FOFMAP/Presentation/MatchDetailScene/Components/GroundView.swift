@@ -46,7 +46,7 @@ struct GroundView: View {
     }
 }
 
-struct StadiumView_Previews: PreviewProvider {
+struct GroundView_Previews: PreviewProvider {
     static var previews: some View {
         GroundView()
     }

@@ -13,4 +13,8 @@ enum CustomColor {
     static let drawingColor = Color("DrawingBackground")
     static let losingColor = Color("LosingBackground")
     static let mainColor = Color("MainColor")
+    static let normalPlayerGrade = Color("NormalPlayerGrade")
+    static let bronzePlayerGrade = Color("BronzePlayerGrade")
+    static let silverPlayerGrade = Color("SilverPlayerGrade")
+    static let goldPlayerGrade = Color("GoldPlayerGrade")
 }
