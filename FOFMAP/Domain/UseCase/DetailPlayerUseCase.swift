@@ -9,7 +9,7 @@ import UIKit
 
 struct DetailPlayerUseCase: DetailFetchable {
     
-    typealias T = PlayerInfo?
+    typealias T = PlayerInfo
     
     private let offerableUseCase: Offerable
     private let targetPlayer: Player
@@ -19,18 +19,25 @@ struct DetailPlayerUseCase: DetailFetchable {
         self.offerableUseCase = offerableUseCase
     }
     
-    func execute() async throws -> PlayerInfo? {
+    func execute() async throws -> PlayerInfo {
         guard let name = try? await getPlayerName(),
               let seasonImg = try? await getPlayerSeasonImage(),
-              let playerImg = try? await getPlayerImage(),
               let position = PlayerSection.getPosition(by: targetPlayer.spPosition) else {
-            return nil
+            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper)
         }
         
-        return PlayerInfo(id: targetPlayer.spID, name: name, spGrade: targetPlayer.spGrade, seasonImg: seasonImg, img: playerImg, positionId: targetPlayer.spPosition, position: position)
+        let playerActionImg = try? await getPlayerActionImage()
+        let playerImg = try? await getPlayerImage()
+        let playerImage = playerActionImg ?? playerImg ?? UIImage(systemName: "person.fill")!
+        
+        return PlayerInfo(id: targetPlayer.spID, name: name, spGrade: targetPlayer.spGrade, seasonImg: seasonImg, img: playerImage, positionId: targetPlayer.spPosition, position: position)
     }
     
     private func getPlayerImage() async throws -> UIImage {
+        return try await offerableUseCase.getPlayerImage(by: targetPlayer.spID)
+    }
+    
+    private func getPlayerActionImage() async throws -> UIImage {
         return try await offerableUseCase.getPlayerActionImage(by: targetPlayer.spID)
     }
     
