@@ -76,11 +76,17 @@ enum PlayerSection: String, Hashable, CaseIterable, Identifiable {
             return (viewFrame.width * 0.2, viewFrame.height * 0.17)
         case 27:
             return (0, viewFrame.height * 0.17)
-        case 22, 26:
+        case 21:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.12)
+        case 22:
+            return (viewFrame.width * 0.1, viewFrame.height * 0.12)
+        case 20:
+            return (viewFrame.width * 0.7, viewFrame.height * 0.12)
+        case 26:
             return (viewFrame.width * 0.15, 0)
-        case 21, 25:
+        case 25:
             return (viewFrame.width * 0.4, 0)
-        case 20, 24:
+        case 24:
             return (viewFrame.width * 0.65, 0)
         default:
             return (0, 0)
