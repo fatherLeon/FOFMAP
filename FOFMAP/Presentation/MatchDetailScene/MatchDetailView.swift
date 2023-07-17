@@ -35,10 +35,8 @@ struct MatchDetailView: View {
             
             ZStack {
                 GroundView()
-                
+
                 GeometryReader { geomtery in
-                    let maxWidth = geomtery.size.width
-                    let maxHeight = geomtery.size.height
                 }
             }
         }

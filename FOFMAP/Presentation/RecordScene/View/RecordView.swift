@@ -28,7 +28,9 @@ struct RecordView: View {
                 
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {
-                        MatchDetailView(userName: viewModel.nickname, matchDesc: matchDesc)
+                        DeferView {
+                            MatchDetailView(userName: "민수", matchDesc: matchDesc)
+                        }
                     } label: {
                         VStack {
                             RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),

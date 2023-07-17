@@ -35,4 +35,20 @@ final class MatchDetailViewModel: ObservableObject {
             }
         }
     }
+    
+    private func getEnemyPlayerInfo() {
+        guard let enemyMatchInfo = matchDesc.matchInfo.first(where: { info in
+            return info.nickname.uppercased() != self.userName.uppercased()
+        }) else { return }
+        
+        enemyMatchInfo.player.forEach { player in
+            let useCase = DetailPlayerUseCase(targetPlayer: player)
+            
+            Task { [weak self] in
+                guard let playerInfo = try? await useCase.execute() else { return }
+                
+                self?.enemyPlayers.append(playerInfo)
+            }
+        }
+    }
 }
