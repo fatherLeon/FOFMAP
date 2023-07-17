@@ -36,6 +36,8 @@ final class MatchDetailViewModel: ObservableObject {
         }) else { return }
         
         userMatchInfo.player.forEach { player in
+            if player.spPosition == 28 { return }
+            
             let useCase = DetailPlayerUseCase(targetPlayer: player)
             
             Task { [weak self] in
@@ -53,6 +55,8 @@ final class MatchDetailViewModel: ObservableObject {
         }) else { return }
         
         enemyMatchInfo.player.forEach { player in
+            if player.spPosition == 28 { return }
+            
             let useCase = DetailPlayerUseCase(targetPlayer: player)
             
             Task { [weak self] in
