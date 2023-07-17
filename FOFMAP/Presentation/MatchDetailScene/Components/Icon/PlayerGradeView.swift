@@ -48,6 +48,6 @@ struct PlayerGradeView: View {
 
 struct PlayerGradeView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerGradeView(spGrade: 8)
+        PlayerGradeView(spGrade: 5)
     }
 }
