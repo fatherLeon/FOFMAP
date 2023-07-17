@@ -78,6 +78,7 @@
 		26D7DBE22A4B01BB00B42317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE12A4B01BB00B42317 /* Assets.xcassets */; };
 		26D7DBE52A4B01BB00B42317 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE42A4B01BB00B42317 /* Preview Assets.xcassets */; };
 		26F57D9C2A64F3AE006A8CE1 /* DetailPlayerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F57D9B2A64F3AE006A8CE1 /* DetailPlayerUseCase.swift */; };
+		26F57D9F2A64F7AC006A8CE1 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F57D9E2A64F7AC006A8CE1 /* MatchDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		26D7DBE12A4B01BB00B42317 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26D7DBE42A4B01BB00B42317 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26F57D9B2A64F3AE006A8CE1 /* DetailPlayerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlayerUseCase.swift; sourceTree = "<group>"; };
+		26F57D9E2A64F7AC006A8CE1 /* MatchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +409,7 @@
 		267253692A5FEBCA009EDEBE /* MatchDetailScene */ = {
 			isa = PBXGroup;
 			children = (
+				26F57D9D2A64F7A0006A8CE1 /* ViewModel */,
 				263E8C4E2A60EF1200ED5895 /* Components */,
 				263E8C522A60F87300ED5895 /* MatchDetailView.swift */,
 			);
@@ -605,6 +608,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		26F57D9D2A64F7A0006A8CE1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26F57D9E2A64F7AC006A8CE1 /* MatchDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -751,6 +762,7 @@
 				26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */,
 				26ABEDC62A57ECB70079787E /* Bundle+Extension.swift in Sources */,
 				26622C0F2A5C026100AB16D2 /* Date+Extension.swift in Sources */,
+				26F57D9F2A64F7AC006A8CE1 /* MatchDetailViewModel.swift in Sources */,
 				26622C0D2A5BF4D100AB16D2 /* RecordView.swift in Sources */,
 				2626584E2A4C009A0097AF73 /* NetworkManager.swift in Sources */,
 				262658512A4C020B0097AF73 /* NetworkError.swift in Sources */,
