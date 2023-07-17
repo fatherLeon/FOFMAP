@@ -29,6 +29,15 @@ final class MatchDetailViewModel: ObservableObject {
         getEnemyPlayerInfo()
     }
     
+    func getPickerText(_ picked: UserPick) -> String {
+        switch picked {
+        case .user:
+            return matchDesc.matchInfo.first?.nickname ?? ""
+        case .enemy:
+            return matchDesc.matchInfo.last?.nickname ?? ""
+        }
+    }
+    
     @MainActor
     private func getUserPlayerInfo() {
         guard let userMatchInfo = matchDesc.matchInfo.first(where: { info in

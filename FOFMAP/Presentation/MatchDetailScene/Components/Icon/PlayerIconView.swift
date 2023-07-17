@@ -23,9 +23,11 @@ struct PlayerIconView: View {
                 ZStack {
                     Image(uiImage: player.img)
                         .resizable()
+                        .clipShape(Circle())
                         .frame(width: maxWidth / 5, height: maxWidth / 5, alignment: .center)
                     
                     PlayerGradeView(spGrade: player.spGrade)
+                        .cornerRadius(maxWidth / 2)
                         .frame(width: maxWidth / 10, height: maxWidth / 20, alignment: .trailing)
                         .offset(x: maxWidth / 14, y: -maxWidth / 14)
                 }

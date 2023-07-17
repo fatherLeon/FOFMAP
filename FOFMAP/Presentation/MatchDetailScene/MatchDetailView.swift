@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum UserPick: String, CaseIterable, Identifiable {
-    case user = "유저"
-    case enemy = "상대"
+enum UserPick: CaseIterable, Identifiable {
+    case user
+    case enemy
     
     var id: Self {
         return self
@@ -28,7 +28,7 @@ struct MatchDetailView: View {
         VStack {
             Picker("UserState", selection: $viewModel.pickerSelection) {
                 ForEach(UserPick.allCases) { picked in
-                    Text(picked.rawValue)
+                    Text(viewModel.getPickerText(picked))
                 }
             }
             .pickerStyle(.segmented)
