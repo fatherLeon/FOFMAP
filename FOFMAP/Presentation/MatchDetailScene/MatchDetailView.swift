@@ -37,6 +37,20 @@ struct MatchDetailView: View {
                 GroundView()
 
                 GeometryReader { geomtery in
+                    switch viewModel.pickerSelection {
+                    case .user:
+                        ForEach(viewModel.userPlayers) { player in
+                            let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
+                            PlayerIconView(player: player)
+                                .offset(x: coordinate.x, y: coordinate.y)
+                        }
+                    case .enemy:
+                        ForEach(viewModel.enemyPlayers) { player in
+                            let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
+                            PlayerIconView(player: player)
+                                .offset(x: coordinate.x, y: coordinate.y)
+                        }
+                    }
                 }
             }
         }
@@ -45,6 +59,6 @@ struct MatchDetailView: View {
 
 struct MatchDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MatchDetailView(userName: "", matchDesc: MatchDesc(matchID: "123", matchDate: "123", matchType: 1, matchInfo: []))
+        MatchDetailView(userName: "abc", matchDesc: MatchDesc(matchID: "123", matchDate: "123", matchType: 1, matchInfo: []))
     }
 }

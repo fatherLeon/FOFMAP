@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct PlayerInfo {
+struct PlayerInfo: Identifiable {
     let id: Int
     let name: String
-    let spGrade: Int? = nil
+    var spGrade: Int = 0
     let seasonImg: UIImage
     let img: UIImage
     let positionId: Int

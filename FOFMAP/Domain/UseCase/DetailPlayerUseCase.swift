@@ -27,7 +27,7 @@ struct DetailPlayerUseCase: DetailFetchable {
             return nil
         }
         
-        return PlayerInfo(id: targetPlayer.spID, name: name, seasonImg: seasonImg, img: playerImg, positionId: targetPlayer.spPosition, position: position)
+        return PlayerInfo(id: targetPlayer.spID, name: name, spGrade: targetPlayer.spGrade, seasonImg: seasonImg, img: playerImg, positionId: targetPlayer.spPosition, position: position)
     }
     
     private func getPlayerImage() async throws -> UIImage {

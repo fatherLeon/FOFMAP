@@ -17,12 +17,13 @@ final class RecordViewModel: ObservableObject {
     private var offset = 20
     private var limit = 5
     
-    @Published var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
+    var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
+    var error: UserError? = nil
+    
     @Published var matches: [MatchDesc] = []
-    @Published var nickname: String = ""
-    @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
     @Published var isPossibleFetch = false
+    @Published var nickname: String = ""
     
     @MainActor
     init(matchType: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
