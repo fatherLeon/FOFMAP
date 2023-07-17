@@ -35,21 +35,13 @@ struct MatchDetailView: View {
             
             ZStack {
                 GroundView()
-
+                
                 GeometryReader { geomtery in
-                    switch viewModel.pickerSelection {
-                    case .user:
-                        ForEach(viewModel.userPlayers) { player in
-                            let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
-                            PlayerIconView(player: player)
-                                .offset(x: coordinate.x, y: coordinate.y)
-                        }
-                    case .enemy:
-                        ForEach(viewModel.enemyPlayers) { player in
-                            let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
-                            PlayerIconView(player: player)
-                                .offset(x: coordinate.x, y: coordinate.y)
-                        }
+                    ForEach(viewModel.players) { player in
+                        let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
+                        
+                        PlayerIconView(player: player)
+                            .offset(x: coordinate.x, y: coordinate.y)
                     }
                 }
             }
