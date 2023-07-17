@@ -36,25 +36,6 @@ struct MatchDetailView: View {
                 GeometryReader { geomtery in
                     let maxWidth = geomtery.size.width
                     let maxHeight = geomtery.size.height
-                    
-                    PlayerIconView()
-                        .offset(x: maxWidth * 0.15, y: 0)
-                    
-                    PlayerIconView()
-                        .offset(x: 0, y: maxHeight * 0.17)
-                    
-                    PlayerIconView()
-                        .offset(x: 0, y: maxHeight * 0.35)
-                    
-                    PlayerIconView()
-                        .offset(x: 0, y: maxHeight * 0.52)
-                    
-                    PlayerIconView()
-                        .offset(x: 0, y: maxHeight * 0.7)
-                    
-                    
-                    PlayerIconView()
-                        .offset(x: maxWidth * 0.4, y: maxHeight * 0.85)
                 }
             }
         }
