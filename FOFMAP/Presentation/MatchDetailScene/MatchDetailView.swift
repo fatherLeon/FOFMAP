@@ -18,12 +18,15 @@ enum UserPick: String, CaseIterable, Identifiable {
 
 struct MatchDetailView: View {
     
-    private var matchDesc: MatchDesc?
-    @State var pick = UserPick.user
+    @ObservedObject var viewModel: MatchDetailViewModel
+    
+    init(userName: String, matchDesc: MatchDesc) {
+        self.viewModel = MatchDetailViewModel(userName: userName, matchDesc: matchDesc)
+    }
     
     var body: some View {
         VStack {
-            Picker("UserState", selection: $pick) {
+            Picker("UserState", selection: $viewModel.pickerSelection) {
                 ForEach(UserPick.allCases) { picked in
                     Text(picked.rawValue)
                 }
@@ -44,6 +47,6 @@ struct MatchDetailView: View {
 
 struct MatchDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MatchDetailView()
+        MatchDetailView(userName: "", matchDesc: MatchDesc(matchID: "123", matchDate: "123", matchType: 1, matchInfo: []))
     }
 }
