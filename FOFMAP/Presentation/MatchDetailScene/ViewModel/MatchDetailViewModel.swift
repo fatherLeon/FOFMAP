@@ -44,6 +44,7 @@ final class MatchDetailViewModel: ObservableObject {
                 guard let playerInfo = try? await useCase.execute() else { return }
                 
                 self?.userPlayers.append(playerInfo)
+                self?.players.append(playerInfo)
             }
         }
     }
