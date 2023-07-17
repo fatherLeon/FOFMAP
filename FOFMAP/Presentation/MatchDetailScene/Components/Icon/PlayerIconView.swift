@@ -9,21 +9,22 @@ import SwiftUI
 
 struct PlayerIconView: View {
     var body: some View {
-        VStack {
-            ZStack {
-                Image("Sample")
-                    .resizable()
-                    .frame(width: 100, height: 100, alignment: .center)
-                
-                PlayerGradeView(spGrade: 8)
-                    .frame(width: 40, height: 20, alignment: .trailing)
-                    .offset(x: 40, y: -40)
-            }
+        GeometryReader { geomtery in
+            let maxWidth = geomtery.size.width
+            let maxHeight = geomtery.size.height
             
-            HStack {
+            VStack {
+                ZStack {
+                    Image("Sample")
+                        .resizable()
+                        .frame(width: maxWidth / 5, height: maxWidth / 5, alignment: .center)
+                    
+                    PlayerGradeView(spGrade: 8)
+                        .frame(width: maxWidth / 10, height: maxWidth / 20, alignment: .trailing)
+                        .offset(x: maxWidth / 14, y: -maxWidth / 14)
+                }
+                
                 Image(systemName: "star.fill")
-                Text("선수 이름")
-                    .font(.caption)
             }
         }
     }

@@ -38,11 +38,23 @@ struct MatchDetailView: View {
                     let maxHeight = geomtery.size.height
                     
                     PlayerIconView()
-                        .offset(x: maxWidth / 12, y: 0)
+                        .offset(x: maxWidth * 0.15, y: 0)
+                    
                     PlayerIconView()
-                        .offset(x: maxWidth / 2.7, y: 0)
+                        .offset(x: 0, y: maxHeight * 0.17)
+                    
                     PlayerIconView()
-                        .offset(x: maxWidth / 1.5, y: 0)
+                        .offset(x: 0, y: maxHeight * 0.35)
+                    
+                    PlayerIconView()
+                        .offset(x: 0, y: maxHeight * 0.52)
+                    
+                    PlayerIconView()
+                        .offset(x: 0, y: maxHeight * 0.7)
+                    
+                    
+                    PlayerIconView()
+                        .offset(x: maxWidth * 0.4, y: maxHeight * 0.85)
                 }
             }
         }

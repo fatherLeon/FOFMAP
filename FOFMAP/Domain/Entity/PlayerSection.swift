@@ -31,4 +31,59 @@ enum PlayerSection: String, Hashable, CaseIterable, Identifiable {
             return nil
         }
     }
+    
+    static func getPositionCordinate(by positionId: Int, viewFrame: (width: CGFloat, height: CGFloat)) -> (x: Double, y: Double) {
+        switch positionId {
+        case 0:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.85)
+        case 1, 5:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.7)
+        case 3:
+            return (viewFrame.width * 0.8, viewFrame.height * 0.7)
+        case 4:
+            return (viewFrame.width * 0.6, viewFrame.height * 0.7)
+        case 6:
+            return (viewFrame.width * 0.2, viewFrame.height * 0.7)
+        case 7:
+            return (0, viewFrame.height * 0.7)
+        case 2:
+            return (viewFrame.width * 0.8, viewFrame.height * 0.52)
+        case 9:
+            return (viewFrame.width * 0.6, viewFrame.height * 0.52)
+        case 10:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.52)
+        case 11:
+            return (viewFrame.width * 0.2, viewFrame.height * 0.52)
+        case 8:
+            return (0, viewFrame.height * 0.52)
+        case 12:
+            return (viewFrame.width * 0.8, viewFrame.height * 0.35)
+        case 13:
+            return (viewFrame.width * 0.6, viewFrame.height * 0.35)
+        case 14:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.35)
+        case 15:
+            return (viewFrame.width * 0.2, viewFrame.height * 0.35)
+        case 16:
+            return (0, viewFrame.height * 0.35)
+        case 23:
+            return (viewFrame.width * 0.8, viewFrame.height * 0.17)
+        case 17:
+            return (viewFrame.width * 0.6, viewFrame.height * 0.17)
+        case 18:
+            return (viewFrame.width * 0.4, viewFrame.height * 0.17)
+        case 19:
+            return (viewFrame.width * 0.2, viewFrame.height * 0.17)
+        case 27:
+            return (0, viewFrame.height * 0.17)
+        case 22, 26:
+            return (viewFrame.width * 0.15, 0)
+        case 21, 25:
+            return (viewFrame.width * 0.4, 0)
+        case 20, 24:
+            return (viewFrame.width * 0.65, 0)
+        default:
+            return (0, 0)
+        }
+    }
 }
