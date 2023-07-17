@@ -21,6 +21,7 @@ protocol Offerable {
     // 메타
     func getPlayerName(by spid: Int) async throws -> String
     func getSeasonImage(by spid: Int) async throws -> UIImage
+    func getPlayerImage(by spid: Int) async throws -> UIImage
     func getPlayerActionImage(by spid: Int) async throws -> UIImage
     func getMetaDivisionGrade(gradeId: Int) async throws -> String
 }
@@ -141,6 +142,16 @@ struct FetchUseCase: Offerable {
         let actionImage = try await provider.receiveImage(by: url)
         
         return actionImage
+    }
+    
+    func getPlayerImage(by spid: Int) async throws -> UIImage {
+        guard let url = ContentType.metaPlayerImageBySpid(spid: spid).url else {
+            throw NetworkError.urlError
+        }
+        
+        let image = try await provider.receiveImage(by: url)
+        
+        return image
     }
     
     func getMetaDivisionGrade(gradeId: Int) async throws -> String {

@@ -44,8 +44,6 @@ final class MatchDetailViewModel: ObservableObject {
                 self?.userPlayers.append(playerInfo)
             }
         }
-        
-        players = userPlayers
     }
     
     @MainActor
