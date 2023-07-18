@@ -21,10 +21,7 @@ struct PlayerIconView: View {
             
             VStack {
                 ZStack {
-                    Image(uiImage: player.img)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: maxWidth / 5, height: maxWidth / 5, alignment: .center)
+                    PlayerImageView(image: player.img, width: maxWidth)
                     
                     PlayerGradeView(spGrade: player.spGrade)
                         .cornerRadius(maxWidth / 2)

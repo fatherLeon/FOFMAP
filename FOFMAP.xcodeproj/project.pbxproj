@@ -74,6 +74,8 @@
 		26CCACEB2A56691F000740B6 /* Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCACEA2A56691F000740B6 /* Providable.swift */; };
 		26CCACEE2A566ADD000740B6 /* FetchNetworkUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCACED2A566ADD000740B6 /* FetchNetworkUseCaseTests.swift */; };
 		26CCACF22A566B20000740B6 /* MockAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCACF12A566B20000740B6 /* MockAPIProvider.swift */; };
+		26D59F622A6646500011C637 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D59F612A6646500011C637 /* PlayerCell.swift */; };
+		26D59F642A6646DE0011C637 /* PlayerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D59F632A6646DE0011C637 /* PlayerImageView.swift */; };
 		26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */; };
 		26D7DBE22A4B01BB00B42317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE12A4B01BB00B42317 /* Assets.xcassets */; };
 		26D7DBE52A4B01BB00B42317 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D7DBE42A4B01BB00B42317 /* Preview Assets.xcassets */; };
@@ -157,6 +159,8 @@
 		26CCACEA2A56691F000740B6 /* Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providable.swift; sourceTree = "<group>"; };
 		26CCACED2A566ADD000740B6 /* FetchNetworkUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNetworkUseCaseTests.swift; sourceTree = "<group>"; };
 		26CCACF12A566B20000740B6 /* MockAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIProvider.swift; sourceTree = "<group>"; };
+		26D59F612A6646500011C637 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		26D59F632A6646DE0011C637 /* PlayerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageView.swift; sourceTree = "<group>"; };
 		26D7DBDA2A4B01BA00B42317 /* FOFMAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOFMAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D7DBDD2A4B01BA00B42317 /* FOFMAPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOFMAPApp.swift; sourceTree = "<group>"; };
 		26D7DBE12A4B01BB00B42317 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 			children = (
 				263E8C512A60F51C00ED5895 /* Icon */,
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
+				26D59F612A6646500011C637 /* PlayerCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			children = (
 				263E8C4F2A60F2F300ED5895 /* PlayerIconView.swift */,
 				263E8C4C2A60EF0D00ED5895 /* PlayerGradeView.swift */,
+				26D59F632A6646DE0011C637 /* PlayerImageView.swift */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				263E8C502A60F2F300ED5895 /* PlayerIconView.swift in Sources */,
 				26731E702A50285B00601D53 /* MetaPlayerPositions.swift in Sources */,
 				267253652A5F9B7A009EDEBE /* PlayerItemCell.swift in Sources */,
+				26D59F642A6646DE0011C637 /* PlayerImageView.swift in Sources */,
 				26731E6C2A50275300601D53 /* MetaPlayerIds.swift in Sources */,
 				26731E762A502B8B00601D53 /* ParsingModel.swift in Sources */,
 				26731E6A2A50269500601D53 /* MetaMatchType.swift in Sources */,
@@ -759,6 +766,7 @@
 				260A21F42A554FF900A213EE /* View+Extension.swift in Sources */,
 				2643F4C72A5D31870009410F /* HeaderView.swift in Sources */,
 				26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */,
+				26D59F622A6646500011C637 /* PlayerCell.swift in Sources */,
 				26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */,
 				26ABEDC62A57ECB70079787E /* Bundle+Extension.swift in Sources */,
 				26622C0F2A5C026100AB16D2 /* Date+Extension.swift in Sources */,
