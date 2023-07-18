@@ -17,6 +17,8 @@ struct PlayerCell: View {
             
             Text(player.name)
             
+            Spacer()
+            
             Text("골 \(Int(player.status["goal"] ?? 0))")
             
             Text("어시스트 \(Int(player.status["assist"] ?? 0))")
