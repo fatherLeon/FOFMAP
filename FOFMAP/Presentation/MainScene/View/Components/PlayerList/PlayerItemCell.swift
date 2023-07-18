@@ -13,6 +13,7 @@ struct PlayerItemCell: View {
     var body: some View {
         VStack {
             Image(uiImage: playerInfo.img)
+                .resizable()
                 .frame(width: 150, height: 150, alignment: .center)
             
             HStack {

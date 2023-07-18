@@ -13,6 +13,7 @@ struct PlayerCell: View {
     
     var body: some View {
         HStack {
+            Image(uiImage: player.seasonImg)
             PlayerImageView(image: player.img, width: 200)
             
             Text(player.name)
