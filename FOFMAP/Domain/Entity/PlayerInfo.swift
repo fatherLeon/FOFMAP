@@ -15,4 +15,5 @@ struct PlayerInfo: Identifiable {
     let img: UIImage
     let positionId: Int
     let position: PlayerSection
+    var status: [String: Double] = [:]
 }
