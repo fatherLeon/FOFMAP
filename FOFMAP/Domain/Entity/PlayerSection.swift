@@ -25,7 +25,7 @@ enum PlayerSection: String, Hashable, CaseIterable, Identifiable {
             return defender
         case 9...18:
             return midfielder
-        case 20...27:
+        case 19...27:
             return striker
         default:
             return nil
