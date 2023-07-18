@@ -15,6 +15,9 @@ final class MatchDetailViewModel: ObservableObject {
     
     var userPlayers: [PlayerInfo] = []
     var enemyPlayers: [PlayerInfo] = []
+    var isFetching: Bool {
+        return userPlayers.isEmpty && enemyPlayers.isEmpty
+    }
     
     @Published var players: [PlayerInfo] = []
     @Published var pickerSelection: UserPick = .user

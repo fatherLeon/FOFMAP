@@ -29,7 +29,7 @@ struct RecordView: View {
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {
                         DeferView {
-                            MatchDetailView(userName: matchDesc.matchInfo[0].nickname, matchDesc: matchDesc)
+                            MatchDetailView(userName: matchDesc.matchInfo.first?.nickname ?? "", matchDesc: matchDesc)
                         }
                     } label: {
                         VStack {

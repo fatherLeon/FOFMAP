@@ -25,23 +25,34 @@ struct MatchDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            Picker("UserState", selection: $viewModel.pickerSelection) {
-                ForEach(UserPick.allCases) { picked in
-                    Text(viewModel.getPickerText(picked))
-                }
-            }
-            .pickerStyle(.segmented)
-            
-            ZStack {
-                GroundView()
-                
-                GeometryReader { geomtery in
-                    ForEach(viewModel.players) { player in
-                        let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
+        if viewModel.isFetching {
+            ProgressView()
+        } else {
+            ScrollView(.vertical) {
+                VStack {
+                    Picker("UserState", selection: $viewModel.pickerSelection) {
+                        ForEach(UserPick.allCases) { picked in
+                            Text(viewModel.getPickerText(picked))
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    ZStack {
+                        GroundView()
+                            .frame(minHeight: 720, maxHeight: 1024)
                         
-                        PlayerIconView(player: player)
-                            .offset(x: coordinate.x, y: coordinate.y)
+                        GeometryReader { geomtery in
+                            ForEach(viewModel.players) { player in
+                                let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
+                                
+                                PlayerIconView(player: player)
+                                    .offset(x: coordinate.x, y: coordinate.y)
+                            }
+                        }
+                    }
+                    
+                    ForEach(viewModel.players) { player in
+                        Text(player.name)
                     }
                 }
             }
