@@ -28,6 +28,10 @@ struct DetailPlayersUseCase: DetailFetchable {
             players.append(player)
         }
         
+        players.sort { lhs, rhs in
+            return lhs.status["spRating"] ?? 0 > rhs.status["spRating"] ?? 0
+        }
+        
         return players
     }
     

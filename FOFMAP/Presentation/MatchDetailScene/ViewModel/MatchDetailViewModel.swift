@@ -48,17 +48,12 @@ final class MatchDetailViewModel: ObservableObject {
             return info.nickname.uppercased() == self.userName.uppercased()
         }) else { return }
         
-        userMatchInfo.player.forEach { player in
-            if player.spPosition == 28 { return }
+        let useCase = DetailPlayersUseCase(targetPlayers: userMatchInfo.player)
+        
+        Task { [weak self] in
+            guard let playerInfos = try? await useCase.execute() else { return }
             
-            let useCase = DetailPlayersUseCase(targetPlayer: player)
-            
-            Task { [weak self] in
-                guard let playerInfo = try? await useCase.execute() else { return }
-                
-                self?.userPlayers.append(playerInfo)
-                self?.players.append(playerInfo)
-            }
+            self?.userPlayers = playerInfos
         }
     }
     
@@ -68,16 +63,12 @@ final class MatchDetailViewModel: ObservableObject {
             return info.nickname.uppercased() != self.userName.uppercased()
         }) else { return }
         
-        enemyMatchInfo.player.forEach { player in
-            if player.spPosition == 28 { return }
+        let useCase = DetailPlayersUseCase(targetPlayers: enemyMatchInfo.player)
+        
+        Task { [weak self] in
+            guard let playerInfos = try? await useCase.execute() else { return }
             
-            let useCase = DetailPlayersUseCase(targetPlayer: player)
-            
-            Task { [weak self] in
-                guard let playerInfo = try? await useCase.execute() else { return }
-                
-                self?.enemyPlayers.append(playerInfo)
-            }
+            self?.enemyPlayers = playerInfos
         }
     }
     
