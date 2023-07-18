@@ -18,7 +18,7 @@ enum CustomColor {
     static let silverPlayerGrade = Color("SilverPlayerGrade")
     static let goldPlayerGrade = Color("GoldPlayerGrade")
     
-    static func matchPlayerGradeBackgroundColor(_ spGrade: Int) -> Color {
+    static func matchPlayerGradeBackgroundColor(by spGrade: Int) -> Color {
         switch spGrade {
         case 2...4:
             return CustomColor.bronzePlayerGrade
@@ -31,7 +31,7 @@ enum CustomColor {
         }
     }
     
-    static func matchPlayerGradeFontColor(_ spGrade: Int) -> Color {
+    static func matchPlayerGradeFontColor(by spGrade: Int) -> Color {
         switch spGrade {
         case 2...10:
             return Color.black

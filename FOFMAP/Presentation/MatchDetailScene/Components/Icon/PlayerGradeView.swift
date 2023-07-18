@@ -17,11 +17,11 @@ struct PlayerGradeView: View {
     
     var body: some View {
         Rectangle()
-            .fill(CustomColor.matchPlayerGradeBackgroundColor(spGrade))
+            .fill(CustomColor.matchPlayerGradeBackgroundColor(by: spGrade))
             .overlay {
                 Text("\(spGrade)")
                     .bold()
-                    .foregroundColor(CustomColor.matchPlayerGradeFontColor(spGrade))
+                    .foregroundColor(CustomColor.matchPlayerGradeFontColor(by: spGrade))
             }
     }
 }
