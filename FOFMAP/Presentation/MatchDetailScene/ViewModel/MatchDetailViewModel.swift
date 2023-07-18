@@ -12,14 +12,15 @@ final class MatchDetailViewModel: ObservableObject {
     private let matchDesc: MatchDesc
     private let userName: String
     private var cancellables = Set<AnyCancellable>()
+    private var userPlayers: [PlayerInfo] = []
+    private var enemyPlayers: [PlayerInfo] = []
     
-    var userPlayers: [PlayerInfo] = []
-    var enemyPlayers: [PlayerInfo] = []
     var isFetching: Bool {
         return userPlayers.isEmpty && enemyPlayers.isEmpty
     }
     
-    @Published var players: [PlayerInfo] = []
+    var players: [PlayerInfo] = []
+    
     @Published var pickerSelection: UserPick = .user
     
     @MainActor
@@ -50,7 +51,7 @@ final class MatchDetailViewModel: ObservableObject {
         userMatchInfo.player.forEach { player in
             if player.spPosition == 28 { return }
             
-            let useCase = DetailPlayerUseCase(targetPlayer: player)
+            let useCase = DetailPlayersUseCase(targetPlayer: player)
             
             Task { [weak self] in
                 guard let playerInfo = try? await useCase.execute() else { return }
@@ -70,7 +71,7 @@ final class MatchDetailViewModel: ObservableObject {
         enemyMatchInfo.player.forEach { player in
             if player.spPosition == 28 { return }
             
-            let useCase = DetailPlayerUseCase(targetPlayer: player)
+            let useCase = DetailPlayersUseCase(targetPlayer: player)
             
             Task { [weak self] in
                 guard let playerInfo = try? await useCase.execute() else { return }
@@ -85,12 +86,9 @@ final class MatchDetailViewModel: ObservableObject {
             .sink { [weak self] userPick in
                 switch userPick {
                 case .enemy:
-                    let sortedPlayers = self?.enemyPlayers.sorted(by: { $0.status["spRating"] ?? 0 > $1.status["spRating"] ?? 0 }) ?? []
-                    
-                    self?.players = sortedPlayers
+                    self?.players = self?.enemyPlayers ?? []
                 case .user:
-                    let sortedPlayers = self?.userPlayers.sorted(by: { $0.status["spRating"] ?? 0 > $1.status["spRating"] ?? 0 }) ?? []
-                    self?.players = sortedPlayers
+                    self?.players = self?.userPlayers ?? []
                 }
             }
             .store(in: &cancellables)
