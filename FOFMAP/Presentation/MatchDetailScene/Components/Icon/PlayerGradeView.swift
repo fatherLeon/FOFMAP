@@ -10,26 +10,6 @@ import SwiftUI
 struct PlayerGradeView: View {
     
     private let spGrade: Int
-    private var backgroundColor: Color {
-        switch spGrade {
-        case 2...4:
-            return CustomColor.bronzePlayerGrade
-        case 5...7:
-            return CustomColor.silverPlayerGrade
-        case 8...10:
-            return CustomColor.goldPlayerGrade
-        default:
-            return CustomColor.normalPlayerGrade
-        }
-    }
-    private var fontColor: Color {
-        switch spGrade {
-        case 2...10:
-            return Color.black
-        default:
-            return Color.white
-        }
-    }
     
     init(spGrade: Int) {
         self.spGrade = spGrade
@@ -37,11 +17,11 @@ struct PlayerGradeView: View {
     
     var body: some View {
         Rectangle()
-            .fill(backgroundColor)
+            .fill(CustomColor.matchPlayerGradeBackgroundColor(spGrade))
             .overlay {
                 Text("\(spGrade)")
                     .bold()
-                    .foregroundColor(fontColor)
+                    .foregroundColor(CustomColor.matchPlayerGradeFontColor(spGrade))
             }
     }
 }
