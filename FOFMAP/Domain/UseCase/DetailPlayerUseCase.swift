@@ -20,10 +20,16 @@ struct DetailPlayerUseCase: DetailFetchable {
     }
     
     func execute() async throws -> PlayerInfo {
-        guard let name = try? await getPlayerName(),
-              let seasonImg = try? await getPlayerSeasonImage(),
-              let position = PlayerSection.getPosition(by: targetPlayer.spPosition) else {
+        guard let position = PlayerSection.getPosition(by: targetPlayer.spPosition) else {
             return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper)
+        }
+        
+        guard let name = try? await getPlayerName() else {
+            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: position)
+        }
+        
+        guard let seasonImg = try? await getPlayerSeasonImage() else {
+            return PlayerInfo(id: targetPlayer.spID, name: name, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper)
         }
         
         let playerActionImg = try? await getPlayerActionImage()
