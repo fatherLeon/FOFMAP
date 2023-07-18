@@ -53,6 +53,7 @@ final class MatchDetailViewModel: ObservableObject {
         Task { [weak self] in
             guard let playerInfos = try? await useCase.execute() else { return }
             
+            self?.players = playerInfos
             self?.userPlayers = playerInfos
         }
     }
