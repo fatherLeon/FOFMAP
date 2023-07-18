@@ -21,15 +21,15 @@ struct DetailPlayerUseCase: DetailFetchable {
     
     func execute() async throws -> PlayerInfo {
         guard let position = PlayerSection.getPosition(by: targetPlayer.spPosition) else {
-            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper)
+            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper, status: targetPlayer.status)
         }
         
         guard let name = try? await getPlayerName() else {
-            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: position)
+            return PlayerInfo(id: targetPlayer.spID, name: "", spGrade: targetPlayer.spGrade, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: position, status: targetPlayer.status)
         }
         
         guard let seasonImg = try? await getPlayerSeasonImage() else {
-            return PlayerInfo(id: targetPlayer.spID, name: name, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper)
+            return PlayerInfo(id: targetPlayer.spID, name: name, seasonImg: UIImage(systemName: "list.bullet.rectangle.fill")!, img: UIImage(systemName: "person.fill")!, positionId: targetPlayer.spPosition, position: .goalkeeper, status: targetPlayer.status)
         }
         
         let playerActionImg = try? await getPlayerActionImage()

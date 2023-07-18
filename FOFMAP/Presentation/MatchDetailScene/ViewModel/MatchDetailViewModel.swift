@@ -85,9 +85,12 @@ final class MatchDetailViewModel: ObservableObject {
             .sink { [weak self] userPick in
                 switch userPick {
                 case .enemy:
-                    self?.players = self?.enemyPlayers ?? []
+                    let sortedPlayers = self?.enemyPlayers.sorted(by: { $0.status["spRating"] ?? 0 > $1.status["spRating"] ?? 0 }) ?? []
+                    
+                    self?.players = sortedPlayers
                 case .user:
-                    self?.players = self?.userPlayers ?? []
+                    let sortedPlayers = self?.userPlayers.sorted(by: { $0.status["spRating"] ?? 0 > $1.status["spRating"] ?? 0 }) ?? []
+                    self?.players = sortedPlayers
                 }
             }
             .store(in: &cancellables)
