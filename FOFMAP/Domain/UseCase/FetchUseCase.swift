@@ -115,8 +115,7 @@ struct FetchUseCase: Offerable {
     }
     
     func getSeasonImage(by spid: Int) async throws -> UIImage {
-        let index = "\(spid)".index("\(spid)".startIndex, offsetBy: 3)
-        let seasonId = String("\(spid)".prefix(upTo: index))
+        let seasonId = spid / 1000000
         
         guard let url = ContentType.metaSeasonId.url else {
             throw NetworkError.urlError
@@ -124,7 +123,7 @@ struct FetchUseCase: Offerable {
         
         let seasonIds = try await provider.receiveData(url: url, by: MetaSeasonIds.self)
         
-        guard let filteredSeason = seasonIds.first(where: { "\($0.seasonId)" == seasonId }),
+        guard let filteredSeason = seasonIds.first(where: { $0.seasonId == seasonId }),
               let url = URL(string: filteredSeason.seasonImgURL) else {
             throw NetworkError.invalidData
         }
@@ -135,7 +134,10 @@ struct FetchUseCase: Offerable {
     }
     
     func getPlayerActionImage(by spid: Int) async throws -> UIImage {
-        guard let url = ContentType.metaPlayerActionshotImageBySpid(spid: spid).url else {
+        let seasonId = spid / 1000000
+        let pid = spid - (seasonId * 1000000)
+        
+        guard let url = ContentType.metaPlayerActionshotImageByPid(pid: pid).url else {
             throw NetworkError.urlError
         }
         
@@ -145,7 +147,10 @@ struct FetchUseCase: Offerable {
     }
     
     func getPlayerImage(by spid: Int) async throws -> UIImage {
-        guard let url = ContentType.metaPlayerImageBySpid(spid: spid).url else {
+        let seasonId = spid / 1000000
+        let pid = spid - (seasonId * 1000000)
+        
+        guard let url = ContentType.metaPlayerImageByPid(pid: pid).url else {
             throw NetworkError.urlError
         }
         
