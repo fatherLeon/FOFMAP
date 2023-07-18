@@ -23,6 +23,8 @@ struct DetailPlayersUseCase: DetailFetchable {
         var players: [PlayerInfo] = []
         
         for targetPlayer in targetPlayers {
+            if targetPlayer.spPosition == 28 { continue }
+            
             let player = await getPlayerInfo(targetPlayer)
             
             players.append(player)
