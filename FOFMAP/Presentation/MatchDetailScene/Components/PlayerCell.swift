@@ -16,6 +16,12 @@ struct PlayerCell: View {
             PlayerImageView(image: player.img, width: 200)
             
             Text(player.name)
+            
+            Text("골 \(Int(player.status["goal"] ?? 0))")
+            
+            Text("어시스트 \(Int(player.status["assist"] ?? 0))")
+            
+            Text("평점 \(Int(player.status["spRating"] ?? 0))")
         }
     }
 }

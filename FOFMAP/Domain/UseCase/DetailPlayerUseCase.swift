@@ -36,7 +36,7 @@ struct DetailPlayerUseCase: DetailFetchable {
         let playerImg = try? await getPlayerImage()
         let playerImage = playerActionImg ?? playerImg ?? UIImage(systemName: "person.fill")!
         
-        return PlayerInfo(id: targetPlayer.spID, name: name, spGrade: targetPlayer.spGrade, seasonImg: seasonImg, img: playerImage, positionId: targetPlayer.spPosition, position: position)
+        return PlayerInfo(id: targetPlayer.spID, name: name, spGrade: targetPlayer.spGrade, seasonImg: seasonImg, img: playerImage, positionId: targetPlayer.spPosition, position: position, status: targetPlayer.status)
     }
     
     private func getPlayerImage() async throws -> UIImage {
