@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865812A67788000529EE8 /* DetailIndicatorView.swift */; };
+		260865842A67CF9100529EE8 /* PercentageProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865832A67CF9100529EE8 /* PercentageProgressView.swift */; };
 		260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21EF2A55360A00A213EE /* PlayerSection.swift */; };
 		260A21F42A554FF900A213EE /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21F32A554FF900A213EE /* View+Extension.swift */; };
 		2621C7B52A539C9800DF33F4 /* FakeURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */; };
@@ -97,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		260865812A67788000529EE8 /* DetailIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIndicatorView.swift; sourceTree = "<group>"; };
+		260865832A67CF9100529EE8 /* PercentageProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageProgressView.swift; sourceTree = "<group>"; };
 		260A21EF2A55360A00A213EE /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
 		260A21F32A554FF900A213EE /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLCache.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
 				26D59F612A6646500011C637 /* PlayerCell.swift */,
 				260865812A67788000529EE8 /* DetailIndicatorView.swift */,
+				260865832A67CF9100529EE8 /* PercentageProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */,
 				26731E672A501E0100601D53 /* MatchDesc.swift in Sources */,
 				267253612A5F9B28009EDEBE /* MainView.swift in Sources */,
+				260865842A67CF9100529EE8 /* PercentageProgressView.swift in Sources */,
 				264DEB2E2A514572003F357C /* CacheManager.swift in Sources */,
 				26731E5F2A501B6200601D53 /* UserMatches.swift in Sources */,
 				26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */,
