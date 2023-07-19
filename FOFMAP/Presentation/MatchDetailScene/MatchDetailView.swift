@@ -46,6 +46,7 @@ struct MatchDetailView: View {
                                 let coordinate = PlayerSection.getPositionCordinate(by: player.positionId, viewFrame: (geomtery.size.width, geomtery.size.height))
                                 
                                 PlayerIconView(player: player)
+                                    .frame(width: geomtery.size.width * 0.8)
                                     .offset(x: coordinate.x, y: coordinate.y)
                                     .onTapGesture {
                                         viewModel.pickedPlayer = player

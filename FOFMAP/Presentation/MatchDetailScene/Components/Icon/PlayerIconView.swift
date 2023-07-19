@@ -24,12 +24,18 @@ struct PlayerIconView: View {
                     PlayerImageView(image: player.img, width: maxWidth)
                     
                     PlayerGradeView(spGrade: player.spGrade)
-                        .cornerRadius(maxWidth / 2)
-                        .frame(width: maxWidth / 10, height: maxWidth / 20, alignment: .trailing)
+                        .frame(width: maxWidth / 12, height: maxWidth / 22, alignment: .trailing)
                         .offset(x: maxWidth / 14, y: maxWidth / 14)
                 }
                 
-                Image(uiImage: player.seasonImg)
+                HStack {
+                    Image(uiImage: player.seasonImg)
+                        .resizable()
+                        .frame(width: maxWidth / 25, height: maxWidth / 25)
+                    Text(player.name)
+                        .bold()
+                        .font(.caption2)
+                }
             }
         }
     }
