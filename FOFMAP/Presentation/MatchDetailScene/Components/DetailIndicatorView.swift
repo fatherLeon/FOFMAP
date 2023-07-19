@@ -14,8 +14,13 @@ struct Indicator: Hashable {
     
     init(title: String, value: Double, isPercentage: Bool = false) {
         self.title = title
-        self.value = value
         self.isPercentage = isPercentage
+        
+        if isPercentage {
+            self.value = value.isNaN ? 0 : value
+        } else {
+            self.value = value
+        }
     }
     
     var valueText: String {
