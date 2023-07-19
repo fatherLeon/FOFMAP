@@ -47,6 +47,9 @@ struct MatchDetailView: View {
                                 
                                 PlayerIconView(player: player)
                                     .offset(x: coordinate.x, y: coordinate.y)
+                                    .onTapGesture {
+                                        viewModel.pickedPlayer = player
+                                    }
                             }
                         }
                     }
