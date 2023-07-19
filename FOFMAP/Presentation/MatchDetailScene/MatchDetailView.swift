@@ -52,8 +52,12 @@ struct MatchDetailView: View {
                     }
                     
                     ForEach(viewModel.players) { player in
-                        PlayerCell(player: player)
-                            .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                        NavigationLink {
+                            PlayerDetailView(player: player)
+                        } label: {
+                            PlayerCell(player: player)
+                                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                        }
                     }
                 }
             }

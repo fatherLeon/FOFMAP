@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865812A67788000529EE8 /* DetailIndicatorView.swift */; };
 		260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21EF2A55360A00A213EE /* PlayerSection.swift */; };
 		260A21F42A554FF900A213EE /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21F32A554FF900A213EE /* View+Extension.swift */; };
 		2621C7B52A539C9800DF33F4 /* FakeURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260865812A67788000529EE8 /* DetailIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIndicatorView.swift; sourceTree = "<group>"; };
 		260A21EF2A55360A00A213EE /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
 		260A21F32A554FF900A213EE /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLCache.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				263E8C512A60F51C00ED5895 /* Icon */,
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
 				26D59F612A6646500011C637 /* PlayerCell.swift */,
+				260865812A67788000529EE8 /* DetailIndicatorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				2643F4C72A5D31870009410F /* HeaderView.swift in Sources */,
 				26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */,
 				26D59F622A6646500011C637 /* PlayerCell.swift in Sources */,
+				260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */,
 				26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */,
 				26ABEDC62A57ECB70079787E /* Bundle+Extension.swift in Sources */,
 				26D59F662A6694600011C637 /* PlayerDetailView.swift in Sources */,

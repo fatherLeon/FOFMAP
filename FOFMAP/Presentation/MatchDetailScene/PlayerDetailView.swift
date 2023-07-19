@@ -16,36 +16,36 @@ struct PlayerDetailView: View {
             VStack {
                 PlayerImageView(image: player.img, width: 200)
                 Text(player.name)
-                
-                Spacer()
-            }
-            
-            HStack {
-                VStack {
-                    Text("선수 시즌")
-                    Spacer()
-                    Image(uiImage: player.seasonImg)
-                }
-                
-                Spacer()
-                
-                VStack {
-                    Text("강화 등급")
-                    Spacer()
-                    PlayerGradeView(spGrade: player.spGrade)
-                        .frame(width: 30, height: 20, alignment: .center)
-                }
-                
-                Spacer()
-                
-                VStack {
-                    Text("포지션")
-                    Spacer()
-                    Text(player.positionDescription)
-                }
             }
             
             ScrollView {
+                
+                Spacer()
+                
+                HStack {
+                    VStack {
+                        Text("선수 시즌")
+                        Spacer()
+                        Image(uiImage: player.seasonImg)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Text("강화 등급")
+                        Spacer()
+                        PlayerGradeView(spGrade: player.spGrade)
+                            .frame(width: 30, height: 20, alignment: .center)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Text("포지션")
+                        Spacer()
+                        Text(player.positionDescription)
+                    }
+                }
             }
         }
     }
