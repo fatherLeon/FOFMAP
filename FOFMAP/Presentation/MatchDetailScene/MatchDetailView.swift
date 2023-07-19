@@ -28,15 +28,15 @@ struct MatchDetailView: View {
         if viewModel.isFetching {
             ProgressView()
         } else {
+            Picker("UserState", selection: $viewModel.pickerSelection) {
+                ForEach(UserPick.allCases) { picked in
+                    Text(viewModel.getPickerText(picked))
+                }
+            }
+            .pickerStyle(.segmented)
+            
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    Picker("UserState", selection: $viewModel.pickerSelection) {
-                        ForEach(UserPick.allCases) { picked in
-                            Text(viewModel.getPickerText(picked))
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    
                     ZStack {
                         GroundView()
                             .frame(minHeight: 720, maxHeight: 1024)

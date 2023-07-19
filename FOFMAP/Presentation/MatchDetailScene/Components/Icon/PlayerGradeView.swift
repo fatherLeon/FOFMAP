@@ -20,7 +20,6 @@ struct PlayerGradeView: View {
             .fill(CustomColor.matchPlayerGradeBackgroundColor(by: spGrade))
             .overlay {
                 Text("\(spGrade)")
-                    .bold()
                     .foregroundColor(CustomColor.matchPlayerGradeFontColor(by: spGrade))
             }
     }
