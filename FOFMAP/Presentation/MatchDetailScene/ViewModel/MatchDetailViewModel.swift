@@ -19,6 +19,7 @@ final class MatchDetailViewModel: ObservableObject {
         return players.isEmpty
     }
     
+    @Published var pickedPlayer: PlayerInfo?
     @Published var players: [PlayerInfo] = []
     @Published var pickerSelection: UserPick = .user
     

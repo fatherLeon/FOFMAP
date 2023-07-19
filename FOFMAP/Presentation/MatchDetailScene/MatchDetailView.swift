@@ -52,14 +52,16 @@ struct MatchDetailView: View {
                     }
                     
                     ForEach(viewModel.players) { player in
-                        NavigationLink {
-                            PlayerDetailView(player: player)
-                        } label: {
-                            PlayerCell(player: player)
-                                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                        }
+                        PlayerCell(player: player)
+                            .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                            .onTapGesture {
+                                viewModel.pickedPlayer = player
+                            }
                     }
                 }
+            }
+            .popover(item: $viewModel.pickedPlayer) { player in
+                PlayerDetailView(player: player)
             }
         }
     }
