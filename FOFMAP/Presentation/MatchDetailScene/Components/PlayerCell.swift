@@ -27,7 +27,7 @@ struct PlayerCell: View {
             Text("어시스트 \(Int(player.status["assist"] ?? 0))")
                 .font(.caption)
             
-            Text("평점 \(Int(player.status["spRating"] ?? 0))")
+            Text("평점 \(String(format: "%.1f", player.status["spRating"] ?? 0))")
         }
     }
 }
