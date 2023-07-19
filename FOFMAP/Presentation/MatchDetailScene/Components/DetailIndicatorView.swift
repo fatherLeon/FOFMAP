@@ -13,7 +13,26 @@ struct DetailIndicatorView: View {
     var indicators: [String: Double]
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let keys = indicators.map { $0.key }
+        let values = indicators.map { $0.value }
+        
+        VStack {
+            Text(indicatorMainTitle)
+                .font(.title)
+                .bold()
+            
+            ForEach(keys.indices, id: \.self) { index in
+                HStack {
+                    Text(keys[index])
+                    Spacer()
+                    Text("\(Int(values[index]))")
+                }
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+            }
+        }
+        .padding(EdgeInsets(top: 40, leading: 20, bottom: 40, trailing: 20))
+        .background(CustomColor.drawingColor)
+        .cornerRadius(12)
     }
 }
 
