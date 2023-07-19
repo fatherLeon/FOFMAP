@@ -137,11 +137,17 @@ struct FetchUseCase: Offerable {
         let seasonId = spid / 1000000
         let pid = spid - (seasonId * 1000000)
         
-        guard let url = ContentType.metaPlayerActionshotImageByPid(pid: pid).url else {
+        guard let pidUrl = ContentType.metaPlayerActionshotImageByPid(pid: pid).url,
+              let spidUrl = ContentType.metaPlayerActionshotImageBySpid(spid: spid).url else {
             throw NetworkError.urlError
         }
         
-        let actionImage = try await provider.receiveImage(by: url)
+        let actionImageByPid = try? await provider.receiveImage(by: pidUrl)
+        let actionImageBySpid = try? await provider.receiveImage(by: spidUrl)
+        
+        guard let actionImage = actionImageBySpid ?? actionImageByPid else {
+            throw NetworkError.invalidData
+        }
         
         return actionImage
     }
@@ -150,11 +156,17 @@ struct FetchUseCase: Offerable {
         let seasonId = spid / 1000000
         let pid = spid - (seasonId * 1000000)
         
-        guard let url = ContentType.metaPlayerImageByPid(pid: pid).url else {
+        guard let pidUrl = ContentType.metaPlayerImageByPid(pid: pid).url,
+              let spidUrl = ContentType.metaPlayerImageBySpid(spid: spid).url else {
             throw NetworkError.urlError
         }
         
-        let image = try await provider.receiveImage(by: url)
+        let imageByPid = try? await provider.receiveImage(by: pidUrl)
+        let imageBySpid = try? await provider.receiveImage(by: spidUrl)
+        
+        guard let image = imageBySpid ?? imageByPid else {
+            throw NetworkError.invalidData
+        }
         
         return image
     }
