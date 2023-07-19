@@ -11,22 +11,27 @@ struct PercentageProgressView: View {
     
     let percentage: Double
     let color: Color
+    let lineWidth: CGFloat
     
     var body: some View {
         ZStack {
             Circle()
-                .stroke(color.opacity(0.4), lineWidth: 50)
+                .stroke(color.opacity(0.4), lineWidth: lineWidth)
             
             Circle()
                 .trim(from: 0, to: percentage)
-                .stroke(color, lineWidth: 50)
+                .stroke(color, lineWidth: lineWidth)
                 .rotationEffect(.degrees(-90))
+            
+            Text(String(format: "%.1f", percentage * 100) + "%")
+                .font(.body)
         }
+        .frame(width: 75, height: 75)
     }
 }
 
 struct PercentageProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        PercentageProgressView(percentage: 0.2, color: .blue)
+        PercentageProgressView(percentage: 0.2, color: .blue, lineWidth: 10)
     }
 }

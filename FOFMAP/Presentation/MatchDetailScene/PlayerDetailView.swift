@@ -68,14 +68,14 @@ struct PlayerDetailView: View {
                                         indicators: [
                                             Indicator(title: "시도 수", value: player.status["passTry"] ?? 0),
                                                     Indicator(title: "성공 수", value: player.status["passSuccess"] ?? 0),
-                                                    Indicator(title: "성공 확률", value: (player.status["passSuccess"] ?? 0) / (player.status["passTry"] ?? 1) * 100, isPercentage: true)
+                                                    Indicator(title: "성공 확률", value: (player.status["passSuccess"] ?? 0) / (player.status["passTry"] ?? 1), isPercentage: true)
                                         ])
                     
                     DetailIndicatorView(indicatorMainTitle: "드리블 지표",
                                         indicators: [
                                             Indicator(title: "시도 수", value: player.status["dribbleTry"] ?? 0),
                                                      Indicator(title: "성공 수", value: player.status["dribbleSuccess"] ?? 0),
-                                                    Indicator(title: "성공 확률", value: (player.status["dribbleSuccess"] ?? 0) / (player.status["dribbleTry"] ?? 1) * 100, isPercentage: true)
+                                                    Indicator(title: "성공 확률", value: (player.status["dribbleSuccess"] ?? 0) / (player.status["dribbleTry"] ?? 1), isPercentage: true)
                                         ])
                     
                     DetailIndicatorView(indicatorMainTitle: "볼 경합 지표",

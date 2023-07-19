@@ -9,20 +9,20 @@ import SwiftUI
 
 struct Indicator: Hashable {
     let title: String
-    let value: Int
+    let value: Double
     let isPercentage: Bool
     
     init(title: String, value: Double, isPercentage: Bool = false) {
         self.title = title
-        self.value = Int(value)
+        self.value = value
         self.isPercentage = isPercentage
     }
     
     var valueText: String {
         if isPercentage {
-            return "\(value)%"
+            return "\(value * 100)%"
         } else {
-            return "\(value)"
+            return "\(Int(value))"
         }
     }
 }
@@ -43,7 +43,12 @@ struct DetailIndicatorView: View {
                 HStack {
                     Text(indicator.title)
                     Spacer()
-                    Text("\(indicator.valueText)")
+                    
+                    if indicator.isPercentage {
+                        PercentageProgressView(percentage: indicator.value, color: .red, lineWidth: 10)
+                    } else {
+                        Text("\(indicator.valueText)")
+                    }
                 }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             }
@@ -58,7 +63,8 @@ struct DetailIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
         let indicators = [Indicator(title: "슈팅 수", value: 2),
                           Indicator(title: "유효슈팅 수", value: 3),
-                          Indicator(title: "어시스트", value: 1)]
+                          Indicator(title: "어시스트", value: 1),
+                          Indicator(title: "뭐시기 퍼센트", value: 0.3, isPercentage: true)]
         DetailIndicatorView(indicatorMainTitle: "공격지표", indicators: indicators)
     }
 }
