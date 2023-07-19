@@ -24,11 +24,7 @@ struct Indicator: Hashable {
     }
     
     var valueText: String {
-        if isPercentage {
-            return "\(value * 100)%"
-        } else {
-            return "\(Int(value))"
-        }
+        return "\(Int(value))"
     }
 }
 
