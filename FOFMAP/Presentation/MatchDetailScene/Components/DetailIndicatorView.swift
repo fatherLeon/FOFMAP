@@ -7,25 +7,33 @@
 
 import SwiftUI
 
+struct Indicator: Hashable {
+    let title: String
+    let value: Int
+    
+    init(title: String, value: Double) {
+        self.title = title
+        self.value = Int(value)
+    }
+}
+
 struct DetailIndicatorView: View {
     
     var indicatorMainTitle: String
-    var indicators: [String: Double]
+    var indicators: [Indicator]
     
     var body: some View {
-        let keys = indicators.map { $0.key }
-        let values = indicators.map { $0.value }
         
         VStack {
             Text(indicatorMainTitle)
                 .font(.title)
                 .bold()
             
-            ForEach(keys.indices, id: \.self) { index in
+            ForEach(indicators, id: \.self) { indicator in
                 HStack {
-                    Text(keys[index])
+                    Text(indicator.title)
                     Spacer()
-                    Text("\(Int(values[index]))")
+                    Text("\(indicator.value)")
                 }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             }
@@ -38,6 +46,9 @@ struct DetailIndicatorView: View {
 
 struct DetailIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailIndicatorView(indicatorMainTitle: "공격지표", indicators: ["슈팅 수": 2, "유효슈팅 수" : 3, "어시스트 수": 1])
+        let indicators = [Indicator(title: "슈팅 수", value: 2),
+                          Indicator(title: "유효슈팅 수", value: 3),
+                          Indicator(title: "어시스트", value: 1)]
+        DetailIndicatorView(indicatorMainTitle: "공격지표", indicators: indicators)
     }
 }

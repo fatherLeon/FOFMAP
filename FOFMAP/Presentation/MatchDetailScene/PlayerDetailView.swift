@@ -14,7 +14,7 @@ struct PlayerDetailView: View {
     var body: some View {
         VStack {
             VStack {
-                PlayerImageView(image: player.img, width: 1000)
+                PlayerImageView(image: player.img, width: 500)
                 Text(player.name)
             }
             
@@ -58,31 +58,31 @@ struct PlayerDetailView: View {
                 
                 VStack {
                     DetailIndicatorView(indicatorMainTitle: "메인 지표",
-                                        indicators: ["슈팅 수": player.status["shoot"] ?? 0,
-                                                     "득점 수": player.status["goal"] ?? 0,
-                                                     "어시스트" : player.status["assist"] ?? 0])
+                                        indicators: [Indicator(title: "슈팅 수", value: player.status["shoot"] ?? 0),
+                                                    Indicator(title: "득점", value: player.status["goal"] ?? 0),
+                                                    Indicator(title: "어시스트", value: player.status["assist"] ?? 0)])
                     
-                    DetailIndicatorView(indicatorMainTitle: "패스 지표",
-                                        indicators: ["패스 시도 수": player.status["passTry"] ?? 0,
-                                                     "패스 성공 수": player.status["passSuccess"] ?? 0,
-                                                     "패스 성공 확률": (player.status["passSuccess"] ?? 0) / (player.status["passTry"] ?? 1)])
-                    
-                    DetailIndicatorView(indicatorMainTitle: "드리블 지표",
-                                        indicators: ["드리블 시도 수": player.status["dribbleTry"] ?? 0,
-                                                     "드리블 성공 수": player.status["dribbleSuccess"] ?? 0,
-                                                     "드리블 성공 확률": (player.status["dribbleSuccess"] ?? 0) / (player.status["dribbleTry"] ?? 1)])
-                    
-                    DetailIndicatorView(indicatorMainTitle: "볼 경합 지표",
-                                        indicators: ["볼 소유 시도 수": player.status["ballPossesionTry"] ?? 0,
-                                                     "볼 소유 성공 수": player.status["ballPossesionSuccess"] ?? 0,
-                                                     "공중볼 경합 시도 수": player.status["aerialTry"] ?? 0,
-                                                     "공중볼 경합 성공 수": player.status["aerialSuccess"] ?? 0])
-                    
-                    DetailIndicatorView(indicatorMainTitle: "수비 지표",
-                                        indicators: ["블락 시도 수": player.status["blockTry"] ?? 0,
-                                                     "블락 성공 수": player.status["block"] ?? 0,
-                                                     "태클 시도 수": player.status["tackleTry"] ?? 0,
-                                                     "태클 성공 수": player.status["tackle"] ?? 0])
+//                    DetailIndicatorView(indicatorMainTitle: "패스 지표",
+//                                        indicators: ["패스 시도 수": player.status["passTry"] ?? 0,
+//                                                     "패스 성공 수": player.status["passSuccess"] ?? 0,
+//                                                     "패스 성공 확률": (player.status["passSuccess"] ?? 0) / (player.status["passTry"] ?? 1)])
+//                    
+//                    DetailIndicatorView(indicatorMainTitle: "드리블 지표",
+//                                        indicators: ["드리블 시도 수": player.status["dribbleTry"] ?? 0,
+//                                                     "드리블 성공 수": player.status["dribbleSuccess"] ?? 0,
+//                                                     "드리블 성공 확률": (player.status["dribbleSuccess"] ?? 0) / (player.status["dribbleTry"] ?? 1)])
+//                    
+//                    DetailIndicatorView(indicatorMainTitle: "볼 경합 지표",
+//                                        indicators: ["볼 소유 시도 수": player.status["ballPossesionTry"] ?? 0,
+//                                                     "볼 소유 성공 수": player.status["ballPossesionSuccess"] ?? 0,
+//                                                     "공중볼 경합 시도 수": player.status["aerialTry"] ?? 0,
+//                                                     "공중볼 경합 성공 수": player.status["aerialSuccess"] ?? 0])
+//                    
+//                    DetailIndicatorView(indicatorMainTitle: "수비 지표",
+//                                        indicators: ["블락 시도 수": player.status["blockTry"] ?? 0,
+//                                                     "블락 성공 수": player.status["block"] ?? 0,
+//                                                     "태클 시도 수": player.status["tackleTry"] ?? 0,
+//                                                     "태클 성공 수": player.status["tackle"] ?? 0])
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             }
