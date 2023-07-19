@@ -14,15 +14,21 @@ struct PlayerCell: View {
     var body: some View {
         HStack {
             Text(player.positionDescription)
+                .lineLimit(1)
+                .fontWidth(.expanded)
+                .frame(width: 60)
+                .font(.callout)
+            
             Image(uiImage: player.seasonImg)
             PlayerImageView(image: player.img, width: 200)
             Text(player.name)
+                .lineLimit(1)
             
             Spacer()
             
-            Text("골 \(Int(player.status["goal"] ?? 0))")
+            Text("G : \(Int(player.status["goal"] ?? 0))")
                 .font(.caption)
-            Text("어시스트 \(Int(player.status["assist"] ?? 0))")
+            Text("A : \(Int(player.status["assist"] ?? 0))")
                 .font(.caption)
             Text("평점 \(String(format: "%.1f", player.status["spRating"] ?? 0))")
                 .font(.caption)
