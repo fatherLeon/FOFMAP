@@ -10,10 +10,20 @@ import SwiftUI
 struct Indicator: Hashable {
     let title: String
     let value: Int
+    let isPercentage: Bool
     
-    init(title: String, value: Double) {
+    init(title: String, value: Double, isPercentage: Bool = false) {
         self.title = title
         self.value = Int(value)
+        self.isPercentage = isPercentage
+    }
+    
+    var valueText: String {
+        if isPercentage {
+            return "\(value)%"
+        } else {
+            return "\(value)"
+        }
     }
 }
 
@@ -33,7 +43,7 @@ struct DetailIndicatorView: View {
                 HStack {
                     Text(indicator.title)
                     Spacer()
-                    Text("\(indicator.value)")
+                    Text("\(indicator.valueText)")
                 }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             }
