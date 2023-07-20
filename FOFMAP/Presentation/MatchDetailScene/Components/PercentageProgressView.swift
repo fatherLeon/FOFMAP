@@ -13,6 +13,17 @@ struct PercentageProgressView: View {
     let color: Color
     let lineWidth: CGFloat
     
+    init(percentage: Double, color: Color, lineWidth: CGFloat) {
+        self.color = color
+        self.lineWidth = lineWidth
+        
+        if percentage.isNaN {
+            self.percentage = 0.0
+        } else {
+            self.percentage = percentage
+        }
+    }
+    
     var body: some View {
         ZStack {
             Circle()

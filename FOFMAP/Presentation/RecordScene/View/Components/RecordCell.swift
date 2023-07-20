@@ -21,29 +21,29 @@ struct RecordCell: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(getOpponentUserName(by: matchDesc))
-                    .font(.subheadline)
-                    .lineLimit(1)
-                
-                Spacer()
-                
-                Text(getScoreText(by: matchDesc))
-                    .font(.title3)
-                    .foregroundColor(getMatchState().backgroundColor)
-                    .bold()
-                
-                VStack {
-                    Text(getYearToDayText(by: matchDesc))
-                    Text(getHourToMinute(by: matchDesc))
-                }
-                .font(.caption)
-                .padding(.leading, 10)
-            }
-            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-            
             if isClicked {
                 RecordDetailCell(matchDesc: matchDesc)
+            } else {
+                HStack {
+                    Text(getOpponentUserName(by: matchDesc))
+                        .font(.subheadline)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    
+                    Text(getScoreText(by: matchDesc))
+                        .font(.title3)
+                        .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
+                        .bold()
+                    
+                    VStack {
+                        Text(getYearToDayText(by: matchDesc))
+                        Text(getHourToMinute(by: matchDesc))
+                    }
+                    .font(.caption)
+                    .padding(.leading, 10)
+                }
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             }
         }
         .onTapGesture {
@@ -59,7 +59,7 @@ struct RecordCell: View {
 }
 
 extension RecordCell {
-    private func getMatchState() -> MatchState {
+    private func getMatchState(by matchDesc: MatchDesc) -> MatchState {
         let (userGoal, opponentGoal) = getScore(by: matchDesc)
         
         return MatchState.getMatchResult(playerGoal: userGoal, opponentGoal: opponentGoal)
