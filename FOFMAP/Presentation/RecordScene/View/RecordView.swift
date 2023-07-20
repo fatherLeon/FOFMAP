@@ -33,11 +33,7 @@ struct RecordView: View {
                         }
                     } label: {
                         VStack {
-                            RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
-                                       hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                                       scoreInfo: viewModel.getScoreText(by: matchDesc),
-                                       opponentName: viewModel.getOpponentUserName(by: matchDesc))
-                            
+                            RecordCell(nickname: viewModel.nickname, matchDesc: matchDesc)
                             if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
                                 ProgressView()
                                     .onAppear {

@@ -20,7 +20,6 @@ struct PlayerDetailView: View {
             .padding(.top, 20)
             
             ScrollView {
-                
                 Spacer()
                 
                 HStack {

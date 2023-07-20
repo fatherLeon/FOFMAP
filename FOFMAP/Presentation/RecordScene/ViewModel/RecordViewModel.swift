@@ -65,41 +65,6 @@ final class RecordViewModel: ObservableObject {
         }
     }
     
-    func getYearToDayText(by match: MatchDesc) -> String {
-        return Date.toYearMonthDateString(match.matchDate)
-    }
-    
-    func getHourToMinute(by match: MatchDesc) -> String {
-        return Date.toHourMinuteString(match.matchDate)
-    }
-    
-    func getOpponentUserName(by match: MatchDesc) -> String {
-        var opponentUserName = ""
-        
-        match.matchInfo.forEach { info in
-            if info.nickname.uppercased() != self.nickname.uppercased() {
-                opponentUserName = info.nickname
-            }
-        }
-        
-        return opponentUserName
-    }
-    
-    func getScoreText(by match: MatchDesc) -> (player: Int, opponent: Int) {
-        var myGoal = 0
-        var opponentGoal = 0
-        
-        match.matchInfo.forEach { matchInfo in
-            if matchInfo.nickname == nickname {
-                myGoal = matchInfo.shoot["goalTotal"] ?? 0
-            } else {
-                opponentGoal = matchInfo.shoot["goalTotal"] ?? 0
-            }
-        }
-        
-        return (myGoal, opponentGoal)
-    }
-    
     @MainActor
     private func binding() {
         $nickname
