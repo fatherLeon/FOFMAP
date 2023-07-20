@@ -17,6 +17,7 @@ struct PlayerDetailView: View {
                 PlayerImageView(image: player.img, width: 500)
                 Text(player.name)
             }
+            .padding(.top, 20)
             
             ScrollView {
                 
