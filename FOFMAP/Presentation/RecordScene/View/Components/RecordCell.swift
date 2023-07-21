@@ -21,38 +21,29 @@ struct RecordCell: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(getOpponentUserName(by: matchDesc))
-                    .font(.subheadline)
-                    .lineLimit(1)
-                
-                Spacer()
-                
-                Text(getScoreText(by: matchDesc))
-                    .font(.title3)
-                    .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
-                    .bold()
-                
-                VStack {
-                    Text(getYearToDayText(by: matchDesc))
-                    Text(getHourToMinute(by: matchDesc))
+            NavigationLink {
+                RecordDetailView(matchDesc: matchDesc, nickname: self.nickname)
+            } label: {
+                HStack {
+                    Text(getOpponentUserName(by: matchDesc))
+                        .font(.subheadline)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    
+                    Text(getScoreText(by: matchDesc))
+                        .font(.title3)
+                        .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
+                        .bold()
+                    
+                    VStack {
+                        Text(getYearToDayText(by: matchDesc))
+                        Text(getHourToMinute(by: matchDesc))
+                    }
+                    .font(.caption)
+                    .padding(.leading, 10)
                 }
-                .font(.caption)
-                .padding(.leading, 10)
-            }
-            
-            if isClicked {
-                RecordDetailCell(matchDesc: matchDesc, nickname: self.nickname)
-            }
-        }
-        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-        .onTapGesture {
-            if !isClicked {
-                withAnimation(.easeOut) {
-                    isClicked.toggle()
-                }
-            } else {
-                isClicked.toggle()
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             }
         }
     }

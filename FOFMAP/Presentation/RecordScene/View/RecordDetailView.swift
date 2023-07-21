@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecordDetailCell: View {
+struct RecordDetailView: View {
     
     private let matchDesc: MatchDesc
     private let nickname: String
@@ -61,12 +61,18 @@ struct RecordDetailCell: View {
                 ComparisonBar(title: "패스 성공 률", userValue: passAccuracy.user, opponentValue: passAccuracy.opponent, isPercentage: true, isInterger: false)
                 PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
             }
+            
+            NavigationLink {
+                MatchDetailView(userName: self.nickname, matchDesc: matchDesc)
+            } label: {
+                Text("선수단 확인")
+            }
+
         }
-        .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
     }
 }
 
-extension RecordDetailCell {
+extension RecordDetailView {
     private var opponentNickname: String {
         var opponentNickname: String = ""
         
@@ -156,7 +162,7 @@ extension RecordDetailCell {
     }
 }
 
-struct RecordDetailCell_Previews: PreviewProvider {
+struct RecordDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let matchDesc = """
         {
@@ -1444,6 +1450,6 @@ struct RecordDetailCell_Previews: PreviewProvider {
         
         let parsedMatchDesc = try! ParsingModel().toJson(data: matchDesc!, by: MatchDesc.self)
         
-        RecordDetailCell(matchDesc: parsedMatchDesc, nickname: "Zl존동명")
+        RecordDetailView(matchDesc: parsedMatchDesc, nickname: "Zl존동명")
     }
 }

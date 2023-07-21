@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26079D3A2A691233004142EA /* RecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26079D392A691233004142EA /* RecordDetailCell.swift */; };
+		26079D3A2A691233004142EA /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26079D392A691233004142EA /* RecordDetailView.swift */; };
 		260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865812A67788000529EE8 /* DetailIndicatorView.swift */; };
 		260865842A67CF9100529EE8 /* PieGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865832A67CF9100529EE8 /* PieGraphView.swift */; };
 		260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21EF2A55360A00A213EE /* PlayerSection.swift */; };
@@ -99,7 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26079D392A691233004142EA /* RecordDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailCell.swift; sourceTree = "<group>"; };
+		26079D392A691233004142EA /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
 		260865812A67788000529EE8 /* DetailIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIndicatorView.swift; sourceTree = "<group>"; };
 		260865832A67CF9100529EE8 /* PieGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieGraphView.swift; sourceTree = "<group>"; };
 		260A21EF2A55360A00A213EE /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
@@ -402,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				2643F4C62A5D31870009410F /* HeaderView.swift */,
-				26079D392A691233004142EA /* RecordDetailCell.swift */,
 				265182AF2A6A2055003B5A3E /* RecordCell.swift */,
 				265182B12A6A276E003B5A3E /* ComparisonBar.swift */,
 			);
@@ -511,6 +510,7 @@
 			children = (
 				26622C012A5BC8CC00AB16D2 /* Components */,
 				26622C0C2A5BF4D100AB16D2 /* RecordView.swift */,
+				26079D392A691233004142EA /* RecordDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -804,7 +804,7 @@
 				263E8C4D2A60EF0D00ED5895 /* PlayerGradeView.swift in Sources */,
 				260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */,
 				26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */,
-				26079D3A2A691233004142EA /* RecordDetailCell.swift in Sources */,
+				26079D3A2A691233004142EA /* RecordDetailView.swift in Sources */,
 				26731E672A501E0100601D53 /* MatchDesc.swift in Sources */,
 				267253612A5F9B28009EDEBE /* MainView.swift in Sources */,
 				260865842A67CF9100529EE8 /* PieGraphView.swift in Sources */,

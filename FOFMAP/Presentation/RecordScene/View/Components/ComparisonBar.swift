@@ -19,18 +19,27 @@ struct ComparisonBar: View {
     
     init(title: String, userValue: Double, opponentValue: Double, isPercentage: Bool, isInterger: Bool, userColor: Color = .red, opponentColor: Color = .blue) {
         self.title = title
-        self.userValue = userValue
-        self.opponentValue = opponentValue
         self.isPercentage = isPercentage
         self.isInterger = isInterger
         self.userColor = userColor
         self.opponentColor = opponentColor
+        
+        if userValue.isNaN {
+            self.userValue = 0
+        } else {
+            self.userValue = userValue
+        }
+        
+        if opponentValue.isNaN {
+            self.opponentValue = 0
+        } else {
+            self.opponentValue = opponentValue
+        }
     }
     
     var body: some View {
         GeometryReader { geometry in
             let maxWidth = geometry.size.width
-            let maxHeight = geometry.size.height
             
             ZStack {
                 VStack {
