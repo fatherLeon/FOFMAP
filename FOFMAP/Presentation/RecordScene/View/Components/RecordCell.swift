@@ -40,16 +40,12 @@ struct RecordCell: View {
                 .font(.caption)
                 .padding(.leading, 10)
             }
-            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
             
             if isClicked {
-                let possession = getPossession(by: matchDesc)
-                let averageRating = getAverageRating(by: matchDesc)
-                HStack {
-                    
-                }
+                RecordDetailCell(matchDesc: matchDesc, nickname: self.nickname)
             }
         }
+        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         .onTapGesture {
             if !isClicked {
                 withAnimation(.easeOut) {
@@ -100,7 +96,7 @@ extension RecordCell {
         var opponentGoal = 0
         
         match.matchInfo.forEach { matchInfo in
-            if matchInfo.nickname == nickname {
+            if matchInfo.nickname.uppercased() == nickname.uppercased() {
                 myGoal = matchInfo.shoot["goalTotal"] ?? 0
             } else {
                 opponentGoal = matchInfo.shoot["goalTotal"] ?? 0
@@ -108,36 +104,6 @@ extension RecordCell {
         }
         
         return (myGoal, opponentGoal)
-    }
-    
-    private func getPossession(by match: MatchDesc) -> (user: Double, opponent: Double) {
-        var userPossession: Double = 0.0
-        var opponentPossession: Double = 0.0
-    
-        match.matchInfo.forEach { info in
-            if info.nickname.uppercased() == nickname {
-                userPossession = Double(info.matchDetail.possession)
-            } else {
-                opponentPossession = Double(info.matchDetail.possession)
-            }
-        }
-        
-        return (userPossession, opponentPossession)
-    }
-    
-    private func getAverageRating(by match: MatchDesc) -> (user: Double, opponent: Double) {
-        var userAverageRating: Double = 0.0
-        var opponentAverageRating: Double = 0.0
-    
-        match.matchInfo.forEach { info in
-            if info.nickname.uppercased() == nickname {
-                userAverageRating = info.matchDetail.averageRating
-            } else {
-                opponentAverageRating = info.matchDetail.averageRating
-            }
-        }
-        
-        return (userAverageRating, opponentAverageRating)
     }
 }
 

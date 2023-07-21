@@ -14,12 +14,14 @@ struct PieGraphView: View {
     let lineWidth: CGFloat
     let isPercentage: Bool
     let isInterger: Bool
+    let maximumValue: Double
     
-    init(value: Double, color: Color, lineWidth: CGFloat, isPercentage: Bool = true, isInterger: Bool = false) {
+    init(value: Double, color: Color, lineWidth: CGFloat, maximumValue: Double = 1, isPercentage: Bool = true, isInterger: Bool = false) {
         self.color = color
         self.lineWidth = lineWidth
         self.isPercentage = isPercentage
         self.isInterger = isInterger
+        self.maximumValue = maximumValue
         
         if value.isNaN {
             self.value = 0.0
@@ -34,7 +36,7 @@ struct PieGraphView: View {
                 .stroke(color.opacity(0.4), lineWidth: lineWidth)
             
             Circle()
-                .trim(from: 0, to: value)
+                .trim(from: 0, to: trimmingValue)
                 .stroke(color, lineWidth: lineWidth)
                 .rotationEffect(.degrees(-90))
             
@@ -45,6 +47,10 @@ struct PieGraphView: View {
 }
 
 extension PieGraphView {
+    var trimmingValue: Double {
+        return value / maximumValue
+    }
+    
     var text: String {
         if isPercentage && isInterger {
             return String(format: "%.1f", value) + "%"
