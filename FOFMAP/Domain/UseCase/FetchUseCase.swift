@@ -21,6 +21,7 @@ protocol Offerable {
     // 메타
     func getPlayerName(by spid: Int) async throws -> String
     func getSeasonImage(by spid: Int) async throws -> UIImage
+    func getPlayerImage(by spid: Int) async throws -> UIImage
     func getPlayerActionImage(by spid: Int) async throws -> UIImage
     func getMetaDivisionGrade(gradeId: Int) async throws -> String
 }
@@ -114,8 +115,7 @@ struct FetchUseCase: Offerable {
     }
     
     func getSeasonImage(by spid: Int) async throws -> UIImage {
-        let index = "\(spid)".index("\(spid)".startIndex, offsetBy: 3)
-        let seasonId = String("\(spid)".prefix(upTo: index))
+        let seasonId = spid / 1000000
         
         guard let url = ContentType.metaSeasonId.url else {
             throw NetworkError.urlError
@@ -123,7 +123,7 @@ struct FetchUseCase: Offerable {
         
         let seasonIds = try await provider.receiveData(url: url, by: MetaSeasonIds.self)
         
-        guard let filteredSeason = seasonIds.first(where: { "\($0.seasonId)" == seasonId }),
+        guard let filteredSeason = seasonIds.first(where: { $0.seasonId == seasonId }),
               let url = URL(string: filteredSeason.seasonImgURL) else {
             throw NetworkError.invalidData
         }
@@ -134,13 +134,41 @@ struct FetchUseCase: Offerable {
     }
     
     func getPlayerActionImage(by spid: Int) async throws -> UIImage {
-        guard let url = ContentType.metaPlayerActionshotImageBySpid(spid: spid).url else {
+        let seasonId = spid / 1000000
+        let pid = spid - (seasonId * 1000000)
+        
+        guard let pidUrl = ContentType.metaPlayerActionshotImageByPid(pid: pid).url,
+              let spidUrl = ContentType.metaPlayerActionshotImageBySpid(spid: spid).url else {
             throw NetworkError.urlError
         }
         
-        let actionImage = try await provider.receiveImage(by: url)
+        let actionImageByPid = try? await provider.receiveImage(by: pidUrl)
+        let actionImageBySpid = try? await provider.receiveImage(by: spidUrl)
+        
+        guard let actionImage = actionImageBySpid ?? actionImageByPid else {
+            throw NetworkError.invalidData
+        }
         
         return actionImage
+    }
+    
+    func getPlayerImage(by spid: Int) async throws -> UIImage {
+        let seasonId = spid / 1000000
+        let pid = spid - (seasonId * 1000000)
+        
+        guard let pidUrl = ContentType.metaPlayerImageByPid(pid: pid).url,
+              let spidUrl = ContentType.metaPlayerImageBySpid(spid: spid).url else {
+            throw NetworkError.urlError
+        }
+        
+        let imageByPid = try? await provider.receiveImage(by: pidUrl)
+        let imageBySpid = try? await provider.receiveImage(by: spidUrl)
+        
+        guard let image = imageBySpid ?? imageByPid else {
+            throw NetworkError.invalidData
+        }
+        
+        return image
     }
     
     func getMetaDivisionGrade(gradeId: Int) async throws -> String {

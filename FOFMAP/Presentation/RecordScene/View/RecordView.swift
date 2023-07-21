@@ -28,14 +28,12 @@ struct RecordView: View {
                 
                 List(viewModel.matches) { matchDesc in
                     NavigationLink {
-                        // 매치 세부 뷰
+                        DeferView {
+                            MatchDetailView(userName: matchDesc.matchInfo.first?.nickname ?? "", matchDesc: matchDesc)
+                        }
                     } label: {
                         VStack {
-                            RecordCell(yearToDayText: viewModel.getYearToDayText(by: matchDesc),
-                                       hourToMinuteText: viewModel.getHourToMinute(by: matchDesc),
-                                       scoreInfo: viewModel.getScoreText(by: matchDesc),
-                                       opponentName: viewModel.getOpponentUserName(by: matchDesc))
-                            
+                            RecordCell(nickname: viewModel.nickname, matchDesc: matchDesc)
                             if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
                                 ProgressView()
                                     .onAppear {

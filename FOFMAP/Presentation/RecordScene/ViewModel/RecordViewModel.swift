@@ -17,12 +17,13 @@ final class RecordViewModel: ObservableObject {
     private var offset = 20
     private var limit = 5
     
-    @Published var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
+    var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
+    var error: UserError? = nil
+    
     @Published var matches: [MatchDesc] = []
-    @Published var nickname: String = ""
-    @Published var error: UserError? = nil
     @Published var isErrorShownAlert = false
     @Published var isPossibleFetch = false
+    @Published var nickname: String = ""
     
     @MainActor
     init(matchType: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
@@ -62,41 +63,6 @@ final class RecordViewModel: ObservableObject {
             self?.matches += newMatches
             self?.isPossibleFetch = true
         }
-    }
-    
-    func getYearToDayText(by match: MatchDesc) -> String {
-        return Date.toYearMonthDateString(match.matchDate)
-    }
-    
-    func getHourToMinute(by match: MatchDesc) -> String {
-        return Date.toHourMinuteString(match.matchDate)
-    }
-    
-    func getOpponentUserName(by match: MatchDesc) -> String {
-        var opponentUserName = ""
-        
-        match.matchInfo.forEach { info in
-            if info.nickname.uppercased() != self.nickname.uppercased() {
-                opponentUserName = info.nickname
-            }
-        }
-        
-        return opponentUserName
-    }
-    
-    func getScoreText(by match: MatchDesc) -> (player: Int, opponent: Int) {
-        var myGoal = 0
-        var opponentGoal = 0
-        
-        match.matchInfo.forEach { matchInfo in
-            if matchInfo.nickname == nickname {
-                myGoal = matchInfo.shoot["goalTotal"] ?? 0
-            } else {
-                opponentGoal = matchInfo.shoot["goalTotal"] ?? 0
-            }
-        }
-        
-        return (myGoal, opponentGoal)
     }
     
     @MainActor

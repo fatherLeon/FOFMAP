@@ -39,7 +39,7 @@ struct MostUsedPlayerUseCase: DetailFetchable {
                   let seasonImage = await seasonImage,
                   let position = PlayerSection.getPosition(by: value.position) else { continue }
             
-            mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, position: position))
+            mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, positionId: value.position, position: position))
         }
         
         throw NetworkError.invalidData
