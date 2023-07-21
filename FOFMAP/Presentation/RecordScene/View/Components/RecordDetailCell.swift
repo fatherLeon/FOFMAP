@@ -28,6 +28,20 @@ struct RecordDetailCell: View {
             }
             .font(.title3)
             
+//            HStack {
+//                PercentageProgressView(percentage: matchDesc.matchInfo.first?.matchDetail.averageRating ?? 0,
+//                                       color: .red,
+//                                       lineWidth: 5,
+//                                       isPercentage: false)
+//                Spacer()
+//                Text("경기 평점")
+//                Spacer()
+//                PercentageProgressView(percentage: matchDesc.matchInfo.last?.matchDetail.averageRating ?? 0,
+//                                       color: .blue,
+//                                       lineWidth: 5,
+//                                       isPercentage: false)
+//            }
+            
             HStack {
                 PercentageProgressView(percentage: Double (matchDesc.matchInfo.first?.matchDetail.possession ?? 0) / 100,
                                        color: .red,

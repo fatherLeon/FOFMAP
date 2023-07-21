@@ -12,10 +12,12 @@ struct PercentageProgressView: View {
     let percentage: Double
     let color: Color
     let lineWidth: CGFloat
+    let isPercentage: Bool
     
-    init(percentage: Double, color: Color, lineWidth: CGFloat) {
+    init(percentage: Double, color: Color, lineWidth: CGFloat, isPercentage: Bool = true) {
         self.color = color
         self.lineWidth = lineWidth
+        self.isPercentage = isPercentage
         
         if percentage.isNaN {
             self.percentage = 0.0
@@ -34,8 +36,13 @@ struct PercentageProgressView: View {
                 .stroke(color, lineWidth: lineWidth)
                 .rotationEffect(.degrees(-90))
             
-            Text(String(format: "%.1f", percentage * 100) + "%")
-                .font(.body)
+            if isPercentage {
+                Text(String(format: "%.1f", percentage * 100) + "%")
+                    .font(.body)
+            } else {
+                Text(String(format: "%.1f", percentage))
+                    .font(.body)
+            }
         }
         .frame(width: 75, height: 75)
     }

@@ -21,30 +21,26 @@ struct RecordCell: View {
     
     var body: some View {
         VStack {
-            if isClicked {
-                RecordDetailCell(matchDesc: matchDesc)
-            } else {
-                HStack {
-                    Text(getOpponentUserName(by: matchDesc))
-                        .font(.subheadline)
-                        .lineLimit(1)
-                    
-                    Spacer()
-                    
-                    Text(getScoreText(by: matchDesc))
-                        .font(.title3)
-                        .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
-                        .bold()
-                    
-                    VStack {
-                        Text(getYearToDayText(by: matchDesc))
-                        Text(getHourToMinute(by: matchDesc))
-                    }
-                    .font(.caption)
-                    .padding(.leading, 10)
+            HStack {
+                Text(getOpponentUserName(by: matchDesc))
+                    .font(.subheadline)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Text(getScoreText(by: matchDesc))
+                    .font(.title3)
+                    .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
+                    .bold()
+                
+                VStack {
+                    Text(getYearToDayText(by: matchDesc))
+                    Text(getHourToMinute(by: matchDesc))
                 }
-                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                .font(.caption)
+                .padding(.leading, 10)
             }
+            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         }
         .onTapGesture {
             if !isClicked {
