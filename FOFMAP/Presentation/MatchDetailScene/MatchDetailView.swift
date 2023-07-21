@@ -28,6 +28,13 @@ struct MatchDetailView: View {
         if viewModel.isFetching {
             ProgressView()
         } else {
+            Picker("UserState", selection: $viewModel.pickerSelection) {
+                ForEach(UserPick.allCases) { picked in
+                    Text(viewModel.getPickerText(picked))
+                }
+            }
+            .padding(.top, 20)
+            .pickerStyle(.segmented)
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
@@ -48,14 +55,6 @@ struct MatchDetailView: View {
                             }
                         }
                     }
-                    
-                    Picker("UserState", selection: $viewModel.pickerSelection) {
-                        ForEach(UserPick.allCases) { picked in
-                            Text(viewModel.getPickerText(picked))
-                        }
-                    }
-                    .padding(.top, 20)
-                    .pickerStyle(.segmented)
                     
                     ForEach(viewModel.players) { player in
                         PlayerCell(player: player)

@@ -20,16 +20,17 @@ struct RecordDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(nickname)
-                Text("\(matchDesc.matchInfo.first?.shoot["goalTotal"] ?? 0)")
                 controllerImages.user
+                Text(nickname)
+                Text(goals.user)
                 
                 Spacer()
                 
+                Text(goals.opponent)
                 controllerImages.opponent
-                Text("\(matchDesc.matchInfo.last?.shoot["goalTotal"] ?? 0)")
                 Text(opponentNickname)
             }
+            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
             .font(.title3)
             
             HStack {
@@ -42,23 +43,26 @@ struct RecordDetailView: View {
             HStack {
                 PieGraphView(value: averageRatings.user, color: .red, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
                     .padding(.trailing, 10)
-                ComparisonBar(title: "경기 평점", userValue: averageRatings.user, opponentValue: averageRatings.opponent, isPercentage: false, isInterger: false)
+                Spacer()
+                Text("경기평점")
+                Spacer()
                 PieGraphView(value: averageRatings.opponent, color: .blue, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
                     .padding(.leading, 10)
             }
             HStack {
-                PieGraphView(value: shootings.user, color: .red, lineWidth: 5, maximumValue: shootings.user + shootings.opponent, isPercentage: false, isInterger: true)
                 ComparisonBar(title: "슈팅 수", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
-                PieGraphView(value: shootings.opponent, color: .blue, lineWidth: 5, maximumValue: shootings.user + shootings.opponent, isPercentage: false, isInterger: true)
+                    .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
             }
             HStack {
-                PieGraphView(value: effectiveShoots.user, color: .red, lineWidth: 5, maximumValue: effectiveShoots.user + effectiveShoots.opponent, isPercentage: false, isInterger: true)
-                ComparisonBar(title: "유효 슈팅 수", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
-                PieGraphView(value: effectiveShoots.opponent, color: .blue, lineWidth: 5, maximumValue: effectiveShoots.user + effectiveShoots.opponent, isPercentage: false, isInterger: true)
+                PieGraphView(value: effectiveShoots.user, color: .red, lineWidth: 5, maximumValue: shootings.user, isPercentage: false, isInterger: true)
+                ComparisonBar(title: "유효 슈팅 비율", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
+                PieGraphView(value: effectiveShoots.opponent, color: .blue, lineWidth: 5, maximumValue: shootings.opponent, isPercentage: false, isInterger: true)
             }
             HStack {
                 PieGraphView(value: passAccuracy.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
-                ComparisonBar(title: "패스 성공 률", userValue: passAccuracy.user, opponentValue: passAccuracy.opponent, isPercentage: true, isInterger: false)
+                Spacer()
+                Text("패스 성공률")
+                Spacer()
                 PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
             }
             
@@ -69,6 +73,7 @@ struct RecordDetailView: View {
             }
 
         }
+        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
     }
 }
 
@@ -89,6 +94,20 @@ extension RecordDetailView {
         let opponentController = matchDesc.matchInfo.first { $0.nickname.uppercased() != self.nickname }?.matchDetail.controller == "keyboard" ? Image(systemName: "keyboard.fill") : Image(systemName: "gamecontroller.fill")
         
         return (userController, opponentController)
+    }
+    private var goals: (user: String, opponent: String) {
+        var userGoal = 0
+        var opponentGoal = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userGoal = info.shoot["goalTotal"] ?? 0
+            } else {
+                opponentGoal = info.shoot["goalTotal"] ?? 0
+            }
+        }
+        
+        return ("\(userGoal)", "\(opponentGoal)")
     }
     private var possesions: (user: Double, opponent: Double) {
         var userPossession: Double = 0.0
