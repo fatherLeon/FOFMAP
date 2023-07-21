@@ -46,6 +46,10 @@ struct PieGraphView: View {
 
 extension PieGraphView {
     var text: String {
+        if isPercentage && isInterger {
+            return String(format: "%.1f", value) + "%"
+        }
+        
         if isPercentage {
             return String(format: "%.1f", value * 100) + "%"
         }
