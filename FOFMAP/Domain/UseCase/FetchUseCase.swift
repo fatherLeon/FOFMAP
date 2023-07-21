@@ -142,14 +142,17 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let actionImageByPid = try? await provider.receiveImage(by: pidUrl)
         let actionImageBySpid = try? await provider.receiveImage(by: spidUrl)
-        
-        guard let actionImage = actionImageBySpid ?? actionImageByPid else {
-            throw NetworkError.invalidData
+        if let image = actionImageBySpid {
+            return image
         }
         
-        return actionImage
+        let actionImageByPid = try? await provider.receiveImage(by: pidUrl)
+        if let image = actionImageByPid {
+            return image
+        }
+        
+        throw NetworkError.invalidData
     }
     
     func getPlayerImage(by spid: Int) async throws -> UIImage {
@@ -161,14 +164,17 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let imageByPid = try? await provider.receiveImage(by: pidUrl)
         let imageBySpid = try? await provider.receiveImage(by: spidUrl)
-        
-        guard let image = imageBySpid ?? imageByPid else {
-            throw NetworkError.invalidData
+        if let image = imageBySpid {
+            return image
         }
         
-        return image
+        let imageByPid = try? await provider.receiveImage(by: pidUrl)
+        if let image = imageByPid {
+            return image
+        }
+
+        throw NetworkError.invalidData
     }
     
     func getMetaDivisionGrade(gradeId: Int) async throws -> String {
