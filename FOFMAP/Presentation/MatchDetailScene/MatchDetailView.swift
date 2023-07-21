@@ -33,7 +33,6 @@ struct MatchDetailView: View {
                     Text(viewModel.getPickerText(picked))
                 }
             }
-            .padding(.top, 20)
             .pickerStyle(.segmented)
             
             ScrollView(.vertical, showsIndicators: false) {
