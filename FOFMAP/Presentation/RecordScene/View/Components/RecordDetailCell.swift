@@ -43,13 +43,13 @@ struct RecordDetailCell: View {
 //            }
             
             HStack {
-                PercentageProgressView(percentage: Double (matchDesc.matchInfo.first?.matchDetail.possession ?? 0) / 100,
+                PieGraphView(value: Double (matchDesc.matchInfo.first?.matchDetail.possession ?? 0) / 100,
                                        color: .red,
                                        lineWidth: 5)
                 Spacer()
                 Text("점유율")
                 Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.matchDetail.possession ?? 0) / 100,
+                PieGraphView(value: Double(matchDesc.matchInfo.last?.matchDetail.possession ?? 0) / 100,
                                        color: .blue,
                                        lineWidth: 5)
             }
@@ -71,13 +71,13 @@ struct RecordDetailCell: View {
             }
             
             HStack {
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.first?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.first?.shoot["shootTotal"] ?? 1),
+                PieGraphView(value: Double(matchDesc.matchInfo.first?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.first?.shoot["shootTotal"] ?? 1),
                                        color: .red,
                                        lineWidth: 5)
                 Spacer()
                 Text("유효슈팅 비율")
                 Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.last?.shoot["shootTotal"] ?? 1),
+                PieGraphView(value: Double(matchDesc.matchInfo.last?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.last?.shoot["shootTotal"] ?? 1),
                                        color: .blue,
                                        lineWidth: 5)
             }
@@ -99,13 +99,13 @@ struct RecordDetailCell: View {
             }
             
             HStack {
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.first?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.first?.pass["passTry"] ?? 1),
+                PieGraphView(value: Double(matchDesc.matchInfo.first?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.first?.pass["passTry"] ?? 1),
                                        color: .red,
                                        lineWidth: 5)
                 Spacer()
                 Text("패스 성공 비율")
                 Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.last?.pass["passTry"] ?? 1),
+                PieGraphView(value: Double(matchDesc.matchInfo.last?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.last?.pass["passTry"] ?? 1),
                                        color: .blue,
                                        lineWidth: 5)
             }

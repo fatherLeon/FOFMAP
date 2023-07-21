@@ -41,6 +41,14 @@ struct RecordCell: View {
                 .padding(.leading, 10)
             }
             .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+            
+            if isClicked {
+                let possession = getPossession(by: matchDesc)
+                let averageRating = getAverageRating(by: matchDesc)
+                HStack {
+                    
+                }
+            }
         }
         .onTapGesture {
             if !isClicked {
@@ -100,6 +108,36 @@ extension RecordCell {
         }
         
         return (myGoal, opponentGoal)
+    }
+    
+    private func getPossession(by match: MatchDesc) -> (user: Double, opponent: Double) {
+        var userPossession: Double = 0.0
+        var opponentPossession: Double = 0.0
+    
+        match.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname {
+                userPossession = Double(info.matchDetail.possession)
+            } else {
+                opponentPossession = Double(info.matchDetail.possession)
+            }
+        }
+        
+        return (userPossession, opponentPossession)
+    }
+    
+    private func getAverageRating(by match: MatchDesc) -> (user: Double, opponent: Double) {
+        var userAverageRating: Double = 0.0
+        var opponentAverageRating: Double = 0.0
+    
+        match.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname {
+                userAverageRating = info.matchDetail.averageRating
+            } else {
+                opponentAverageRating = info.matchDetail.averageRating
+            }
+        }
+        
+        return (userAverageRating, opponentAverageRating)
     }
 }
 

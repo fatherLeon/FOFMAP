@@ -46,7 +46,7 @@ struct DetailIndicatorView: View {
                     Spacer()
                     
                     if indicator.isPercentage {
-                        PercentageProgressView(percentage: indicator.value, color: .red, lineWidth: 10)
+                        PieGraphView(value: indicator.value, color: .red, lineWidth: 10)
                     } else {
                         Text("\(indicator.valueText)")
                     }
