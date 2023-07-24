@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26079D3A2A691233004142EA /* RecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26079D392A691233004142EA /* RecordDetailCell.swift */; };
+		26079D3A2A691233004142EA /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26079D392A691233004142EA /* RecordDetailView.swift */; };
 		260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865812A67788000529EE8 /* DetailIndicatorView.swift */; };
-		260865842A67CF9100529EE8 /* PercentageProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865832A67CF9100529EE8 /* PercentageProgressView.swift */; };
+		260865842A67CF9100529EE8 /* PieGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260865832A67CF9100529EE8 /* PieGraphView.swift */; };
 		260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21EF2A55360A00A213EE /* PlayerSection.swift */; };
 		260A21F42A554FF900A213EE /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A21F32A554FF900A213EE /* View+Extension.swift */; };
 		2621C7B52A539C9800DF33F4 /* FakeURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */; };
@@ -37,10 +37,11 @@
 		264DEB2E2A514572003F357C /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB2D2A514572003F357C /* CacheManager.swift */; };
 		264DEB302A51578F003F357C /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB2F2A51578F003F357C /* NetworkManagerTests.swift */; };
 		264DEB332A515D5B003F357C /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DEB322A515D5B003F357C /* MockURLProtocol.swift */; };
+		265182B02A6A2055003B5A3E /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265182AF2A6A2055003B5A3E /* RecordCell.swift */; };
+		265182B22A6A276E003B5A3E /* ComparisonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265182B12A6A276E003B5A3E /* ComparisonBar.swift */; };
 		2661196E2A5E7B3C00F17672 /* UserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2661196D2A5E7B3C00F17672 /* UserInfoUseCase.swift */; };
 		26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */; };
 		26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622BFD2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift */; };
-		26622C032A5BD1BD00AB16D2 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622C022A5BD1BD00AB16D2 /* RecordCell.swift */; };
 		26622C092A5BF47E00AB16D2 /* DisconnectedNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622C082A5BF47E00AB16D2 /* DisconnectedNetworkView.swift */; };
 		26622C0D2A5BF4D100AB16D2 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622C0C2A5BF4D100AB16D2 /* RecordView.swift */; };
 		26622C0F2A5C026100AB16D2 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26622C0E2A5C026100AB16D2 /* Date+Extension.swift */; };
@@ -98,9 +99,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26079D392A691233004142EA /* RecordDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailCell.swift; sourceTree = "<group>"; };
+		26079D392A691233004142EA /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
 		260865812A67788000529EE8 /* DetailIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIndicatorView.swift; sourceTree = "<group>"; };
-		260865832A67CF9100529EE8 /* PercentageProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageProgressView.swift; sourceTree = "<group>"; };
+		260865832A67CF9100529EE8 /* PieGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieGraphView.swift; sourceTree = "<group>"; };
 		260A21EF2A55360A00A213EE /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
 		260A21F32A554FF900A213EE /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		2621C7B42A539C9800DF33F4 /* FakeURLCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLCache.swift; sourceTree = "<group>"; };
@@ -129,10 +130,11 @@
 		264DEB2D2A514572003F357C /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		264DEB2F2A51578F003F357C /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		264DEB322A515D5B003F357C /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		265182AF2A6A2055003B5A3E /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		265182B12A6A276E003B5A3E /* ComparisonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonBar.swift; sourceTree = "<group>"; };
 		2661196D2A5E7B3C00F17672 /* UserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUseCase.swift; sourceTree = "<group>"; };
 		26622BFB2A5BA75D00AB16D2 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		26622BFD2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchRecordUseCase.swift; sourceTree = "<group>"; };
-		26622C022A5BD1BD00AB16D2 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		26622C082A5BF47E00AB16D2 /* DisconnectedNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedNetworkView.swift; sourceTree = "<group>"; };
 		26622C0C2A5BF4D100AB16D2 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		26622C0E2A5C026100AB16D2 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -354,7 +356,7 @@
 				2672536A2A5FF1B6009EDEBE /* GroundView.swift */,
 				26D59F612A6646500011C637 /* PlayerCell.swift */,
 				260865812A67788000529EE8 /* DetailIndicatorView.swift */,
-				260865832A67CF9100529EE8 /* PercentageProgressView.swift */,
+				260865832A67CF9100529EE8 /* PieGraphView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -400,8 +402,8 @@
 			isa = PBXGroup;
 			children = (
 				2643F4C62A5D31870009410F /* HeaderView.swift */,
-				26622C022A5BD1BD00AB16D2 /* RecordCell.swift */,
-				26079D392A691233004142EA /* RecordDetailCell.swift */,
+				265182AF2A6A2055003B5A3E /* RecordCell.swift */,
+				265182B12A6A276E003B5A3E /* ComparisonBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -508,6 +510,7 @@
 			children = (
 				26622C012A5BC8CC00AB16D2 /* Components */,
 				26622C0C2A5BF4D100AB16D2 /* RecordView.swift */,
+				26079D392A691233004142EA /* RecordDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -775,10 +778,12 @@
 				2661196E2A5E7B3C00F17672 /* UserInfoUseCase.swift in Sources */,
 				2621C7C92A53CC0400DF33F4 /* MainViewModel.swift in Sources */,
 				262658562A4C059C0097AF73 /* ContentType.swift in Sources */,
+				265182B22A6A276E003B5A3E /* ComparisonBar.swift in Sources */,
 				260A21F42A554FF900A213EE /* View+Extension.swift in Sources */,
 				2643F4C72A5D31870009410F /* HeaderView.swift in Sources */,
 				26622BFE2A5BA86A00AB16D2 /* UserMatchRecordUseCase.swift in Sources */,
 				26D59F622A6646500011C637 /* PlayerCell.swift in Sources */,
+				265182B02A6A2055003B5A3E /* RecordCell.swift in Sources */,
 				260865822A67788000529EE8 /* DetailIndicatorView.swift in Sources */,
 				26622BFC2A5BA75D00AB16D2 /* RecordViewModel.swift in Sources */,
 				26ABEDC62A57ECB70079787E /* Bundle+Extension.swift in Sources */,
@@ -797,13 +802,12 @@
 				2672536B2A5FF1B6009EDEBE /* GroundView.swift in Sources */,
 				2621C7D12A5401C700DF33F4 /* NetworkMonitor.swift in Sources */,
 				263E8C4D2A60EF0D00ED5895 /* PlayerGradeView.swift in Sources */,
-				26622C032A5BD1BD00AB16D2 /* RecordCell.swift in Sources */,
 				260A21F02A55360A00A213EE /* PlayerSection.swift in Sources */,
 				26731E5D2A501AD000601D53 /* UserGrade.swift in Sources */,
-				26079D3A2A691233004142EA /* RecordDetailCell.swift in Sources */,
+				26079D3A2A691233004142EA /* RecordDetailView.swift in Sources */,
 				26731E672A501E0100601D53 /* MatchDesc.swift in Sources */,
 				267253612A5F9B28009EDEBE /* MainView.swift in Sources */,
-				260865842A67CF9100529EE8 /* PercentageProgressView.swift in Sources */,
+				260865842A67CF9100529EE8 /* PieGraphView.swift in Sources */,
 				264DEB2E2A514572003F357C /* CacheManager.swift in Sources */,
 				26731E5F2A501B6200601D53 /* UserMatches.swift in Sources */,
 				26D7DBDE2A4B01BA00B42317 /* FOFMAPApp.swift in Sources */,

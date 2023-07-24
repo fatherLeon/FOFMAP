@@ -27,19 +27,14 @@ struct RecordView: View {
                 HeaderView(user: viewModel.user)
                 
                 List(viewModel.matches) { matchDesc in
-                    NavigationLink {
-                        DeferView {
-                            MatchDetailView(userName: matchDesc.matchInfo.first?.nickname ?? "", matchDesc: matchDesc)
-                        }
-                    } label: {
-                        VStack {
-                            RecordCell(nickname: viewModel.nickname, matchDesc: matchDesc)
-                            if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
-                                ProgressView()
-                                    .onAppear {
-                                        viewModel.getAdditionalRecordMatches()
-                                    }
-                            }
+                    VStack {
+                        RecordCell(nickname: viewModel.nickname, matchDesc: matchDesc)
+
+                        if viewModel.isPossibleFetch && viewModel.isLastItem(matchDesc) {
+                            ProgressView()
+                                .onAppear {
+                                    viewModel.getAdditionalRecordMatches()
+                                }
                         }
                     }
                 }

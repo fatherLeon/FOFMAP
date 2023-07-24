@@ -35,7 +35,7 @@ struct HeaderView: View {
             .padding(.trailing, 20)
         }
         .foregroundColor(.black)
-        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+        .padding(EdgeInsets(top: 20, leading: 10, bottom: 10, trailing: 10))
         .background(CustomColor.gradeBackgroundColor)
     }
 }

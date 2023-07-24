@@ -60,8 +60,12 @@ struct PlayerDetailView: View {
                     DetailIndicatorView(indicatorMainTitle: "메인 지표",
                                         indicators: [
                                             Indicator(title: "슈팅 수", value: player.status["shoot"] ?? 0),
+                                            Indicator(title: "유효 슈팅 수", value: player.status["effectiveShoot"] ?? 0),
                                                     Indicator(title: "득점", value: player.status["goal"] ?? 0),
-                                                    Indicator(title: "어시스트", value: player.status["assist"] ?? 0)
+                                                    Indicator(title: "어시스트", value: player.status["assist"] ?? 0),
+                                            Indicator(title: "유효 슈팅 비율",
+                                                      value: (player.status["effectiveShoot"] ?? 0) / (player.status["shoot"] ?? 1),
+                                                      isPercentage: true)
                                         ])
                     
                     DetailIndicatorView(indicatorMainTitle: "패스 지표",

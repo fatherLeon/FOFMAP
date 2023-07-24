@@ -7,124 +7,216 @@
 
 import SwiftUI
 
-struct RecordDetailCell: View {
+struct RecordDetailView: View {
     
-    let matchDesc: MatchDesc
+    private let matchDesc: MatchDesc
+    private let nickname: String
+    
+    init(matchDesc: MatchDesc, nickname: String) {
+        self.matchDesc = matchDesc
+        self.nickname = nickname
+    }
     
     var body: some View {
         VStack {
             HStack {
-                let (lhsControllerImage, rhsControllerImage) = getControllerImage()
-                
-                Text(matchDesc.matchInfo.first?.nickname ?? "")
-                Text("\(matchDesc.matchInfo.first?.shoot["goalTotal"] ?? 0)")
-                lhsControllerImage
+                controllerImages.user
+                Text(nickname)
+                Text(goals.user)
                 
                 Spacer()
                 
-                rhsControllerImage
-                Text("\(matchDesc.matchInfo.last?.shoot["goalTotal"] ?? 0)")
-                Text(matchDesc.matchInfo.last?.nickname ?? "")
+                Text(goals.opponent)
+                controllerImages.opponent
+                Text(opponentNickname)
             }
+            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
             .font(.title3)
             
-//            HStack {
-//                PercentageProgressView(percentage: matchDesc.matchInfo.first?.matchDetail.averageRating ?? 0,
-//                                       color: .red,
-//                                       lineWidth: 5,
-//                                       isPercentage: false)
-//                Spacer()
-//                Text("경기 평점")
-//                Spacer()
-//                PercentageProgressView(percentage: matchDesc.matchInfo.last?.matchDetail.averageRating ?? 0,
-//                                       color: .blue,
-//                                       lineWidth: 5,
-//                                       isPercentage: false)
-//            }
-            
-            HStack {
-                PercentageProgressView(percentage: Double (matchDesc.matchInfo.first?.matchDetail.possession ?? 0) / 100,
-                                       color: .red,
-                                       lineWidth: 5)
-                Spacer()
-                Text("점유율")
-                Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.matchDetail.possession ?? 0) / 100,
-                                       color: .blue,
-                                       lineWidth: 5)
-            }
-            
-            HStack {
-                Text("\(matchDesc.matchInfo.first?.shoot["shootTotal"] ?? 0)")
-                Spacer()
-                Text("총 슈팅")
-                Spacer()
-                Text("\(matchDesc.matchInfo.last?.shoot["shootTotal"] ?? 0)")
-            }
-            
-            HStack {
-                Text("\(matchDesc.matchInfo.first?.shoot["effectiveShootTotal"] ?? 0)")
-                Spacer()
-                Text("유효슈팅")
-                Spacer()
-                Text("\(matchDesc.matchInfo.last?.shoot["effectiveShootTotal"] ?? 0)")
-            }
-            
-            HStack {
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.first?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.first?.shoot["shootTotal"] ?? 1),
-                                       color: .red,
-                                       lineWidth: 5)
-                Spacer()
-                Text("유효슈팅 비율")
-                Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.shoot["effectiveShootTotal"] ?? 0) / Double(matchDesc.matchInfo.last?.shoot["shootTotal"] ?? 1),
-                                       color: .blue,
-                                       lineWidth: 5)
-            }
-            
-            HStack {
-                Text("\(matchDesc.matchInfo.first?.pass["passTry"] ?? 0)")
-                Spacer()
-                Text("패스 시도 수")
-                Spacer()
-                Text("\(matchDesc.matchInfo.last?.pass["passTry"] ?? 0)")
-            }
-            
-            HStack {
-                Text("\(matchDesc.matchInfo.first?.pass["passSuccess"] ?? 0)")
-                Spacer()
-                Text("패스 성공 수")
-                Spacer()
-                Text("\(matchDesc.matchInfo.last?.pass["passSuccess"] ?? 0)")
-            }
-            
-            HStack {
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.first?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.first?.pass["passTry"] ?? 1),
-                                       color: .red,
-                                       lineWidth: 5)
-                Spacer()
-                Text("패스 성공 비율")
-                Spacer()
-                PercentageProgressView(percentage: Double(matchDesc.matchInfo.last?.pass["passSuccess"] ?? 0) / Double(matchDesc.matchInfo.last?.pass["passTry"] ?? 1),
-                                       color: .blue,
-                                       lineWidth: 5)
+            ScrollView {
+                VStack(spacing: 100) {
+                    HStack {
+                        PieGraphView(value: possesions.user, color: .red, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
+                            .padding(.trailing, 10)
+                        ComparisonBar(title: "점유율", userValue: possesions.user, opponentValue: possesions.opponent, isPercentage: true, isInterger: true)
+                        PieGraphView(value: possesions.opponent, color: .blue, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
+                            .padding(.leading, 10)
+                    }
+                    .padding(.top, 20)
+                    
+                    HStack {
+                        PieGraphView(value: averageRatings.user, color: .red, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
+                            .padding(.trailing, 10)
+                        Spacer()
+                        Text("경기평점")
+                        Spacer()
+                        PieGraphView(value: averageRatings.opponent, color: .blue, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
+                            .padding(.leading, 10)
+                    }
+                    HStack {
+                        ComparisonBar(title: "슈팅 시도", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
+                    }
+                    HStack {
+                        PieGraphView(value: effectiveShoots.user / shootings.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                        ComparisonBar(title: "유효 슈팅", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
+                        PieGraphView(value: effectiveShoots.opponent / shootings.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                    }
+                    HStack {
+                        ComparisonBar(title: "패스 시도", userValue: passTry.user, opponentValue: passTry.opponent, isPercentage: false, isInterger: true)
+                    }
+                    HStack {
+                        PieGraphView(value: passAccuracy.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                        ComparisonBar(title: "패스 성공", userValue: passSuccess.user, opponentValue: passSuccess.opponent, isPercentage: false, isInterger: true)
+                        PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                    }
+                    
+                    NavigationLink {
+                        MatchDetailView(userName: self.nickname, matchDesc: matchDesc)
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.blue)
+                                .cornerRadius(10)
+                                .padding(EdgeInsets(top: -20, leading: 0, bottom: -20, trailing: 0))
+                            
+                            Text("선수단 확인")
+                                .foregroundColor(.white)
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 30, bottom: 30, trailing: 30))
+                    }
+                    
+                }
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             }
         }
-        .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
     }
 }
 
-extension RecordDetailCell {
-    private func getControllerImage() -> (Image, Image) {
-        let lhsController = matchDesc.matchInfo.first?.matchDetail.controller == "keyboard" ? Image(systemName: "keyboard.fill") : Image(systemName: "gamecontroller.fill")
+extension RecordDetailView {
+    private var opponentNickname: String {
+        var opponentNickname: String = ""
         
-        let rhsController = matchDesc.matchInfo.last?.matchDetail.controller == "keyboard" ? Image(systemName: "keyboard.fill") : Image(systemName: "gamecontroller.fill")
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() != self.nickname {
+                opponentNickname = info.nickname.uppercased()
+            }
+        }
         
-        return (lhsController, rhsController)
+        return opponentNickname
+    }
+    private var controllerImages: (user: Image, opponent: Image) {
+        let userController = matchDesc.matchInfo.first { $0.nickname.uppercased() == self.nickname }?.matchDetail.controller == "keyboard" ? Image(systemName: "keyboard.fill") : Image(systemName: "gamecontroller.fill")
+        let opponentController = matchDesc.matchInfo.first { $0.nickname.uppercased() != self.nickname }?.matchDetail.controller == "keyboard" ? Image(systemName: "keyboard.fill") : Image(systemName: "gamecontroller.fill")
+        
+        return (userController, opponentController)
+    }
+    private var goals: (user: String, opponent: String) {
+        var userGoal = 0
+        var opponentGoal = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userGoal = info.shoot["goalTotal"] ?? 0
+            } else {
+                opponentGoal = info.shoot["goalTotal"] ?? 0
+            }
+        }
+        
+        return ("\(userGoal)", "\(opponentGoal)")
+    }
+    private var possesions: (user: Double, opponent: Double) {
+        var userPossession: Double = 0.0
+        var opponentPossession: Double = 0.0
+    
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userPossession = Double(info.matchDetail.possession)
+            } else {
+                opponentPossession = Double(info.matchDetail.possession)
+            }
+        }
+        
+        return (userPossession, opponentPossession)
+    }
+    private var averageRatings: (user: Double, opponent: Double) {
+        var userAverageRating: Double = 0.0
+        var opponentAverageRating: Double = 0.0
+    
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userAverageRating = info.matchDetail.averageRating
+            } else {
+                opponentAverageRating = info.matchDetail.averageRating
+            }
+        }
+        
+        return (userAverageRating, opponentAverageRating)
+    }
+    private var shootings: (user: Double, opponent: Double) {
+        var userShooting: Double = 0
+        var opponentShooting: Double = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userShooting = Double(info.shoot["shootTotal"] ?? 0)
+            } else {
+                opponentShooting = Double(info.shoot["shootTotal"] ?? 0)
+            }
+        }
+        
+        return (userShooting, opponentShooting)
+    }
+    private var effectiveShoots: (user: Double, opponent: Double) {
+        var userShooting: Double = 0
+        var opponentShooting: Double = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userShooting = Double(info.shoot["effectiveShootTotal"] ?? 0)
+            } else {
+                opponentShooting = Double(info.shoot["effectiveShootTotal"] ?? 0)
+            }
+        }
+        
+        return (userShooting, opponentShooting)
+    }
+    private var passTry: (user: Double, opponent: Double) {
+        var userPassTry: Double = 0
+        var opponentPassTry: Double = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userPassTry = Double(info.pass["passTry"] ?? 1)
+            } else {
+                opponentPassTry = Double(info.pass["passTry"] ?? 1)
+            }
+        }
+        
+        return (userPassTry, opponentPassTry)
+    }
+    private var passSuccess: (user: Double, opponent: Double) {
+        var userPassSuccess: Double = 0
+        var opponentPassSuccess: Double = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userPassSuccess = Double(info.pass["passSuccess"] ?? 0)
+            } else {
+                opponentPassSuccess = Double(info.pass["passSuccess"] ?? 0)
+            }
+        }
+        
+        return (userPassSuccess, opponentPassSuccess)
+    }
+    private var passAccuracy: (user: Double, opponent: Double) {
+        let userPassAcc = passSuccess.user / passTry.user
+        let opponentPassAcc = passSuccess.opponent / passTry.opponent
+        
+        return (userPassAcc, opponentPassAcc)
     }
 }
 
-struct RecordDetailCell_Previews: PreviewProvider {
+struct RecordDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let matchDesc = """
         {
@@ -1412,6 +1504,6 @@ struct RecordDetailCell_Previews: PreviewProvider {
         
         let parsedMatchDesc = try! ParsingModel().toJson(data: matchDesc!, by: MatchDesc.self)
         
-        RecordDetailCell(matchDesc: parsedMatchDesc)
+        RecordDetailView(matchDesc: parsedMatchDesc, nickname: "Zl존동명")
     }
 }
