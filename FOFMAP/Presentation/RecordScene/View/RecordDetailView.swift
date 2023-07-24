@@ -54,19 +54,19 @@ struct RecordDetailView: View {
                             .padding(.leading, 10)
                     }
                     HStack {
-                        ComparisonBar(title: "슈팅 수", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
-                            .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
+                        ComparisonBar(title: "슈팅 시도", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
                     }
                     HStack {
-                        PieGraphView(value: effectiveShoots.user, color: .red, lineWidth: 5, maximumValue: shootings.user, isPercentage: false, isInterger: true)
-                        ComparisonBar(title: "유효 슈팅 비율", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
-                        PieGraphView(value: effectiveShoots.opponent, color: .blue, lineWidth: 5, maximumValue: shootings.opponent, isPercentage: false, isInterger: true)
+                        PieGraphView(value: effectiveShoots.user / shootings.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                        ComparisonBar(title: "유효 슈팅", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
+                        PieGraphView(value: effectiveShoots.opponent / shootings.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                    }
+                    HStack {
+                        ComparisonBar(title: "패스 시도", userValue: passTry.user, opponentValue: passTry.opponent, isPercentage: false, isInterger: true)
                     }
                     HStack {
                         PieGraphView(value: passAccuracy.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
-                        Spacer()
-                        Text("패스 성공률")
-                        Spacer()
+                        ComparisonBar(title: "패스 성공", userValue: passSuccess.user, opponentValue: passSuccess.opponent, isPercentage: false, isInterger: true)
                         PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
                     }
                     
@@ -180,19 +180,39 @@ extension RecordDetailView {
         
         return (userShooting, opponentShooting)
     }
-    private var passAccuracy: (user: Double, opponent: Double) {
-        var userAcc: Double = 0
-        var opponentAcc: Double = 0
+    private var passTry: (user: Double, opponent: Double) {
+        var userPassTry: Double = 0
+        var opponentPassTry: Double = 0
         
         matchDesc.matchInfo.forEach { info in
             if info.nickname.uppercased() == nickname.uppercased() {
-                userAcc = Double(info.pass["passSuccess"] ?? 0) / Double(info.pass["passTry"] ?? 1)
+                userPassTry = Double(info.pass["passTry"] ?? 1)
             } else {
-                opponentAcc = Double(info.pass["passSuccess"] ?? 0) / Double(info.pass["passTry"] ?? 1)
+                opponentPassTry = Double(info.pass["passTry"] ?? 1)
             }
         }
         
-        return (userAcc, opponentAcc)
+        return (userPassTry, opponentPassTry)
+    }
+    private var passSuccess: (user: Double, opponent: Double) {
+        var userPassSuccess: Double = 0
+        var opponentPassSuccess: Double = 0
+        
+        matchDesc.matchInfo.forEach { info in
+            if info.nickname.uppercased() == nickname.uppercased() {
+                userPassSuccess = Double(info.pass["passSuccess"] ?? 0)
+            } else {
+                opponentPassSuccess = Double(info.pass["passSuccess"] ?? 0)
+            }
+        }
+        
+        return (userPassSuccess, opponentPassSuccess)
+    }
+    private var passAccuracy: (user: Double, opponent: Double) {
+        let userPassAcc = passSuccess.user / passTry.user
+        let opponentPassAcc = passSuccess.opponent / passTry.opponent
+        
+        return (userPassAcc, opponentPassAcc)
     }
 }
 
