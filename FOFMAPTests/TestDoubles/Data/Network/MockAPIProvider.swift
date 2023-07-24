@@ -16,7 +16,7 @@ final class MockAPIProvider: Providable {
     private var calledReceiveDataNum = 0
     private var calledReceiveImageNum = 0
     
-    func receiveData<T>(url: URL, by type: T.Type) async throws -> T where T : Decodable {
+    func receiveData<T: Decodable>(url: URL, isCached: Bool, by type: T.Type) async throws -> T {
         self.calledReceiveDataNum += 1
         
         if let error = MockAPIProvider.testingSampleData.error {
@@ -32,7 +32,7 @@ final class MockAPIProvider: Providable {
         return parsingData
     }
     
-    func receiveImage(by url: URL) async throws -> UIImage {
+    func receiveImage(isCached: Bool, by url: URL) async throws -> UIImage {
         self.calledReceiveImageNum += 1
         
         if let error = MockAPIProvider.testingSampleData.error {
