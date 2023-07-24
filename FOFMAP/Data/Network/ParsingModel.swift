@@ -10,14 +10,9 @@ import UIKit
 struct ParsingModel {
     func toJson<T: Decodable>(data: Data, by type: T.Type) throws -> T {
         let decoder = JSONDecoder()
-        
-        do {
-            let parsedData = try decoder.decode(type, from: data)
+        let parsedData = try decoder.decode(type, from: data)
             
-            return parsedData
-        } catch {
-            throw NetworkError.incorrectType
-        }
+        return parsedData
     }
     
     func toImage(data: Data) throws -> UIImage {
