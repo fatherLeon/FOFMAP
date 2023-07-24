@@ -39,7 +39,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let userInfo = try await provider.receiveData(url: url, by: UserInfo.self)
+        let userInfo = try await provider.receiveData(url: url, isCached: false, by: UserInfo.self)
         
         return (userInfo.id, userInfo.level)
     }
@@ -49,7 +49,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let matchIds = try await provider.receiveData(url: url, by: UserMatches.self)
+        let matchIds = try await provider.receiveData(url: url, isCached: false, by: UserMatches.self)
         
         return matchIds
     }
@@ -59,7 +59,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let userGrades = try await provider.receiveData(url: url, by: UserGrade.self)
+        let userGrades = try await provider.receiveData(url: url, isCached: false, by: UserGrade.self)
         
         return userGrades
     }
@@ -70,7 +70,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let allMatchIDs = try await provider.receiveData(url: url, by: MatchAllRecord.self)
+        let allMatchIDs = try await provider.receiveData(url: url, isCached: false, by: MatchAllRecord.self)
         
         return allMatchIDs
     }
@@ -80,7 +80,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        let matchDesc = try await provider.receiveData(url: url, isCached: false, by: MatchDesc.self)
         
         return matchDesc
     }
@@ -89,7 +89,7 @@ struct FetchUseCase: Offerable {
         guard let url = ContentType.matchDesc(matchId: matchId).url else {
             throw NetworkError.urlError
         }
-        let matchDesc = try await provider.receiveData(url: url, by: MatchDesc.self)
+        let matchDesc = try await provider.receiveData(url: url, isCached: false, by: MatchDesc.self)
         var players: [Player] = []
         
         matchDesc.matchInfo.forEach { matchInfo in
@@ -105,7 +105,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let players = try await provider.receiveData(url: url, by: MetaPlayerIds.self)
+        let players = try await provider.receiveData(url: url, isCached: true, by: MetaPlayerIds.self)
         
         guard let filteredPlayer = players.first(where: { $0.id == spid }) else {
             throw NetworkError.invalidData
@@ -121,14 +121,14 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let seasonIds = try await provider.receiveData(url: url, by: MetaSeasonIds.self)
+        let seasonIds = try await provider.receiveData(url: url, isCached: true, by: MetaSeasonIds.self)
         
         guard let filteredSeason = seasonIds.first(where: { $0.seasonId == seasonId }),
               let url = URL(string: filteredSeason.seasonImgURL) else {
             throw NetworkError.invalidData
         }
         
-        let seasonImage = try await provider.receiveImage(by: url)
+        let seasonImage = try await provider.receiveImage(isCached: false, by: url)
         
         return seasonImage
     }
@@ -142,12 +142,12 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let actionImageBySpid = try? await provider.receiveImage(by: spidUrl)
+        let actionImageBySpid = try? await provider.receiveImage(isCached: false, by: spidUrl)
         if let image = actionImageBySpid {
             return image
         }
         
-        let actionImageByPid = try? await provider.receiveImage(by: pidUrl)
+        let actionImageByPid = try? await provider.receiveImage(isCached: false, by: pidUrl)
         if let image = actionImageByPid {
             return image
         }
@@ -164,12 +164,12 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let imageBySpid = try? await provider.receiveImage(by: spidUrl)
+        let imageBySpid = try? await provider.receiveImage(isCached: false, by: spidUrl)
         if let image = imageBySpid {
             return image
         }
         
-        let imageByPid = try? await provider.receiveImage(by: pidUrl)
+        let imageByPid = try? await provider.receiveImage(isCached: false, by: pidUrl)
         if let image = imageByPid {
             return image
         }
@@ -182,7 +182,7 @@ struct FetchUseCase: Offerable {
             throw NetworkError.urlError
         }
         
-        let grades = try await provider.receiveData(url: url, by: MetaGrades.self)
+        let grades = try await provider.receiveData(url: url, isCached: true, by: MetaGrades.self)
         
         guard let gradeName = grades.first(where: { $0.divisionId == gradeId })?.divisionName else {
             return "등급 정보 없음"

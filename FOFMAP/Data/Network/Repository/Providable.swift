@@ -8,6 +8,6 @@
 import UIKit
 
 protocol Providable {
-    func receiveData<T: Decodable>(url: URL, by type: T.Type) async throws -> T
-    func receiveImage(by url: URL) async throws -> UIImage
+    func receiveData<T: Decodable>(url: URL, isCached: Bool, by type: T.Type) async throws -> T
+    func receiveImage(isCached: Bool, by url: URL) async throws -> UIImage
 }
