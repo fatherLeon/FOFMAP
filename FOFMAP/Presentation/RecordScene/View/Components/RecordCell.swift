@@ -25,20 +25,20 @@ struct RecordCell: View {
                 RecordDetailView(matchDesc: matchDesc, nickname: self.nickname)
             } label: {
                 HStack {
-                    Text(getOpponentUserName(by: matchDesc))
+                    Text(opponentUserName)
                         .font(.subheadline)
                         .lineLimit(1)
                     
                     Spacer()
                     
-                    Text(getScoreText(by: matchDesc))
+                    Text(scoreText)
                         .font(.title3)
-                        .foregroundColor(getMatchState(by: matchDesc).backgroundColor)
+                        .foregroundColor(matchState.backgroundColor)
                         .bold()
                     
                     VStack {
-                        Text(getYearToDayText(by: matchDesc))
-                        Text(getHourToMinute(by: matchDesc))
+                        Text(matchYearToDayText)
+                        Text(matchHourToMinuteText)
                     }
                     .font(.caption)
                     .padding(.leading, 10)
@@ -50,24 +50,22 @@ struct RecordCell: View {
 }
 
 extension RecordCell {
-    private func getMatchState(by matchDesc: MatchDesc) -> MatchState {
-        let (userGoal, opponentGoal) = getScore(by: matchDesc)
-        
-        return MatchState.getMatchResult(playerGoal: userGoal, opponentGoal: opponentGoal)
+    private var matchState: MatchState {
+        return MatchState.getMatchResult(playerGoal: scores.user, opponentGoal: scores.opponent)
     }
     
-    private func getYearToDayText(by match: MatchDesc) -> String {
-        return Date.toYearMonthDateString(match.matchDate)
+    private var matchYearToDayText: String {
+        return Date.toYearMonthDateString(matchDesc.matchDate)
     }
     
-    private func getHourToMinute(by match: MatchDesc) -> String {
-        return Date.toHourMinuteString(match.matchDate)
+    private var matchHourToMinuteText: String {
+        return Date.toHourMinuteString(matchDesc.matchDate)
     }
     
-    private func getOpponentUserName(by match: MatchDesc) -> String {
+    private var opponentUserName: String {
         var opponentUserName = ""
         
-        match.matchInfo.forEach { info in
+        matchDesc.matchInfo.forEach { info in
             if info.nickname.uppercased() != self.nickname.uppercased() {
                 opponentUserName = info.nickname
             }
@@ -76,17 +74,15 @@ extension RecordCell {
         return opponentUserName
     }
     
-    private func getScoreText(by match: MatchDesc) -> String {
-        let (myGoal, opponentGoal) = getScore(by: match)
-        
-        return "\(myGoal) : \(opponentGoal)"
+    private var scoreText: String {
+        return "\(scores.user) : \(scores.opponent)"
     }
     
-    private func getScore(by match: MatchDesc) -> (user: Int, oppponent: Int) {
+    private var scores: (user: Int, opponent: Int) {
         var myGoal = 0
         var opponentGoal = 0
         
-        match.matchInfo.forEach { matchInfo in
+        matchDesc.matchInfo.forEach { matchInfo in
             if matchInfo.nickname.uppercased() == nickname.uppercased() {
                 myGoal = matchInfo.shoot["goalTotal"] ?? 0
             } else {
