@@ -33,47 +33,62 @@ struct RecordDetailView: View {
             .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
             .font(.title3)
             
-            HStack {
-                PieGraphView(value: possesions.user, color: .red, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
-                    .padding(.trailing, 10)
-                ComparisonBar(title: "점유율", userValue: possesions.user, opponentValue: possesions.opponent, isPercentage: true, isInterger: true)
-                PieGraphView(value: possesions.opponent, color: .blue, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
-                    .padding(.leading, 10)
+            ScrollView {
+                VStack(spacing: 100) {
+                    HStack {
+                        PieGraphView(value: possesions.user, color: .red, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
+                            .padding(.trailing, 10)
+                        ComparisonBar(title: "점유율", userValue: possesions.user, opponentValue: possesions.opponent, isPercentage: true, isInterger: true)
+                        PieGraphView(value: possesions.opponent, color: .blue, lineWidth: 5, maximumValue: 100, isPercentage: true, isInterger: true)
+                            .padding(.leading, 10)
+                    }
+                    .padding(.top, 20)
+                    
+                    HStack {
+                        PieGraphView(value: averageRatings.user, color: .red, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
+                            .padding(.trailing, 10)
+                        Spacer()
+                        Text("경기평점")
+                        Spacer()
+                        PieGraphView(value: averageRatings.opponent, color: .blue, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
+                            .padding(.leading, 10)
+                    }
+                    HStack {
+                        ComparisonBar(title: "슈팅 수", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
+                            .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
+                    }
+                    HStack {
+                        PieGraphView(value: effectiveShoots.user, color: .red, lineWidth: 5, maximumValue: shootings.user, isPercentage: false, isInterger: true)
+                        ComparisonBar(title: "유효 슈팅 비율", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
+                        PieGraphView(value: effectiveShoots.opponent, color: .blue, lineWidth: 5, maximumValue: shootings.opponent, isPercentage: false, isInterger: true)
+                    }
+                    HStack {
+                        PieGraphView(value: passAccuracy.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                        Spacer()
+                        Text("패스 성공률")
+                        Spacer()
+                        PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
+                    }
+                    
+                    NavigationLink {
+                        MatchDetailView(userName: self.nickname, matchDesc: matchDesc)
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.blue)
+                                .cornerRadius(10)
+                                .padding(EdgeInsets(top: -20, leading: 0, bottom: -20, trailing: 0))
+                            
+                            Text("선수단 확인")
+                                .foregroundColor(.white)
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 30, bottom: 30, trailing: 30))
+                    }
+                    
+                }
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             }
-            HStack {
-                PieGraphView(value: averageRatings.user, color: .red, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
-                    .padding(.trailing, 10)
-                Spacer()
-                Text("경기평점")
-                Spacer()
-                PieGraphView(value: averageRatings.opponent, color: .blue, lineWidth: 5, maximumValue: 5, isPercentage: false, isInterger: false)
-                    .padding(.leading, 10)
-            }
-            HStack {
-                ComparisonBar(title: "슈팅 수", userValue: shootings.user, opponentValue: shootings.opponent, isPercentage: false, isInterger: true)
-                    .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
-            }
-            HStack {
-                PieGraphView(value: effectiveShoots.user, color: .red, lineWidth: 5, maximumValue: shootings.user, isPercentage: false, isInterger: true)
-                ComparisonBar(title: "유효 슈팅 비율", userValue: effectiveShoots.user, opponentValue: effectiveShoots.opponent, isPercentage: false, isInterger: true)
-                PieGraphView(value: effectiveShoots.opponent, color: .blue, lineWidth: 5, maximumValue: shootings.opponent, isPercentage: false, isInterger: true)
-            }
-            HStack {
-                PieGraphView(value: passAccuracy.user, color: .red, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
-                Spacer()
-                Text("패스 성공률")
-                Spacer()
-                PieGraphView(value: passAccuracy.opponent, color: .blue, lineWidth: 5, maximumValue: 1, isPercentage: true, isInterger: false)
-            }
-            
-            NavigationLink {
-                MatchDetailView(userName: self.nickname, matchDesc: matchDesc)
-            } label: {
-                Text("선수단 확인")
-            }
-
         }
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
     }
 }
 

@@ -62,6 +62,7 @@ struct ComparisonBar: View {
                     }
                 }
             }
+            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
         }
     }
