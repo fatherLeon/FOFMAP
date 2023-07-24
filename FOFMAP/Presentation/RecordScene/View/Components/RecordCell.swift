@@ -12,8 +12,6 @@ struct RecordCell: View {
     private let nickname: String
     private let matchDesc: MatchDesc
     
-    @State var isClicked: Bool = false
-    
     init(nickname: String, matchDesc: MatchDesc) {
         self.nickname = nickname
         self.matchDesc = matchDesc
