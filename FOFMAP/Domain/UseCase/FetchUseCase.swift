@@ -115,12 +115,11 @@ struct FetchUseCase: Offerable {
     }
     
     func getSeasonImage(by spid: Int) async throws -> UIImage {
-        let seasonId = spid / 1000000
-        
         guard let url = ContentType.metaSeasonId.url else {
             throw NetworkError.urlError
         }
         
+        let seasonId = spid / 1000000
         let seasonIds = try await provider.receiveData(url: url, isCached: true, by: MetaSeasonIds.self)
         
         guard let filteredSeason = seasonIds.first(where: { $0.seasonId == seasonId }),

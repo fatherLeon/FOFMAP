@@ -9,9 +9,10 @@ import Network
 import Foundation
 
 class NetworkMonitor: ObservableObject {
-    @Published var isConnected: Bool = true
     private let networkMonitor: NWPathMonitor = NWPathMonitor()
     private let queue = DispatchQueue.global(qos: .background)
+    
+    @Published var isConnected: Bool = true
     
     init() {
         networkMonitor.pathUpdateHandler = { path in
