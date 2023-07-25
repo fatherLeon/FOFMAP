@@ -19,9 +19,10 @@ struct HeaderView: View {
         HStack {
             VStack {
                 Text(user.nickname.uppercased())
-                    .font(.title)
+                    .font(.body)
                 
                 Text("레벨 : \(user.level)")
+                    .font(.caption)
             }
             .padding(.leading, 20)
             
@@ -29,19 +30,21 @@ struct HeaderView: View {
             
             VStack {
                 Text("최고등급 - \(user.grade)")
+                    .font(.caption)
                     .padding(.bottom, 5)
                 Text("달성일 - \(user.gradeDate)")
+                    .font(.caption)
             }
-            .padding(.trailing, 20)
+            
+            DivisionIcon.divisionIcon(user.gradeId)
         }
         .foregroundColor(.black)
-        .padding(EdgeInsets(top: 20, leading: 10, bottom: 10, trailing: 10))
         .background(CustomColor.gradeBackgroundColor)
     }
 }
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(user: User(nickname: "123", id: "123", level: 123, grade: "챔피언스", gradeDate: "2022-03-20"))
+        HeaderView(user: User(nickname: "123", id: "123", level: 123, grade: "챔피언스", gradeDate: "2022-03-20", gradeId: 2700))
     }
 }
