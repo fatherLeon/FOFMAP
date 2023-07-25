@@ -12,7 +12,7 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 HStack(spacing: 5) {
                     ZStack(alignment: .trailing) {
