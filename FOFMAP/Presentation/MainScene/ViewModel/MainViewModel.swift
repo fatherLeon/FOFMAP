@@ -17,7 +17,7 @@ final class MainViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var mostUsedPlayerUseCase: any DetailFetchable
     
-    var error: NetworkError? = nil
+    var error: UserError? = nil
     
     @Published var userNicknameText = ""
     @Published var isEnabledInTextView = false
@@ -49,7 +49,7 @@ final class MainViewModel: ObservableObject {
             mostUsedPlayers = try await MostUsedPlayerUseCase().execute()
             isFetchingPlayers = false
         } catch {
-            self.error = error as? NetworkError
+            self.error = error as? UserError
             isShowingErrorAlert = true
             isFetchingPlayers = false
         }
