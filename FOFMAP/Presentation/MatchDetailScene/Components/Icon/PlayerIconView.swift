@@ -37,6 +37,7 @@ struct PlayerIconView: View {
                 }
             }
         }
+        .frame(alignment: .center)
     }
 }
 

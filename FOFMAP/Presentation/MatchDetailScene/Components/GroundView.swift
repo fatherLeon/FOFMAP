@@ -18,25 +18,51 @@ struct GroundView: View {
                 
                 Path { path in
                     path.move(to: CGPoint(x: width * 0.35, y: height))
-                    path.addLine(to: CGPoint(x: width * 0.35, y: height - 60))
-                    path.addLine(to: CGPoint(x: width * 0.65, y: height - 60))
+                    path.addLine(to: CGPoint(x: width * 0.35, y: height - 40))
+                    path.addLine(to: CGPoint(x: width * 0.65, y: height - 40))
                     path.addLine(to: CGPoint(x: width * 0.65, y: height))
                     
                     path.move(to: CGPoint(x: width * 0.2, y: height))
-                    path.addLine(to: CGPoint(x: width * 0.2, y: height - 120))
-                    path.addLine(to: CGPoint(x: width * 0.8, y: height - 120))
+                    path.addLine(to: CGPoint(x: width * 0.2, y: height - 100))
+                    path.addLine(to: CGPoint(x: width * 0.8, y: height - 100))
                     path.addLine(to: CGPoint(x: width * 0.8, y: height))
                     
-                    path.move(to: CGPoint(x: width * 0.35, y: height - 120))
-                    path.addQuadCurve(to: CGPoint(x: width * 0.65, y: height - 120),
-                                      control: CGPoint(x: width / 2, y: height / 1.3))
+                    path.move(to: CGPoint(x: width * 0.4, y: height - 100))
+                    path.addQuadCurve(to: CGPoint(x: width * 0.6, y: height - 100),
+                                      control: CGPoint(x: width / 2, y: height * 0.82))
                     
+                    path.move(to: CGPoint(x: width * 0.35, y: 0))
+                    path.addLine(to: CGPoint(x: width * 0.35, y: 40))
+                    path.addLine(to: CGPoint(x: width * 0.65, y: 40))
+                    path.addLine(to: CGPoint(x: width * 0.65, y: 0))
+                    
+                    path.move(to: CGPoint(x: width * 0.2, y: 0))
+                    path.addLine(to: CGPoint(x: width * 0.2, y: 100))
+                    path.addLine(to: CGPoint(x: width * 0.8, y: 100))
+                    path.addLine(to: CGPoint(x: width * 0.8, y: 0))
+                    
+                    path.move(to: CGPoint(x: width * 0.4, y: 100))
+                    path.addQuadCurve(to: CGPoint(x: width * 0.6, y: 100),
+                                      control: CGPoint(x: width * 0.5, y: height * 0.18))
+                    
+                    path.move(to: CGPoint(x: 0, y: height * 0.5))
+                    path.addLine(to: CGPoint(x: width, y: height * 0.5))
+                    
+                    path.addArc(center: CGPoint(x: width * 0.5, y: height * 0.5),
+                                radius: .pi * 20,
+                                startAngle: .degrees(0),
+                                endAngle: .degrees(360),
+                                clockwise: true)
+                    
+                    /*
+                     중앙 원
                     path.move(to: CGPoint(x: 0, y: 0))
                     path.addArc(center: CGPoint(x: width * 0.5, y: 0),
                                 radius: 90,
                                 startAngle: .degrees(180),
                                 endAngle: .degrees(0),
                                 clockwise: true)
+                     */
                     
                 }
                 .stroke(.white, lineWidth: 5)
@@ -51,3 +77,4 @@ struct GroundView_Previews: PreviewProvider {
         GroundView()
     }
 }
+
