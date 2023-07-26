@@ -15,7 +15,6 @@ struct PlayerCell: View {
         HStack {
             Text(player.positionDescription)
                 .lineLimit(1)
-                .fontWidth(.expanded)
                 .frame(width: 60)
                 .font(.callout)
             

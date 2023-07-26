@@ -67,7 +67,6 @@ struct MainView: View {
                         }
                     }
                     .disabled(viewModel.isEnabledInTextView)
-                    .bold(viewModel.isEnabledInTextView)
                     .tint(.green)
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
