@@ -13,7 +13,11 @@ struct RecordView: View {
     @ObservedObject var viewModel: RecordViewModel
     
     init(nickname: String, matchCategory: MatchCategory) {
-        self.viewModel = RecordViewModel(nickname: nickname, matchCategory: matchCategory)
+        self.viewModel = RecordViewModel(nickname: nickname,
+                                         matchCategory: matchCategory,
+                                         recordUseCase: UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory),
+                                        userInfoUseCase: UserInfoUseCase(nickname: nickname)
+        )
     }
     
     var body: some View {

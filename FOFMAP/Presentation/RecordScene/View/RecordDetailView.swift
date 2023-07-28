@@ -97,7 +97,7 @@ extension RecordDetailView {
         var opponentNickname: String = ""
         
         matchDesc.matchInfo.forEach { info in
-            if info.nickname.uppercased() != self.nickname {
+            if info.nickname.uppercased() != self.nickname.uppercased() {
                 opponentNickname = info.nickname.uppercased()
             }
         }

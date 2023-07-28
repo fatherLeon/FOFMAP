@@ -26,11 +26,11 @@ final class RecordViewModel: ObservableObject {
     @Published var nickname: String = ""
     
     @MainActor
-    init(nickname: String, matchCategory: MatchCategory) {
+    init(nickname: String, matchCategory: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
         self.nickname = nickname
         self.matchType = matchCategory
-        self.recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory)
-        self.userInfoUseCase = UserInfoUseCase(nickname: nickname)
+        self.recordUseCase = recordUseCase
+        self.userInfoUseCase = userInfoUseCase
         
         receiveUserRecord()
     }
