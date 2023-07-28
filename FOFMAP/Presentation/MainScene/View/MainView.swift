@@ -18,8 +18,8 @@ struct MainView: View {
                     ZStack(alignment: .trailing) {
                         TextField("유저 닉네임 검색", text: $viewModel.userNicknameText)
                             .border(.background)
-                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 10))
                             .textFieldStyle(.roundedBorder)
+                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 10))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color(uiColor: UIColor.label))
@@ -85,9 +85,6 @@ struct MainView: View {
             .alert(isPresented: $viewModel.isShowingErrorAlert, error: viewModel.error) {
                 Button("OK", role: .cancel) { }
             }
-        }
-        .task {
-            await viewModel.receiveMostUsedPlayers()
         }
     }
 }

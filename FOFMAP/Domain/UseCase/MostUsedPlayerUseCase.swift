@@ -14,7 +14,7 @@ struct MostUsedPlayerUseCase: DetailFetchable {
     private let usedPlayersNum: Int
     private let offerableUseCase: Offerable
     private var offset: Int = 0
-    private let limit = 10
+    private let limit = 20
     
     init(boundaryUsedPlayerNum: Int = 30, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase

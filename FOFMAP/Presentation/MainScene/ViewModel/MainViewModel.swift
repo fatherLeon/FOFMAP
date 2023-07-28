@@ -30,6 +30,10 @@ final class MainViewModel: ObservableObject {
     init(mostUsedPlayerUseCase: any DetailFetchable = MostUsedPlayerUseCase()) {
         self.mostUsedPlayerUseCase = mostUsedPlayerUseCase
         binding()
+        
+        Task { [weak self] in
+            await self?.receiveMostUsedPlayers()
+        }
     }
     
     func apply(_ input: Input) {

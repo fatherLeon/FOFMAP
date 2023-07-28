@@ -11,6 +11,7 @@ enum UserError: LocalizedError {
     case noExistUser
     case noExistMatchRecord
     case noExistMostUsedPlayers
+    case noExistMatchRecordAnymore
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum UserError: LocalizedError {
             return "매치기록이 존재하지 않습니다."
         case .noExistMostUsedPlayers:
             return "최신 매치기록이 존재하지 않습니다."
+        case .noExistMatchRecordAnymore:
+            return "매치기록이 더 이상 존재하지 않습니다."
         }
     }
 }
