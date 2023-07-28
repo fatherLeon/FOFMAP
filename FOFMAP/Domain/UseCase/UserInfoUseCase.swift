@@ -13,7 +13,7 @@ struct UserInfoUseCase: DetailFetchable {
     private let offerableUseCase: Offerable
     private let nickname: String
     
-    init(offerableUseCase: Offerable = FetchUseCase(), nickname: String) {
+    init(nickname: String, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase
         self.nickname = nickname
     }

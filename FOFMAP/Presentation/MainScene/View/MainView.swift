@@ -50,22 +50,7 @@ struct MainView: View {
                         .tint(.green)
                     }
                     
-                    NavigationLink {
-                        DeferView {
-                            RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
-                        }
-                    } label: {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            Text("검색")
-                        }
-                        .font(.title3)
-                        .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 10))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.green)
-                        }
-                    }
+                    SearchButton(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
                     .disabled(viewModel.isEnabledInTextView)
                     .tint(.green)
                 }
