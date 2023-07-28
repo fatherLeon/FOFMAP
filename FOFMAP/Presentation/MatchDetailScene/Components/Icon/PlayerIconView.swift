@@ -33,6 +33,7 @@ struct PlayerIconView: View {
                         .resizable()
                         .frame(width: maxWidth / 25, height: maxWidth / 25)
                     Text(player.name)
+                        .foregroundColor(.black)
                         .font(.caption2)
                 }
             }
