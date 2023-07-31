@@ -55,7 +55,7 @@ struct DetailIndicatorView: View {
             }
         }
         .padding(EdgeInsets(top: 40, leading: 20, bottom: 40, trailing: 20))
-        .background(CustomColor.drawingColor)
+        .background(Color(uiColor: UIColor.systemGray4))
         .cornerRadius(12)
     }
 }

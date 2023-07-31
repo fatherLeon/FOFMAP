@@ -15,7 +15,7 @@ struct PlayerListView: View {
         List {
             ForEach(PlayerSection.allCases) { position in
                 Section(position.rawValue) {
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(mostUsedPlayers, id: \.id) { player in
                                 if player.position == position {
@@ -24,7 +24,6 @@ struct PlayerListView: View {
                             }
                         }
                     }
-                    .scrollIndicators(.hidden)
                 }
             }
         }

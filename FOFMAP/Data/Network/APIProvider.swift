@@ -18,11 +18,11 @@ struct APIProvider: Providable {
         self.cacheManager = cacheStorable
     }
     
-    func receiveData<T: Decodable>(url: URL, by type: T.Type) async throws -> T {
+    func receiveData<T: Decodable>(url: URL, isCached: Bool, by type: T.Type) async throws -> T {
         let request = generateRequest(by: url)
 
         guard let (data, _) = cacheManager.getCachedResponse(for: request) else {
-            let data = try await connectingNetwork(by: request)
+            let data = try await connectingNetwork(by: request, isCached: isCached)
             let parsedData = try parsingModel.toJson(data: data, by: type)
             
             return parsedData
@@ -33,11 +33,11 @@ struct APIProvider: Providable {
         return parsedData
     }
     
-    func receiveImage(by url: URL) async throws -> UIImage {
+    func receiveImage(isCached: Bool, by url: URL) async throws -> UIImage {
         let request = generateRequest(by: url)
         
         guard let (data, _) = cacheManager.getCachedResponse(for: request) else {
-            let data = try await connectingNetwork(by: request)
+            let data = try await connectingNetwork(by: request, isCached: isCached)
             let image = try parsingModel.toImage(data: data)
             
             return image
@@ -48,10 +48,12 @@ struct APIProvider: Providable {
         return image
     }
     
-    private func connectingNetwork(by request: URLRequest) async throws -> Data {
+    private func connectingNetwork(by request: URLRequest, isCached: Bool) async throws -> Data {
         let (data, response) = try await networkManager.request(with: request)
         
-        cacheManager.storeCache(response: response, data: data, in: request)
+        if isCached {
+            cacheManager.storeCache(response: response, data: data, in: request)
+        }
         
         return data
     }

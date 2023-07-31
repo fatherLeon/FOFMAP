@@ -12,14 +12,14 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 HStack(spacing: 5) {
                     ZStack(alignment: .trailing) {
                         TextField("유저 닉네임 검색", text: $viewModel.userNicknameText)
                             .border(.background)
-                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 10))
                             .textFieldStyle(.roundedBorder)
+                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 10))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color(uiColor: UIColor.label))
@@ -50,24 +50,8 @@ struct MainView: View {
                         .tint(.green)
                     }
                     
-                    NavigationLink {
-                        DeferView {
-                            RecordView(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
-                        }
-                    } label: {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            Text("검색")
-                        }
-                        .font(.title3)
-                        .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 10))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.green)
-                        }
-                    }
+                    SearchButton(nickname: viewModel.userNicknameText, matchCategory: viewModel.matchCategory)
                     .disabled(viewModel.isEnabledInTextView)
-                    .bold(viewModel.isEnabledInTextView)
                     .tint(.green)
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
@@ -86,9 +70,6 @@ struct MainView: View {
             .alert(isPresented: $viewModel.isShowingErrorAlert, error: viewModel.error) {
                 Button("OK", role: .cancel) { }
             }
-        }
-        .task {
-            await viewModel.receiveMostUsedPlayers()
         }
     }
 }

@@ -7,21 +7,13 @@
 
 import Foundation
 
-struct User {
-    let nickname: String
-    let id: String
-    let level: Int
-    let grade: String
-    let gradeDate: String
-}
-
 struct UserInfoUseCase: DetailFetchable {
     typealias T = User
     
     private let offerableUseCase: Offerable
     private let nickname: String
     
-    init(offerableUseCase: Offerable = FetchUseCase(), nickname: String) {
+    init(nickname: String, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase
         self.nickname = nickname
     }
@@ -37,6 +29,6 @@ struct UserInfoUseCase: DetailFetchable {
         let gradeDate = Date.toYearMonthDateString(officialGrade.achievementDate)
         let gradeName = try await offerableUseCase.getMetaDivisionGrade(gradeId: officialGrade.division)
         
-        return User(nickname: nickname, id: id, level: level, grade: gradeName, gradeDate: gradeDate)
+        return User(nickname: nickname, id: id, level: level, grade: gradeName, gradeDate: gradeDate, gradeId: officialGrade.division)
     }
 }

@@ -44,7 +44,7 @@ struct SampleData {
     ]
     """.data(using: .utf8)!
     
-    static let imageData = UIImage(named: "SampleImage")!.pngData()!
+    static let imageData = UIImage(systemName: "person.fill")!.pngData()!
     
     static let matchDescData = """
     {

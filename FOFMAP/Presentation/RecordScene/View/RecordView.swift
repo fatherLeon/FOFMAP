@@ -13,10 +13,11 @@ struct RecordView: View {
     @ObservedObject var viewModel: RecordViewModel
     
     init(nickname: String, matchCategory: MatchCategory) {
-        let recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory)
-        let userInfoUseCase = UserInfoUseCase(nickname: nickname)
-        self.viewModel = RecordViewModel(matchType: matchCategory, recordUseCase: recordUseCase, userInfoUseCase: userInfoUseCase)
-        self.viewModel.nickname = nickname
+        self.viewModel = RecordViewModel(nickname: nickname,
+                                         matchCategory: matchCategory,
+                                         recordUseCase: UserMatchRecordUseCase(nickname: nickname, matchType: matchCategory),
+                                        userInfoUseCase: UserInfoUseCase(nickname: nickname)
+        )
     }
     
     var body: some View {
@@ -24,7 +25,7 @@ struct RecordView: View {
             if viewModel.matches.isEmpty {
                 ProgressView()
             } else {
-                HeaderView(user: viewModel.user)
+                HeaderView(user: viewModel.user ?? User(nickname: "", id: "", level: 0, grade: "", gradeDate: "", gradeId: 0))
                 
                 List(viewModel.matches) { matchDesc in
                     VStack {
@@ -46,6 +47,7 @@ struct RecordView: View {
             Button("OK", role: .cancel) {
                 dismiss()
             }
+            Button("Cancel", role: .destructive) { }
         }
     }
 }

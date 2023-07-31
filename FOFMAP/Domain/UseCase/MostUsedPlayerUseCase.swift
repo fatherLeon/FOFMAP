@@ -14,7 +14,7 @@ struct MostUsedPlayerUseCase: DetailFetchable {
     private let usedPlayersNum: Int
     private let offerableUseCase: Offerable
     private var offset: Int = 0
-    private let limit = 100
+    private let limit = 20
     
     init(boundaryUsedPlayerNum: Int = 30, offerableUseCase: Offerable = FetchUseCase()) {
         self.offerableUseCase = offerableUseCase
@@ -42,7 +42,11 @@ struct MostUsedPlayerUseCase: DetailFetchable {
             mostUsedPlayers.append(PlayerInfo(id: id, name: name, seasonImg: seasonImage, img: actionImage, positionId: value.position, position: position))
         }
         
-        throw NetworkError.invalidData
+        if mostUsedPlayers.isEmpty {
+            throw UserError.noExistMostUsedPlayers
+        } else {
+            return mostUsedPlayers
+        }
     }
     
     private func getAllUsedPlayer() async throws -> [Int: (count: Int, position: Int)] {

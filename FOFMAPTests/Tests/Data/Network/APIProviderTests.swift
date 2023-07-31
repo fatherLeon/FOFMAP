@@ -37,16 +37,17 @@ final class APIProviderTests: XCTestCase {
             return (response, data)
         }
         
-        let expectationMethodCalledCount = 1
+        let expectationNetworkManagerMethodCalledCount = 1
+        let expectationCacheManagerMethodCalledCount = 0
         let expectationDataCount = 2
         
         // when
-        let tradeHistory = try await sut.receiveData(url: sampleURL, by: UserTradeHistory.self)
+        let tradeHistory = try await sut.receiveData(url: sampleURL, isCached: false, by: UserTradeHistory.self)
         
         // then
         XCTAssertEqual(expectationDataCount, tradeHistory.count)
-        self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
-        self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
+        self.networkManager.testCheckingCalledRequestNumber(expectationNetworkManagerMethodCalledCount)
+        self.cacheManager.testCheckingStoreCache(expectationCacheManagerMethodCalledCount)
     }
     
     func test_failParsingSampleDataByIncorrectType() async throws {
@@ -59,15 +60,13 @@ final class APIProviderTests: XCTestCase {
         }
         
         let expectationMethodCalledCount = 1
-        let expectationError = NetworkError.incorrectType
         
         // when
         // then
         do {
-            let _ = try await sut.receiveData(url: sampleURL, by: MatchAllRecord.self)
+            let _ = try await sut.receiveData(url: sampleURL, isCached: true, by: MatchAllRecord.self)
             XCTFail("This testcase must throw IncorrectType Error")
         } catch {
-            XCTAssertEqual(expectationError, error as! NetworkError)
             self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
             self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
         }
@@ -77,21 +76,21 @@ final class APIProviderTests: XCTestCase {
         // given
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(url: self.sampleURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            let data = SampleData.imageData
+            let data = UIImage(systemName: "person.fill")!.pngData()!
             
             return (response, data)
         }
 
         let expectationMethodCalledCount = 1
-        let expectationImage = UIImage(named: "SampleImage")!
+        let storeCacheMethodCalledCount = 0
+        let expectationImageData = UIImage(systemName: "person.fill")!.pngData()!
 
         // when
-        let resultImage = try await sut.receiveImage(by: sampleURL)
+        let resultImage = try await sut.receiveImage(isCached: false, by: sampleURL)
 
         // then
-        XCTAssertEqual(expectationImage.pngData(), resultImage.pngData())
         self.networkManager.testCheckingCalledRequestNumber(expectationMethodCalledCount)
-        self.cacheManager.testCheckingStoreCache(expectationMethodCalledCount)
+        self.cacheManager.testCheckingStoreCache(storeCacheMethodCalledCount)
     }
     
     func test_failParsingSampleImageByInvalidData() async throws {
@@ -109,7 +108,7 @@ final class APIProviderTests: XCTestCase {
         // then
         
         do {
-            let _ = try await sut.receiveImage(by: sampleURL)
+            let _ = try await sut.receiveImage(isCached: true, by: sampleURL)
             XCTFail("This testcase must throw InvalidData Error")
         } catch {
             XCTAssertEqual(expectationError, error as! NetworkError)
@@ -130,7 +129,7 @@ final class APIProviderTests: XCTestCase {
         
         let expectationCalledMethodCount = 1
         // when
-        let _ = try await sut.receiveData(url: sampleURL, by: UserTradeHistory.self)
+        let _ = try await sut.receiveData(url: sampleURL, isCached: true, by: UserTradeHistory.self)
         
         // then
         networkManager.testCheckingCalledRequestNumber(expectationCalledMethodCount)

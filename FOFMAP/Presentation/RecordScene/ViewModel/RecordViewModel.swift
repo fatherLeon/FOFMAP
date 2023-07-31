@@ -17,7 +17,7 @@ final class RecordViewModel: ObservableObject {
     private var offset = 20
     private var limit = 5
     
-    var user: User = User(nickname: "", id: "", level: 0, grade: "", gradeDate: "")
+    var user: User?
     var error: UserError? = nil
     
     @Published var matches: [MatchDesc] = []
@@ -26,12 +26,13 @@ final class RecordViewModel: ObservableObject {
     @Published var nickname: String = ""
     
     @MainActor
-    init(matchType: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
-        self.matchType = matchType
+    init(nickname: String, matchCategory: MatchCategory, recordUseCase: any DetailFetchable, userInfoUseCase: any DetailFetchable) {
+        self.nickname = nickname
+        self.matchType = matchCategory
         self.recordUseCase = recordUseCase
         self.userInfoUseCase = userInfoUseCase
         
-        binding()
+        receiveUserRecord()
     }
     
     func isLastItem(_ match: MatchDesc) -> Bool {
@@ -54,44 +55,53 @@ final class RecordViewModel: ObservableObject {
         recordUseCase = UserMatchRecordUseCase(nickname: nickname, matchType: matchType, offset: offset, limit: limit)
         
         Task { [weak self] in
-            guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc],
-                  newMatches.isEmpty == false else {
+            do {
+                guard let newMatches = try await self?.recordUseCase.execute() as? [MatchDesc],
+                      newMatches.isEmpty == false else {
+                    self?.isPossibleFetch = false
+                    return
+                }
+                
+                self?.matches += newMatches
+                self?.isPossibleFetch = true
+            } catch {
                 self?.isPossibleFetch = false
-                return
+                self?.error = UserError.noExistMatchRecordAnymore
+                self?.isErrorShownAlert = true
             }
-            
-            self?.matches += newMatches
-            self?.isPossibleFetch = true
         }
     }
     
     @MainActor
-    private func binding() {
-        $nickname
-            .sink(receiveValue: { [weak self] nickname in
-                Task { [weak self] in
-                    guard let user = try await self?.userInfoUseCase.execute() as? User else {
-                        self?.error = UserError.noExistUser
-                        self?.isErrorShownAlert = true
-                        self?.isPossibleFetch = false
-                        
-                        return
-                    }
+    private func receiveUserRecord() {
+        Task { [weak self] in
+            do {
+                guard let user = try await self?.userInfoUseCase.execute() as? User else {
+                    self?.error = UserError.noExistUser
+                    self?.isErrorShownAlert = true
+                    self?.isPossibleFetch = false
                     
-                    self?.user = user
-                    
-                    do {
-                        guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else { return }
-                        
-                        self?.matches = matches
-                        self?.isPossibleFetch = true
-                    } catch {
-                        self?.error = UserError.noExistMatchRecord
-                        self?.isErrorShownAlert = true
-                        self?.isPossibleFetch = false
-                    }
+                    return
                 }
-            })
-            .store(in: &cancellables)
+                
+                self?.user = user
+            } catch {
+                self?.error = UserError.noExistUser
+                self?.isErrorShownAlert = true
+                
+                return
+            }
+            
+            do {
+                guard let matches = try await self?.recordUseCase.execute() as? [MatchDesc] else { return }
+                
+                self?.matches = matches
+                self?.isPossibleFetch = true
+            } catch {
+                self?.error = UserError.noExistMatchRecord
+                self?.isErrorShownAlert = true
+                self?.isPossibleFetch = false
+            }
+        }
     }
 }
