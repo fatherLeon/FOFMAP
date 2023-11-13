@@ -158,4 +158,3 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/swift,macos,xcode,firebase,git
 
 FOFMAP/APIKey.plist
-FOFMAP/GoogleService-Info.plist

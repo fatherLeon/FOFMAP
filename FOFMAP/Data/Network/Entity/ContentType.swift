@@ -46,19 +46,19 @@ enum ContentType {
     private var host: String {
         switch self {
         case .userInfo(_), .userMaxGrade(_), .userMatches(_, _, _, _), .userTradeHistory(_, _, _, _), .matchAllRecord(_, _, _, _), .matchDesc(_):
-            return "api.nexon.co.kr"
+            return "public.api.nexon.com"
         case .metaMatchType, .metaPlayerId, .metaSeasonId, .metaPosition, .metaGrade, .metaVoltaGrade:
             return "static.api.nexon.co.kr"
         case .metaPlayerActionshotImageBySpid(_), .metaPlayerActionshotImageByPid(_), .metaPlayerImageBySpid(_), .metaPlayerImageByPid(_):
-            return "fo4.dn.nexoncdn.co.kr"
+            return "fco.dn.nexoncdn.co.kr"
         }
     }
     
     private var path: String {
-        let basicPath = "/fifaonline4/v1.0"
+        let basicPath = "/openapi/fconline/v1.0"
         let userInfoBasicPath = basicPath + "/users"
         let matchBasicPath = basicPath + "/matches"
-        let metaBasicPath = "/fifaonline4/latest"
+        let metaBasicPath = "/fconline/latest"
         let metaPlayerImageBasicPath = "/live/externalAssets/common"
         
         switch self {
